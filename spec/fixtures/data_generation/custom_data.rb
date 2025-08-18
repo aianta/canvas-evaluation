@@ -666,6 +666,66 @@ def create_task_instances(test_course)
 
   tasks << task
 
+  task = AgentTask.new({
+    id: '1977dbaa-1d14-4b08-a40b-0090df524371',
+    parameterized_text: 'Task:  In your group ([[Group]]) for the course "[[Course]]" close your own discussion titled "[[Discussion]]" for comments.'
+  })
+
+  task.populate(test_course){|course,task|
+
+    group = course.groups.select {|g| (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user) && (!g.discussion_topics.select {|dt| dt.user == course.logged_in_user}.first.nil?) }.first
+
+    if group.nil?
+      puts "Cannot find group for task #{task.id}"
+      return 
+    end
+
+    AgentTask.groups << group
+
+    discussion_topic = group.discussion_topics.select{|dt| dt.user == course.logged_in_user}.first
+    
+    if discussion_topic.nil?
+      puts "Cannot find discussion topic for task #{task.id}"
+      return
+    end
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Group", group.name)
+    task.update_initalized_text("Discussion", discussion_topic.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '19816faf-81ee-4235-8228-eb3d45e6bad3',
+    parameterized_text: 'Task: View the details of the "[[Assignment]]" assignment in the "[[Course]]" course, including its due date, points possible, and any instructor instructions.
+
+Steps to complete:
+
+1. In the Course Navigation for "[[Course]]," click the Assignments link.
+2. On the Assignments Index page, locate and click on the assignment titled "[[Assignment]]."
+3. On the Assignment Summary page, review the assignment title, due date, points possible, and read any instructions provided by the instructor in the Details section.'
+  })
+
+  task.populate(test_course){ |course, task|
+
+    assignment = course.assignments.select {|a| !AgentTask.assignments.include? a}.first
+
+    if assignment.nil?
+      puts "Could not find assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
+  }
+
+  tasks << task
+
   puts "last task"
   puts task.to_hash
 

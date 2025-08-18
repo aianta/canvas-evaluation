@@ -8,7 +8,7 @@
   - Group 1
   - Group 2
   :instances:
-  - :id: fd916e52-eea3-4eaa-a0ae-1ef5ebe8490f
+  - :id: 65bb276a-6824-42f2-8545-66ebff011eec
     :instance_text: 'Task: In the course ''Psychology 101'' switch from your current
       group ''Group H'' to the group ''Group J'' within the ''Student Groups'' group
       set.'
@@ -24,7 +24,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 2626ec91-ed51-4fa3-b86e-adfd3ea25b82
+  - :id: 2f47807b-a9f5-4ab0-926f-fa9cf9822d84
     :instance_text: 'Task: In the course ''Psychology 101'' use the Syllabus page
       to find the due date for the assignment titled ''Researchers in the field of
       Psychology'' and list the due date as displayed in the Course Summary section.'
@@ -39,7 +39,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: b8242dd9-01f1-45d7-8d7b-eb3ec5c2b579
+  - :id: f58ec986-a056-4759-a024-f2a75a240770
     :instance_text: 'Task: View the feedback left by your instructor for the assignment
       ''Abnormal Behavior Essay'' in the course ''Psychology 101'', and add a comment
       saying ''Thank you for the feedback!'' using the Feedback sidebar.'
@@ -54,7 +54,7 @@
   - Course
   - Quiz
   :instances:
-  - :id: c32c3238-c457-44ed-a67a-a9405d33325e
+  - :id: 1efb0f68-d961-4f5e-93b3-b90b4fe06798
     :instance_text: 'Task: View the rubric for the quiz titled "Warming up to psychology"
       in the course "Psychology 101" by navigating to the Grades page, clicking on
       "Warming up to psychology," and then clicking the "Show Rubric" link on the
@@ -72,7 +72,7 @@
   - User 1
   - User 2
   :instances:
-  - :id: fad79765-5c3b-42a8-a4aa-8391320c82df
+  - :id: e6528668-ad77-45ba-a6f9-fe11e7819391
     :instance_text: 'Task: Create a new student group named "NeuroNauts" in the course
       "Psychology 101", set the group membership to "Membership by invitation only",
       and invite students named "Terrance Studentson" and "Phillip Studentson" to
@@ -93,7 +93,7 @@
   - Announcement
   - Announcement Message
   :instances:
-  - :id: d615e085-ddcb-4f27-a019-a2c9c0f2cc78
+  - :id: 85eb0c2a-ef1f-465f-ab53-8ff02f8657f0
     :instance_text: 'Task: In your group "Group A" for the course Psychology 101,
       create a new announcement with the title "First study group meeting?" and the
       following content: "Hi guys, so when would you be free to do our first group
@@ -111,7 +111,7 @@
   - Course
   - Discussion
   :instances:
-  - :id: d74cfedf-bee1-47ac-9124-c7053b98838d
+  - :id: 4e4d7d5b-3198-4e98-96ef-9c6565a3b45b
     :instance_text: 'Task: Subscribe to the "Memory and experiences" discussion in
       the "Psychology 101" course so that you receive notifications when new comments
       are posted.'
@@ -125,7 +125,7 @@
   - Course
   - Quiz
   :instances:
-  - :id: 230a5bbd-a31a-4bab-8c09-9011a2a4a811
+  - :id: 415647c0-c164-4193-8877-f17258044f93
     :instance_text: 'Task: Take the "A quick review of the biology" in the "Psychology
       101" course, answer all questions, flag question 3 for review, and submit the
       quiz when finished.'
@@ -142,7 +142,7 @@
   - Question Index
   - Answer
   :instances:
-  - :id: 76d4b4e5-e34d-41ca-8527-80905259eb8e
+  - :id: eff0fd63-9933-42f8-b7ec-1fff19e029c5
     :instance_text: 'Task: In the course "Psychology 101," open the quiz titled "Inside
       the Mind" and answer Question 1, which is a short answer question, by typing
       "Autonomic" into the provided text box.'
@@ -151,3 +151,43 @@
       Quiz: Inside the Mind
       Question Index: '1'
       Answer: Autonomic
+- :id: 1977dbaa-1d14-4b08-a40b-0090df524371
+  :paremeterized_text: 'Task:  In your group ([[Group]]) for the course "[[Course]]"
+    close your own discussion titled "[[Discussion]]" for comments.'
+  :parameters:
+  - Course
+  - Group
+  - Discussion
+  :instances:
+  - :id: 79bc842a-e53b-4002-aa2d-807f7172aab8
+    :instance_text: 'Task:  In your group (Group A) for the course "Psychology 101"
+      close your own discussion titled "I''ll be away next week." for comments.'
+    :mapping:
+      Course: Psychology 101
+      Group: Group A
+      Discussion: I'll be away next week.
+- :id: 19816faf-81ee-4235-8228-eb3d45e6bad3
+  :paremeterized_text: |-
+    Task: View the details of the "[[Assignment]]" assignment in the "[[Course]]" course, including its due date, points possible, and any instructor instructions.
+
+    Steps to complete:
+
+    1. In the Course Navigation for "[[Course]]," click the Assignments link.
+    2. On the Assignments Index page, locate and click on the assignment titled "[[Assignment]]."
+    3. On the Assignment Summary page, review the assignment title, due date, points possible, and read any instructions provided by the instructor in the Details section.
+  :parameters:
+  - Course
+  - Assignment
+  :instances:
+  - :id: 71131b35-2c40-4811-b12e-d8b4496f5676
+    :instance_text: |-
+      Task: View the details of the "Psychology Video on learning" assignment in the "Psychology 101" course, including its due date, points possible, and any instructor instructions.
+
+      Steps to complete:
+
+      1. In the Course Navigation for "Psychology 101," click the Assignments link.
+      2. On the Assignments Index page, locate and click on the assignment titled "Psychology Video on learning."
+      3. On the Assignment Summary page, review the assignment title, due date, points possible, and read any instructions provided by the instructor in the Details section.
+    :mapping:
+      Course: Psychology 101
+      Assignment: Psychology Video on learning
