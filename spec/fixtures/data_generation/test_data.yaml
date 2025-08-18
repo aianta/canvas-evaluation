@@ -35,6 +35,15 @@ courses:
     - name: Abigail Studentson
       email: abigail@ualberta.ca
       password: 3qI256uBMmoh
+    - name: Alex Studentson
+      email: alex@ualberta.ca
+      password: nzV0K4L5Bzyb
+    - name: Jared Studentson
+      email: jared@ualberta.ca
+      password: ch8DgQh7WV7e
+    - name: Monica Studentson
+      email: monica@ualberta.ca
+      password: ZKnc0HeqKGvA
   modules:
     - name: Module 1
       workflow_state: active
@@ -130,8 +139,34 @@ courses:
         - title: Planning for the group project
           body: |
             I figured we should have a page to organize our notes around the group project.
+    - name: Group B
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - alex@ualberta.ca
+        - monica@ualberta.ca
+        - jared@ualberta.ca
+      announcements:
+        - title: Meeting this weekend
+          message: Hey everyone, should we plan a study session this Saturday afternoon at the library?
+          user: main_user
+          allow_rating: true
 
-
+      discussions:
+        - title: Midterm review strategies
+          message: Any tips or resources for preparing for the upcoming midterm? 
+          user: main_user
+          discussion_type: threaded
+      pages:
+        - title: Key concepts from Chapter 3
+          body: |
+            Let’s collect all the main theories, definitions, and examples from Chapter 3 here for easier revision.
+          updates:
+            - title: Added more notes on Chapter 3
+              body: Included details on the stages of cognitive development.
+        - title: Group project topic ideas
+          body: |
+            We should brainstorm possible topics for the group project. Drop suggestions here!
   pages:
     - title: Psychology & Pseudeo Science
       user: instructor
@@ -295,6 +330,47 @@ courses:
         answers:
           - weight: 100
             text: "Facilitation"
+    - title: Exploring the Psyche
+      description: A Psychology Quiz on theories, concepts, and research.
+      due_at: 2026-10-05 23:59:00
+      published_at: 2025-08-20 09:00:00
+      workflow_state: available
+      questions:
+      - name: Question 1
+        question_type: "short_answer_question"
+        points_possible: 1
+        question_text: "<p>The brain structure primarily responsible for forming new memories is the __________.</p>"
+        answers:
+          - weight: 100
+            text: "Hippocampus"
+      - name: Question 2
+        question_type: "short_answer_question"
+        points_possible: 1
+        question_text: "<p>According to Maslow’s hierarchy of needs, the highest level is __________ needs.</p>"
+        answers:
+          - weight: 100
+            text: "Self-actualization"
+      - name: Question 3
+        question_type: "short_answer_question"
+        points_possible: 1
+        question_text: "<p>The tendency to attribute others’ behavior to internal factors while underestimating situational influences is called the fundamental __________ error.</p>"
+        answers:
+          - weight: 100
+            text: "Attribution"
+      - name: Question 4
+        question_type: "short_answer_question"
+        points_possible: 1
+        question_text: "<p>Pavlov’s experiments with dogs demonstrated the principle of classical __________.</p>"
+        answers:
+          - weight: 100
+            text: "Conditioning"
+      - name: Question 5
+        question_type: "short_answer_question"
+        points_possible: 1
+        question_text: "<p>In cognitive psychology, short-term memory is often referred to as __________ memory.</p>"
+        answers:
+          - weight: 100
+            text: "Working"
         
     - title: Warming up to psychology
       description: A quiz to test the knowledge of some psychology stuff

@@ -726,6 +726,109 @@ Steps to complete:
 
   tasks << task
 
+  task = AgentTask.new({
+    id: '2b0a143f-fb9c-4f8e-9606-211e6bcb8171',
+    parameterized_text: 'Task: In the course "[[Course]]," use the People page to search for the user named "[[User]]," view their profile details, and send them a message with the text: "Hi, I have a question about the lab assignment. Can we discuss it?"'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    user = course.classmates.select {|c| !AgentTask.users.include? c}.first
+
+    if user.nil?
+      puts "Could not find user for task #{task.id}"
+      return 
+    end
+
+    AgentTask.users << user
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("User", user.name)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '2f354ba2-b00c-4f3d-8b05-ae149f8e870d',
+    parameterized_text: 'Task: In the course "[[Course]]" view the page titled "[[Page]]" by navigating to the Pages Index and selecting the page from the list.'
+  })
+
+  task.populate(test_course) {|course,task|
+
+    page = course.pages.select{|p| !AgentTask.pages.include? p}.first
+
+    if page.nil?
+      puts "Could not find page for task #{task.id}"
+      return
+    end
+
+    AgentTask.pages << page
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Page", page.title)
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '2fb04821-58a4-4b0e-90b9-2b24882f4582',
+    parameterized_text: 'Task: In the course "[[Course]]," use the Quizzes page to find the quiz titled "[[Quiz]]," and view its availability dates, due date, point value, and number of questions. Write down the availability start date, due date, and the number of points the quiz is worth.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    quiz = course.quizzes.select{|q| !AgentTask.quizzes.include? q}.first
+
+    if quiz.nil?
+      puts "Could not find quiz for task #{task.id}"
+      return
+    end
+
+    AgentTask.quizzes << quiz
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Quiz", quiz.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '353feae6-0efa-4913-8220-8ab2567696b4',
+    parameterized_text: 'Task: In the "[[Group]]" group, view the revision history of the page titled "[[Page]]" and identify the most recent edit and when it was made.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    # Fetch group directly from test data to identify pages with update history easily.
+    test_data = YAML.load_file "/usr/src/app/spec/fixtures/data_generation/test_data.yaml"
+    course_data = test_data["courses"].select{|c|c["name"] == course.course.name}.first
+
+    used_group_names = []
+    AgentTask.groups.each {|group| used_group_names << group.name}
+
+    group = course_data["groups"].select{|g| (!used_group_names.include? g["name"]) && (!g["pages"].nil?) && (!g["pages"].select{|p| !p["updates"].nil?}.first.nil?)}.first
+
+
+    if group.nil?
+      puts "Could not find a group for task #{task.id}"
+      return
+    end
+
+    page = group["pages"].select{|p| !p["updates"].nil?}.first
+
+    _group = course.groups.select {|grp| grp.name == group["name"]}.first
+    AgentTask.groups << _group
+
+    task.update_initalized_text("Group", group["name"])
+    task.update_initalized_text("Page", page["title"])
+
+
+  }
+
+  tasks << task
+
   puts "last task"
   puts task.to_hash
 
