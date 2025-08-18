@@ -1,0 +1,341 @@
+---
+courses:
+- name: Psychology 101
+  code: "PSY101"
+  unused_group_names: 
+    - NeuroNauts
+    - The Insight Syndicate
+    - Mind Over Matter
+    - The Cortex Collective
+    - The Freudian Slip-Ups
+  unused_announcements:
+    - title: "First study group meeting?"
+      message: "Hi guys, so when would you be free to do our first group study meeting?"
+  instructor:
+    name: Tammy Teacherson
+    email: tammy@ualberta.ca
+    password: U4A3O659xgNs
+  main_user:
+    name: Sammy Studentson
+    email: sammy@ualberta.ca
+    password: op3TPfE3J5MK
+  students:
+    - name: Terrance Studentson
+      email: terrance@ualberta.ca
+      password: Xs224D3drZaR
+    - name: Phillip Studentson
+      email: phillip@ualberta.ca
+      password: 6bE1G83JrT1i
+    - name: Sarah Studentson
+      email: sarah@ualberta.ca
+      password: 30OubNfH3Z3T
+    - name: Steven Studentson
+      email: steven@ualberta.ca
+      password: 62YubNzH6Z8T
+    - name: Abigail Studentson
+      email: abigail@ualberta.ca
+      password: 3qI256uBMmoh
+  modules:
+    - name: Module 1
+      workflow_state: active
+      content: 
+        - title: Psychology & Pseudeo Science
+          completion_requirements: "must_mark_done"
+    - name: Module 2
+      workflow_state: active
+      content:
+        - title: Researchers in the field of Psychology
+          
+  announcements:
+    - title: Materials for Lab 8
+      message: Please remember to have procured all the PPE listed in the Lab 8 instructions before the day of the lab. Thank you!
+      user: instructor
+      allow_rating: true
+      replies: 
+        - user: main_user
+          text: Does this include the closed-toe shoes?
+          replies:
+            - user: instructor
+              text: Yes it does.
+    - title: There will be no class next week!
+      message: Don't bother coming in next week as there will be no class.
+      user: instructor
+      allow_rating: true
+      replies: 
+        - user: phillip@ualberta.ca
+          text: Alright! Finally some time to catch up on studying!
+        - user: sarah@ualberta.ca
+          text: Awww, I was looking forward to sleeping in class next week. 
+  discussions:
+    - title: Memory and experiences
+      message: As we are discussing memory in class this week, I'd like to start a self-reflective conversation about how you interact with your own memory. Share any stories you have related to remembering something, or misremembering something!
+      user: instructor
+      discussion_type: threaded
+      replies:
+        - user: phillip@ualberta.ca
+          text: I always find that I am better able to commit things from short term memory to long term by repeating them to myself a few times. 
+    - title: What aspect of psychology do you find most interesting?
+      message: |
+        Hi Everyone, I hope you've all had a great first week of classes. This semester I am looking to engage with students on a variety of weekly opinion questions. Starting with what aspects of psychology you personally find interesting. Leave your answers in a comment below! 
+      user: instructor
+      discussion_type: threaded
+      replies:
+        - user: terrance@ualberta.ca
+          text: I think the study of abnormal behavior will be the most interesting!
+          replies:
+            - user: phillip@ualberta.ca
+              text: No way is that more interesting than the neuroscience aspects.
+        - user: sarah@ualberta.ca
+          text: I am looking forward to better understanding the mechanisms behind procrastination. 
+  groups:
+    - name: Group J 
+      is_public: true
+      description: A friendly group always open to new memebers. 
+    - name: Group X 
+      is_public: true
+      join_level: parent_context_request
+      description: A test group
+    - name: Group H
+      is_public: true
+      description: A psych student group
+      users:
+        - sammy@ualberta.ca
+        - steven@ualberta.ca
+        - abigail@ualberta.ca
+    - name: Group A
+      is_public: true
+      description: A team
+      users: 
+        - sammy@ualberta.ca
+        - phillip@ualberta.ca
+        - terrance@ualberta.ca
+      announcements:
+        - title: Do any of you have an extra textbook?
+          message: Hi guys, I'm looking for an extra textbook for this course, if you have one lying around please send me a message.
+          user: main_user
+          allow_rating: true
+
+      discussions:
+        - title: I'll be away next week.
+          message: Just letting everyone know I'll be on vacation next week and unavailable. 
+          user: main_user
+          discussion_type: threaded
+      pages:
+        - title: Thoughts on the course so far
+          body: |
+            So, what are your guys' thoughts on the course so far?
+          updates:
+            - title: Thoughts on the course so far
+              body: Ok, guys, really, what are your thoughts?!
+        - title: Planning for the group project
+          body: |
+            I figured we should have a page to organize our notes around the group project.
+
+
+  pages:
+    - title: Psychology & Pseudeo Science
+      user: instructor
+      body: |
+        Psychology, as a scientific discipline, is grounded in empirical research and the systematic study of behavior and mental processes. It relies on rigorous methodologies, peer-reviewed evidence, and ethical standards to understand the complexities of the human mind. In contrast, pseudoscience often masquerades as legitimate science but lacks the foundational principles of scientific inquiry—such as falsifiability, reproducibility, and critical peer evaluation. Practices like astrology, phrenology, or certain fringe self-help techniques may claim psychological benefits but typically rely on anecdotal evidence, confirmation bias, or misleading jargon. Distinguishing between psychology and pseudoscience is vital—not just for academic integrity, but for protecting individuals from potentially harmful or exploitative practices disguised as therapeutic truth.
+
+  assignments:   
+    - title: Researchers in the field of Psychology
+      description: |
+        Hi Everyone, for this assignment, you'll have to reply with the name of a researcher in the field of psychology.
+      due_at: 2026-03-01 18:00:00
+      points_possible: 2
+      created_at: 2025-07-29 10:00:00
+      updated_at: 2025-07-29 10:00:00
+      submission_types: ["discussion_topic"]
+      grading_type: "points"
+      replies:
+        - user: sarah@ualberta.ca
+          text: My favorite psychologist is Erik Erikson!
+        - user: terrance@ualberta.ca
+          text: Sigmund Freud is a classic.
+        - user: phillip@ualberta.ca
+          text: Can't go wrong with Carl Rogers.
+        - user: sammy@ualberta.ca
+          text: It's gotta be my boy B.F. Skinner.
+      peer_reviews: 
+        enabled: true
+        count: 2
+        due_at: 2026-04-01 18:00:00
+        intra_group_peer_reviews: true
+        anonymous_peer_reviews: false
+        automatic_peer_reviews: true
+
+    - title: Psychology Video on learning
+      description: For this assignment you must go out onto the internet and find an interesting video about how humans learn. Submit the url to the video. 
+      due_at: 2026-03-15 18:00:00
+      points_possible: 32
+      created_at: 2025-07-31 10:00:00
+      updated_at: 2025-07-31 10:00:00
+      submission_types: ["online_url"]
+      submissions:
+        - user: main_user
+          submission_type: online_url
+          url: https://www.youtube.com/watch?v=kKvK2foOTJM
+      
+    - title: Abnormal Behavior Essay
+      group_category: default
+      description: Write a 1000 word essay about abnormal behavior.
+      due_at: 2026-02-01 18:00:00
+      points_possible: 100
+      created_at: 2025-07-29 10:00:00
+      updated_at: 2025-07-29 10:00:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+           <p> In psychology, abnormal behavior refers to patterns of emotion, thought, or action that deviate significantly from societal norms and may interfere with daily functioning. This includes behaviors that are distressing to the individual, socially disruptive, or harmful—often manifesting in conditions like anxiety disorders, depression, schizophrenia, or personality disorders. Psychologists assess abnormal behavior by considering factors such as the intensity, duration, and context of symptoms, always accounting for cultural and situational differences. It's not just about what's “unusual”—it's about understanding the deeper psychological, biological, and environmental causes to support effective diagnosis and treatment.</p>
+          peer_review:
+            - author: instructor
+              comment: Well done!
+    - title: "Childhood Development Essay"
+      group_category: default
+      description: "Write a 1000 word essay about an aspect of childhood psychological development."
+      due_at: 2026-01-02 18:00:00
+      points_possible: 100
+      created_at: 2025-07-28 10:00:00
+      updated_at: 2025-07-28 10:00:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p> Childhood psychological development is a dynamic process where the foundations of personality, emotional regulation, social skills, and cognitive abilities begin to form. From infancy through adolescence, children navigate stages of attachment, trust-building, autonomy, and identity exploration—each influenced by interactions with caregivers, peers, and their environment. Milestones such as developing language, understanding emotions, and grasping moral reasoning are shaped by both biology and experience. This formative period lays the groundwork for future mental health, relationships, and learning, making early support and nurturing critical for well-rounded development. </p>
+          peer_review:
+            - author: terrance@ualberta.ca
+              comment: Not bad.
+          feedback:
+            grade: 85
+            grader: tammy@ualberta.ca
+            comment: excellent job
+
+        - user: terrance@ualberta.ca
+          submission_type: online_text_entry
+          body: |
+            <p> Another vital aspect of childhood psychological development is the formation of executive functions—cognitive skills that include working memory, impulse control, and flexible thinking. These functions begin to take shape in early childhood and are heavily influenced by both brain maturation and life experiences. As children learn to manage their emotions, plan tasks, follow instructions, and shift attention between activities, they gradually develop the self-regulation needed for academic success and social interaction. Structured play, supportive caregiving, and responsive environments help refine these mental tools, setting the stage for independent decision-making and problem-solving throughout life.</p>
+      peer_reviews: 
+        enabled: true
+        count: 1
+        due_at: 2026-01-01 18:00:00
+        intra_group_peer_reviews: true
+        anonymous_peer_reviews: true
+        automatic_peer_reviews: true
+
+
+    - title: "Brain Anaomolies"
+      group_category: default
+      description: "Write a paragraph about what you learned from today's class discussion topic: 'Brain Anomolies'."
+      due_at: 2026-01-15 18:00:00
+      points_possible: 10
+      created_at: 2025-07-28 10:00:00
+      updated_at: 2025-07-28 10:00:00 
+      submission_types: ["online_text_entry"]
+  quizzes:
+    - title: A quick review of the biology
+      description: A quiz to test your background knowledge of biology related to psychology.
+      due_at: 2025-09-12 18:00:00
+      published_at: 2025-07-29 10:00:00
+      workflow_state: available
+      questions:
+      - name: Question 1
+        question_type: "true_false_question"
+        points_possible: 1
+        question_text: "<p>Biology starts with the letter 'b'.</p>"
+        answers:
+          - weight: 0
+            text: "False"
+          - weight: 100
+            text: "True"
+      - name: Question 2
+        question_type: "true_false_question"
+        points_possible: 1
+        question_text: <p>The hunan body contains cells.</p>
+        answers:
+          - weight: 0
+            text: "False"
+          - weight: 100
+            text: "True"
+      - name: Question 3
+        question_type: "short_answer_question"
+        points_possible: 1
+        question_text: "<p>The _____________ is the powerhouse of the cell!</p>"
+        answers:
+          - weight: 100
+            text: "mitochondria"
+            id: 90100
+    - title: Inside the Mind
+      description: A Psychology Quiz.
+      due_at: 2026-09-12 18:00:00
+      published_at: 2025-07-29 10:00:00
+      workflow_state: available
+      questions:
+      - name: Question 1
+        question_type: "short_answer_question"
+        points_possible: 1
+        question_text: "<p>The _____________  nervous system controls involuntary bodily functions like heartbeat and digestion.</p>"
+        answers:
+          - weight: 100
+            text: "Autonomic"
+      - name: Question 2
+        question_type: "short_answer_question"
+        points_possible: 1
+        question_text: "<p>In Freud’s theory of personality, the __________ operates on the pleasure principle and seeks immediate gratification.</p>"
+        answers:
+          - weight: 100
+            text: "Id"
+      - name: Question 3
+        question_type: "short_answer_question"
+        points_possible: 1
+        question_text: "<p>The phenomenon where individuals perform better on tasks in the presence of others is called social __________.</p>"
+        answers:
+          - weight: 100
+            text: "Facilitation"
+        
+    - title: Warming up to psychology
+      description: A quiz to test the knowledge of some psychology stuff
+      due_at: 2025-09-01 18:00:00
+      published_at: 2025-07-28 10:00:00
+      workflow_state: available
+      allowed_attempts: 3
+      rubric: 
+        title: Warming up to psychology Rubric
+        description: A simple rubric used to assess a psychology quiz.
+        public: true
+        points_possible: 10
+        free_form_criterion_comments: false
+      questions:
+        - name: Question 1
+          question_type: short_answer_question
+          question_text: "<p>What is the difference between classical and operant conditioning?</p>"
+          points_possible: 32
+        - name: Question 2
+          question_type: "true_false_question"
+          points_possible: 10
+          question_text: "<p>Is psychology a science?</p>"
+          answers:
+            - weight: 0
+              text: "False"
+            - weight: 100
+              text: "True"
+        - name: Question 3
+          question_type: multiple_choice_question
+          points_possible: 10
+          question_text: What is the primary focus of cognitive psychology?
+          answers:
+            - weight: 0
+              text: The study of unconscious motives and desires
+              id: 100
+            - weight: 0
+              text: The study of observable behaviors and their environmental causes
+              id: 200
+            - weight: 100
+              text: The study of mental processes such as perception, memory, and problem-solving
+              id: 300
+            - weight: 0
+              text: The study of the influence of social interactions on behavior
+              id: 400

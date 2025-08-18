@@ -10,6 +10,6 @@ message "It looks like you're using Linux. Let's set that up."
 set_service_util
 check_dependencies
 check_for_dory
-start_docker_daemon
+#start_docker_daemon
 setup_docker_as_nonroot
 [[ ${skip_dory:-n} == 'y' ]] || start_dory
