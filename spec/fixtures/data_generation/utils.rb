@@ -23,7 +23,12 @@ class AgentTask
   @@modules = []
   @@used_group_names = []
   @@used_announcements = []
+  @@used_discussions = []
   @@users = []
+
+  def self.used_discussions
+    @@used_discussions
+  end
 
   def self.used_announcements
     @@used_announcements
@@ -111,6 +116,7 @@ class TestCourse
   attr_reader :logged_in_user
   attr_reader :unused_group_names
   attr_reader :unused_announcements
+  attr_reader :unused_discussions
   attr_reader :enrollments
   attr_reader :students
   attr_reader :classmates
@@ -144,6 +150,7 @@ The student account will be assumed to be the logged in user for this course.
     @logged_in_user
     @unused_group_names = data[:unused_group_names]
     @unused_announcements = data[:unused_announcements]
+    @unused_discussions = data[:unused_discussions]
     @teacher
     @enrollments = []
     @students = []

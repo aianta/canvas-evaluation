@@ -11,6 +11,9 @@ courses:
   unused_announcements:
     - title: "First study group meeting?"
       message: "Hi guys, so when would you be free to do our first group study meeting?"
+  unused_discussions:
+    - title: "Favorite Lab Experiment"
+      message: "Share your favorite lab experiment from this semester and explain why you enjoyed it."
   instructor:
     name: Tammy Teacherson
     email: tammy@ualberta.ca
@@ -104,6 +107,10 @@ courses:
       is_public: true
       join_level: parent_context_request
       description: A test group
+      users:
+        - sammy@ualberta.ca
+        - jared@ualberta.ca
+        - monica@ualberta.ca
     - name: Group H
       is_public: true
       description: A psych student group
@@ -371,7 +378,66 @@ courses:
         answers:
           - weight: 100
             text: "Working"
-        
+    - title: Foundations of Psychology
+      description: A quiz to test core knowledge of psychology concepts
+      due_at: 2025-09-05 18:00:00
+      published_at: 2025-07-30 10:00:00
+      workflow_state: available
+      allowed_attempts: 2
+      rubric: 
+        title: Foundations of Psychology Rubric
+        description: A rubric to assess understanding of introductory psychology concepts.
+        public: true
+        points_possible: 12
+        free_form_criterion_comments: false
+      questions:
+        - name: Question 1
+          question_type: short_answer_question
+          question_text: "<p>Who is often referred to as the father of modern psychology, and why?</p>"
+          points_possible: 2
+        - name: Question 2
+          question_type: "true_false_question"
+          points_possible: 2
+          question_text: "<p>The humanistic approach in psychology emphasizes free will and personal growth.</p>"
+          answers:
+            - weight: 100
+              text: "True"
+            - weight: 0
+              text: "False"
+        - name: Question 3
+          question_type: multiple_choice_question
+          points_possible: 4
+          question_text: Which of the following best describes the main goal of developmental psychology?
+          answers:
+            - weight: 0
+              text: To analyze the role of neurotransmitters in mood disorders
+              id: 101
+            - weight: 100
+              text: To study how people change physically, cognitively, and socially throughout life
+              id: 102
+            - weight: 0
+              text: To measure intelligence through standardized tests
+              id: 103
+            - weight: 0
+              text: To examine the biological basis of behavior
+              id: 104
+        - name: Question 4
+          question_type: multiple_choice_question
+          points_possible: 4
+          question_text: In Freud’s theory of personality, which part operates on the “reality principle”?
+          answers:
+            - weight: 0
+              text: Id
+              id: 201
+            - weight: 100
+              text: Ego
+              id: 202
+            - weight: 0
+              text: Superego
+              id: 203
+            - weight: 0
+              text: Conscious mind
+              id: 204 
     - title: Warming up to psychology
       description: A quiz to test the knowledge of some psychology stuff
       due_at: 2025-09-01 18:00:00

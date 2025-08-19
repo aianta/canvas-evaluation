@@ -8,13 +8,13 @@
   - Group 1
   - Group 2
   :instances:
-  - :id: 66857d15-6487-4a91-84f8-dcfb341cdcd9
+  - :id: 7f6f56c9-62e2-44eb-9319-3091ad89914e
     :instance_text: 'Task: In the course ''Psychology 101'' switch from your current
-      group ''Group H'' to the group ''Group J'' within the ''Student Groups'' group
+      group ''Group X'' to the group ''Group J'' within the ''Student Groups'' group
       set.'
     :mapping:
       Course: Psychology 101
-      Group 1: Group H
+      Group 1: Group X
       Group 2: Group J
 - :id: 0b925826-6333-43cf-9eb0-4b5cb49a7e7d
   :paremeterized_text: 'Task: In the course ''[[Course]]'' use the Syllabus page to
@@ -24,7 +24,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 353ec90a-e7c2-4596-997f-381d8d0f2b1f
+  - :id: 435f0605-f9af-4897-ab3a-6851456063e4
     :instance_text: 'Task: In the course ''Psychology 101'' use the Syllabus page
       to find the due date for the assignment titled ''Researchers in the field of
       Psychology'' and list the due date as displayed in the Course Summary section.'
@@ -39,7 +39,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: d29eb9bc-66cd-4d63-8b4a-77cee6f58d75
+  - :id: fa54a64e-fc09-41e0-bff7-f141fc4961ed
     :instance_text: 'Task: View the feedback left by your instructor for the assignment
       ''Abnormal Behavior Essay'' in the course ''Psychology 101'', and add a comment
       saying ''Thank you for the feedback!'' using the Feedback sidebar.'
@@ -54,14 +54,14 @@
   - Course
   - Quiz
   :instances:
-  - :id: a4ee5c64-a710-4049-ac1a-4eb70e20d487
-    :instance_text: 'Task: View the rubric for the quiz titled "Warming up to psychology"
+  - :id: 152e9178-547d-453c-bcf7-ecf01e90bc61
+    :instance_text: 'Task: View the rubric for the quiz titled "Foundations of Psychology"
       in the course "Psychology 101" by navigating to the Grades page, clicking on
-      "Warming up to psychology," and then clicking the "Show Rubric" link on the
+      "Foundations of Psychology," and then clicking the "Show Rubric" link on the
       submission details page.'
     :mapping:
       Course: Psychology 101
-      Quiz: Warming up to psychology
+      Quiz: Foundations of Psychology
 - :id: 14875b88-4d4f-44be-a989-cff2a705958e
   :paremeterized_text: 'Task: Create a new student group named "[[Group]]" in the
     course "[[Course]]", set the group membership to "Membership by invitation only",
@@ -72,7 +72,7 @@
   - User 1
   - User 2
   :instances:
-  - :id: 23e25ec1-8745-4844-9b31-913b4a34e685
+  - :id: adce7c8a-0514-416b-ae1f-0305ebb0c3aa
     :instance_text: 'Task: Create a new student group named "NeuroNauts" in the course
       "Psychology 101", set the group membership to "Membership by invitation only",
       and invite students named "Terrance Studentson" and "Phillip Studentson" to
@@ -93,14 +93,14 @@
   - Announcement
   - Announcement Message
   :instances:
-  - :id: 505e4abe-cfe7-4af7-bccd-3507857e9087
-    :instance_text: 'Task: In your group "Group A" for the course Psychology 101,
+  - :id: 89a85362-5b07-41d1-865e-7059fe084af6
+    :instance_text: 'Task: In your group "Group H" for the course Psychology 101,
       create a new announcement with the title "First study group meeting?" and the
       following content: "Hi guys, so when would you be free to do our first group
       study meeting?" Allow other users to like the announcement, and publish it.'
     :mapping:
       Course: Psychology 101
-      Group: Group A
+      Group: Group H
       Announcement: First study group meeting?
       Announcement Message: Hi guys, so when would you be free to do our first group
         study meeting?
@@ -111,7 +111,7 @@
   - Course
   - Discussion
   :instances:
-  - :id: 4c73cfd6-5a16-4705-bd11-434a97d18a09
+  - :id: 6f4a7e73-7802-424d-bc11-ab8054c4b509
     :instance_text: 'Task: Subscribe to the "Memory and experiences" discussion in
       the "Psychology 101" course so that you receive notifications when new comments
       are posted.'
@@ -125,7 +125,7 @@
   - Course
   - Quiz
   :instances:
-  - :id: b2cf302a-475a-405b-b9f8-15a1d7d0a638
+  - :id: b932892a-9c5a-4e51-bc94-534b352c910e
     :instance_text: 'Task: Take the "A quick review of the biology" in the "Psychology
       101" course, answer all questions, flag question 3 for review, and submit the
       quiz when finished.'
@@ -142,7 +142,7 @@
   - Question Index
   - Answer
   :instances:
-  - :id: eda5b957-7136-48a8-98c3-33780a3189eb
+  - :id: a1845086-c7d4-4f36-ac97-e07d5811588b
     :instance_text: 'Task: In the course "Psychology 101," open the quiz titled "Inside
       the Mind" and answer Question 1, which is a short answer question, by typing
       "Autonomic" into the provided text box.'
@@ -159,7 +159,7 @@
   - Group
   - Discussion
   :instances:
-  - :id: fe9c626f-5f23-46b4-bd55-311f0fc9b843
+  - :id: d0f615de-482e-472e-b0c0-2c8e3b1e2c27
     :instance_text: 'Task:  In your group (Group A) for the course "Psychology 101"
       close your own discussion titled "I''ll be away next week." for comments.'
     :mapping:
@@ -179,7 +179,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: c77a1ea6-0797-49d8-8d67-c27a6401b7f8
+  - :id: 382df27d-4220-4b1b-82c3-fc2ede6d20a0
     :instance_text: |-
       Task: View the details of the "Psychology Video on learning" assignment in the "Psychology 101" course, including its due date, points possible, and any instructor instructions.
 
@@ -200,7 +200,7 @@
   - Course
   - User
   :instances:
-  - :id: 2487c79b-429a-46af-a60e-a301f4c66a85
+  - :id: 13e6811c-78c1-4822-aeff-74df897067ec
     :instance_text: 'Task: In the course "Psychology 101," use the People page to
       search for the user named "Sarah Studentson," view their profile details, and
       send them a message with the text: "Hi, I have a question about the lab assignment.
@@ -215,7 +215,7 @@
   - Course
   - Page
   :instances:
-  - :id: 72b65e50-5fd9-4186-a251-b74396a307c1
+  - :id: 1e1c699a-6936-4f7d-af1f-fe7376a0baab
     :instance_text: 'Task: In the course "Psychology 101" view the page titled "Psychology
       & Pseudeo Science" by navigating to the Pages Index and selecting the page from
       the list.'
@@ -231,7 +231,7 @@
   - Course
   - Quiz
   :instances:
-  - :id: 06f71d31-7447-4423-8d0d-20b19810ec12
+  - :id: d9e3eb98-bd52-46fa-9bb6-612770d6ed8c
     :instance_text: 'Task: In the course "Psychology 101," use the Quizzes page to
       find the quiz titled "Exploring the Psyche," and view its availability dates,
       due date, point value, and number of questions. Write down the availability
@@ -247,10 +247,113 @@
   - Group
   - Page
   :instances:
-  - :id: b48a11b1-8b5a-412f-b807-b916117b6c5e
+  - :id: 1c09d675-cb06-4f8f-b433-e7ea85d47eb6
     :instance_text: 'Task: In the "Group B" group, view the revision history of the
       page titled "Key concepts from Chapter 3" and identify the most recent edit
       and when it was made.'
     :mapping:
       Group: Group B
       Page: Key concepts from Chapter 3
+- :id: 37949dc8-cc9a-46ec-9a04-9fc70de7739a
+  :paremeterized_text: 'Task: In the course "[[Course]]," use the Assignments page
+    to search for the assignment titled "[[Assignment]]." View the assignment details,
+    including the due date, availability dates, point value, and any rubric provided.'
+  :parameters:
+  - Course
+  - Assignment
+  :instances:
+  - :id: 4174f50e-3bb9-4c5f-80b6-487852d49ab7
+    :instance_text: 'Task: In the course "Psychology 101," use the Assignments page
+      to search for the assignment titled "Childhood Development Essay." View the
+      assignment details, including the due date, availability dates, point value,
+      and any rubric provided.'
+    :mapping:
+      Course: Psychology 101
+      Assignment: Childhood Development Essay
+- :id: 382d57c2-b2e5-4024-9c05-9c5d195d2a27
+  :paremeterized_text: 'Task: In the course "[[Course]]," use the Course Home Page
+    to remove the "[[Assignment]]" assignment from your To Do list in the sidebar.'
+  :parameters:
+  - Course
+  - Assignment
+  :instances:
+  - :id: f44253da-aca4-41ed-aa9d-4c730d8aa76c
+    :instance_text: 'Task: In the course "Psychology 101," use the Course Home Page
+      to remove the "Brain Anaomolies" assignment from your To Do list in the sidebar.'
+    :mapping:
+      Course: Psychology 101
+      Assignment: Brain Anaomolies
+- :id: 5718e37a-b1d1-4ec9-a223-7fd262419682
+  :paremeterized_text: 'Task: In your "[[Group]]" group, create a new discussion titled
+    "[[Discussion]]," write "[[Discussion Message]]" allow group members to like the
+    discussion, and add it to other group members'' to-do lists.'
+  :parameters:
+  - Group
+  - Discussion
+  - Discussion Message
+  :instances:
+  - :id: 5fa33003-7170-4feb-9635-f8f2beb73f90
+    :instance_text: 'Task: In your "Group H" group, create a new discussion titled
+      "Favorite Lab Experiment," write "Share your favorite lab experiment from this
+      semester and explain why you enjoyed it." allow group members to like the discussion,
+      and add it to other group members'' to-do lists.'
+    :mapping:
+      Group: Group H
+      Discussion: Favorite Lab Experiment
+      Discussion Message: Share your favorite lab experiment from this semester and
+        explain why you enjoyed it.
+- :id: a1c4e8bf-af9a-49c5-9672-5e83c0170b9b
+  :paremeterized_text: 'Task: Reply to the main discussion in the "[[Discussion]]"
+    discussion in the "[[Course]]" course with the following text: "I believe that
+    local communities can play a significant role in addressing climate change by
+    implementing sustainable practices."'
+  :parameters:
+  - Course
+  - Discussion
+  :instances:
+  - :id: 0fa537e1-3ead-4d9c-88e0-3bf9dff1434b
+    :instance_text: 'Task: Reply to the main discussion in the "What aspect of psychology
+      do you find most interesting?" discussion in the "Psychology 101" course with
+      the following text: "I believe that local communities can play a significant
+      role in addressing climate change by implementing sustainable practices."'
+    :mapping:
+      Course: Psychology 101
+      Discussion: What aspect of psychology do you find most interesting?
+- :id: a5660a7c-dbac-48d4-ace3-fbd6bb71d57b
+  :paremeterized_text: 'Task: View the current groups you are enrolled in for the
+    course "[[Course]]" by using the Global Navigation Menu in Canvas.'
+  :parameters:
+  - Course
+  :instances:
+  - :id: 1f2b946e-101a-470d-9c63-f2b0c0c6d194
+    :instance_text: 'Task: View the current groups you are enrolled in for the course
+      "Psychology 101" by using the Global Navigation Menu in Canvas.'
+    :mapping:
+      Course: Psychology 101
+- :id: a7ab7dbf-7c80-4a13-80a4-f09947504d51
+  :paremeterized_text: |-
+    Task: Check if you can retake the "[[Quiz]]" in the "[[Course]]" course and note how many attempts you have remaining.
+
+    Steps:
+
+    1. In the "[[Course]]" course, click the Quizzes link in the course navigation.
+    2. Click the title "[[Quiz]]" to open the quiz.
+    3. On the quiz page, view the number of attempts you have taken and the number of attempts remaining.
+    4. Record the number of attempts you have remaining for the "[[Quiz]]."
+  :parameters:
+  - Course
+  - Quiz
+  :instances:
+  - :id: 9a1efa58-926d-4d7a-ba7c-39b07173b2c2
+    :instance_text: |-
+      Task: Check if you can retake the "Warming up to psychology" in the "Psychology 101" course and note how many attempts you have remaining.
+
+      Steps:
+
+      1. In the "Psychology 101" course, click the Quizzes link in the course navigation.
+      2. Click the title "Warming up to psychology" to open the quiz.
+      3. On the quiz page, view the number of attempts you have taken and the number of attempts remaining.
+      4. Record the number of attempts you have remaining for the "Warming up to psychology."
+    :mapping:
+      Course: Psychology 101
+      Quiz: Warming up to psychology

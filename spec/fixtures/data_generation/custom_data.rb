@@ -85,6 +85,7 @@ def generate_test_environment
       :course_code => course["code"],
       :unused_group_names => course["unused_group_names"],
       :unused_announcements => course["unused_announcements"],
+      :unused_discussions => course["unused_discussions"],
       :teacher_name => course["instructor"]["name"],
       :teacher_email => course["instructor"]["email"],
       :teacher_password => course["instructor"]["password"],
@@ -824,6 +825,144 @@ Steps to complete:
     task.update_initalized_text("Group", group["name"])
     task.update_initalized_text("Page", page["title"])
 
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '37949dc8-cc9a-46ec-9a04-9fc70de7739a',
+    parameterized_text: 'Task: In the course "[[Course]]," use the Assignments page to search for the assignment titled "[[Assignment]]." View the assignment details, including the due date, availability dates, point value, and any rubric provided.'
+  })
+
+  task.populate(test_course) {|course, task| 
+
+    assignment = course.assignments.select { |a| !AgentTask.assignments.include? a}.first
+
+    if assignment.nil?
+      puts "Could not find assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '382d57c2-b2e5-4024-9c05-9c5d195d2a27',
+    parameterized_text: 'Task: In the course "[[Course]]," use the Course Home Page to remove the "[[Assignment]]" assignment from your To Do list in the sidebar.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    assignment = course.assignments.select{|a| !AgentTask.assignments.include? a}.first
+
+    if assignment.nil?
+      puts "Cannot find assignment for task #{task.id}"
+      return 
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '5718e37a-b1d1-4ec9-a223-7fd262419682',
+    parameterized_text: 'Task: In your "[[Group]]" group, create a new discussion titled "[[Discussion]]," write "[[Discussion Message]]" allow group members to like the discussion, and add it to other group members\' to-do lists.'
+  })
+
+  task.populate(test_course) {|course,task|
+
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user)}.first
+
+    if group.nil?
+      puts "Could not find group for task #{task.id}"
+      return
+    end
+
+    AgentTask.groups << group
+
+    discussion_data = course.unused_discussions.select{|d| !AgentTask.used_discussions.include? d}.first
+    AgentTask.used_discussions << discussion_data
+
+    task.update_initalized_text("Group", group.name)
+    task.update_initalized_text("Discussion", discussion_data["title"])
+    task.update_initalized_text("Discussion Message", discussion_data["message"])
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'a1c4e8bf-af9a-49c5-9672-5e83c0170b9b',
+    parameterized_text: 'Task: Reply to the main discussion in the "[[Discussion]]" discussion in the "[[Course]]" course with the following text: "I believe that local communities can play a significant role in addressing climate change by implementing sustainable practices."'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    discussion = course.discussions.select{|d| !AgentTask.discussions.include? d}.first
+    
+    if discussion.nil?
+      puts "Cannot find discussion for task #{task.id}"
+      return
+    end
+
+    AgentTask.discussions << discussion
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Discussion", discussion.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'a5660a7c-dbac-48d4-ace3-fbd6bb71d57b',
+    parameterized_text: 'Task: View the current groups you are enrolled in for the course "[[Course]]" by using the Global Navigation Menu in Canvas.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    task.update_initalized_text("Course", course.course.name)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'a7ab7dbf-7c80-4a13-80a4-f09947504d51',
+    parameterized_text: 'Task: Check if you can retake the "[[Quiz]]" in the "[[Course]]" course and note how many attempts you have remaining.
+
+Steps:
+
+1. In the "[[Course]]" course, click the Quizzes link in the course navigation.
+2. Click the title "[[Quiz]]" to open the quiz.
+3. On the quiz page, view the number of attempts you have taken and the number of attempts remaining.
+4. Record the number of attempts you have remaining for the "[[Quiz]]."'
+  })
+
+  task.populate(test_course) {|course,task|
+
+    quiz = course.quizzes.select{|q| !AgentTask.quizzes.include? q}.first
+
+    if quiz.nil?
+      puts "Cannot find quiz for task #{task.id}"
+      return
+    end
+
+    AgentTask.quizzes << quiz
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Quiz", quiz.title)
 
   }
 
