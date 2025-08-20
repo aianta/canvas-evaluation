@@ -24,6 +24,9 @@ courses:
       message: "What strategies or techniques have you personally used to improve memory, and how effective were they?"
     - title: "Fictional Characters and Psychology"
       message: "Pick a character from a book, TV show, or movie and analyze their behavior using psychological theories."
+  unused_pages:
+    - title: "Brainstorming for Group Project"
+      message: "Hey guys, I figured I'd create a page where we could all brainstorm ideas for the group project this semester."
   instructor:
     name: Tammy Teacherson
     email: tammy@ualberta.ca
@@ -57,6 +60,12 @@ courses:
     - name: Monica Studentson
       email: monica@ualberta.ca
       password: ZKnc0HeqKGvA
+    - name: Ryan Studentson
+      email: ryan@ualberta.ca
+      password: f6ptLPMtaF3A
+    - name: Lisa Studentson
+      email: lisa@ualberta.ca
+      password: GnriV4qZJnjJ
   modules:
     - name: Module 1
       workflow_state: active
@@ -231,6 +240,15 @@ courses:
           message: Hi team! Let’s meet at the library this Saturday afternoon to review for our upcoming quiz. Who’s in?
           user: main_user
           allow_rating: true 
+    - name: Group P
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - sammy@ualberta.ca
+        - alex@ualberta.ca
+        - phillip@ualberta.ca
+        - abigail@ualberta.ca
+
   pages:
     - title: Psychology & Pseudeo Science
       user: instructor
@@ -256,6 +274,27 @@ courses:
           text: Can't go wrong with Carl Rogers.
         - user: sammy@ualberta.ca
           text: It's gotta be my boy B.F. Skinner.
+      peer_reviews: 
+        enabled: true
+        count: 2
+        due_at: 2026-04-01 18:00:00
+        intra_group_peer_reviews: true
+        anonymous_peer_reviews: false
+        automatic_peer_reviews: true
+    - title: Influential Psychological Experiments
+      description: |
+        Hi Everyone, for this assignment, please share one psychological experiment that you find particularly interesting. Explain briefly what the experiment studied and why you think it was important.
+      due_at: 2026-03-01 18:00:00
+      points_possible: 2
+      created_at: 2025-07-29 10:00:00
+      updated_at: 2025-07-29 10:00:00
+      submission_types: ["discussion_topic"]
+      grading_type: "points"
+      replies:
+        - user: sarah@ualberta.ca
+          text: My favorite experiment is the Stanford prison experiment!
+        - user: sammy@ualberta.ca
+          text: It's gotta the milgram experiment.
       peer_reviews: 
         enabled: true
         count: 2
@@ -292,6 +331,30 @@ courses:
           peer_review:
             - author: instructor
               comment: Well done!
+    - title: "Memory and Recall Reflection"
+      group_category: default
+      description: "Reflect on a situation where your memory failed or was distorted, explain the psychological mechanisms involved, and connect it to course concepts. Minimum 500 words."
+      due_at: 2026-11-01 23:59:00
+      points_possible: 60
+      created_at: 2025-08-20 14:00:00
+      updated_at: 2025-08-20 14:00:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p> A personal example of memory distortion occurred when I tried to recall details from a group project meeting last semester. I remembered that one of my teammates suggested a specific approach to data analysis, but later realized that my recollection was influenced by my own preference for that approach rather than what was actually said. This aligns with the concept of reconstructive memory in psychology, which shows that memory is not a perfect recording but rather reconstructed based on prior knowledge, expectations, and biases. This experience made me more aware of how easily memories can be shaped by subjective interpretation and motivated me to take more detailed notes during collaborative work. Understanding these mechanisms is essential for academic accuracy and everyday decision-making. </p>
+          peer_review:
+            - author: alex@ualberta.ca
+              comment: Great reflection, you could add an example of a memory experiment to strengthen it.
+            - author: lisa@ualberta.ca
+              comment: I like how you connected personal experience to theory; consider mentioning cognitive schemas.
+            - author: ryan@ualberta.ca
+              comment: Clear explanation, but maybe include more about the consequences of memory distortion.
+          feedback:
+            grade: 55
+            grader: instructor
+            comment: Excellent integration of personal experience and theory; very well written.
     - title: "Cognitive Biases Reflection"
       group_category: default
       description: "Reflect on a cognitive bias you have personally experienced, describe the situation, and connect it to psychological theory. Minimum 500 words."

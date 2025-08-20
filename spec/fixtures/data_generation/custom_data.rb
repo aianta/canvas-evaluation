@@ -85,6 +85,7 @@ def generate_test_environment
       :course_code => course["code"],
       :unused_group_names => course["unused_group_names"],
       :unused_announcements => course["unused_announcements"],
+      :unused_pages => course["unused_pages"],
       :unused_discussions => course["unused_discussions"],
       :teacher_name => course["instructor"]["name"],
       :teacher_email => course["instructor"]["email"],
@@ -1290,6 +1291,167 @@ Steps to complete:
     task.update_initalized_text("Course", course.course.name)
     task.update_initalized_text("Discussion", discussion_data["title"])
     task.update_initalized_text("Discussion Message", discussion_data["message"])
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'b18ec1c0-213c-480c-8c5e-b770e86e8c76',
+    parameterized_text: 'Task: In the "[[Group]]," create a new group page titled "[[Page]]." In the page content, enter the following text: "[[Page Message]]" Set the page so that only group leaders can edit it, and check the box to notify users that this content has changed. Save the page.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user)}.first
+
+    if group.nil?
+      puts "Cannot find group for task #{task.id}"
+      return
+    end
+
+    AgentTask.groups << group
+
+    page_data = course.unused_pages.select{|p| !AgentTask.used_pages.include? p}.first
+    AgentTask.used_pages << page_data
+
+    task.update_initalized_text("Group", group.name)
+    task.update_initalized_text("Page", page_data["title"])
+    task.update_initalized_text("Page Message", page_data["message"])
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'b68ad0fe-8cd4-40b1-ad7f-88b43510da75',
+    parameterized_text: 'Task: Add a text comment with an emoji to your submission for the assignment "[[Assignment]]" in the course "[[Course]]," saying "Great feedback received! ".
+
+Steps:
+
+1. In Canvas, navigate to your "[[Course]]" course.
+2. Click the "Grades" link in the course navigation.
+3. Click the assignment title "[[Assignment]]."
+4. In the Submission Details page, locate the "Add a Comment" area.
+5. Type the comment: Great feedback received!
+6. Click the Emoji icon and type a smiling face or select a smiling face emoji to add it to your comment.
+7. Click the "Save" button to submit your comment.'
+  })
+
+  task.populate(test_course) {|course, task|
+    assignment = course.assignments.select{|a| 
+      (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
+       (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
+       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) # And the teacher of the course has left a comment on their submission
+    }.first
+
+    if assignment.nil?
+      puts "Cannot find assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'bd1583a6-7c16-4d45-9cfb-e6bce6d088a0',
+    parameterized_text: 'Task: Check if you have a peer review discussion to complete for the course "[[Course]]" and identify the name of the student whose post you need to review.
+
+Steps:
+
+1. Log in to Canvas and go to your Dashboard.
+2. In the Global Activity Stream, look for any recent activity related to peer review discussions for "[[Course]]."
+3. Click the "Show More" link if needed to expand the list of activities.
+4. Locate the peer review notification for the discussion titled "[[Discussion]]."
+5. Note the name of the student assigned to you for peer review.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    discussion = course.discussions.select{|d| (!AgentTask.discussions.include? d) && (!d.assignment.nil?) && (d.discussion_entries.length == 2) && (!d.discussion_entries.select{|e| e.user == course.logged_in_user}.first.nil?)}.first
+
+    if discussion.nil?
+      puts "Cannot find discussion for task #{task.id}"
+      return
+    end
+
+    AgentTask.discussions << discussion
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Discussion", discussion.title)
+
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '681d72b5-e5fb-4895-960c-f5127e10fcac',
+    parameterized_text: 'Task: In the course "[[Course]]," go to the Modules section and mark the content page titled "[[Page]]" as done.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    _module = course.modules.select{|m| 
+    
+    if true # set to true for debugging
+      puts "Module: #{m.name}"
+      puts "items:"
+      m.content_tags.each_with_index{|item, index|
+        puts "#{index} [#{item.content_type}]: #{item.content_id}"
+      }
+
+    end
+    
+    (!AgentTask.modules.include? m) && (!m.content_tags.select{|i| i.content_type == 'WikiPage'}.first.nil?)}.first
+
+    if _module.nil?
+      puts "Cannot find module for task #{task.id}"
+      return
+    end
+
+    AgentTask.modules << _module
+
+    page_id = _module.content_tags.select{|i| i.content_type == 'WikiPage'}.first.content_id
+    page = course.pages.select{|p| p.id == page_id}.first
+    
+    AgentTask.pages << page
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Page", page.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '0455d1fc-9c89-490f-aea1-f6234029f2ba',
+    parameterized_text: 'Task: Verify that you have successfully submitted your "[[Assignment]]" assignment in the "[[Course]]" course by viewing the submission confirmation details.
+
+Steps:
+1. In Canvas, open the "[[Course]]" course.
+2. Click the "Grades" link in the Course Navigation menu.
+3. Click on the assignment named "[[Assignment]]."
+4. View the submission confirmation details to confirm that your assignment has been submitted.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?)}.first
+
+    if assignment.nil?
+      puts "Cannot find assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
   }
 
   tasks << task
