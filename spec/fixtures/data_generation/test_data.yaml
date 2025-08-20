@@ -14,6 +14,16 @@ courses:
   unused_discussions:
     - title: "Favorite Lab Experiment"
       message: "Share your favorite lab experiment from this semester and explain why you enjoyed it."
+    - title: "Psychology in Everyday Life"
+      message: "Describe a way you have noticed psychology principles influencing your daily decisions or behavior."
+    - title: "Most Surprising Study"
+      message: "Which psychology study have you read so far this semester that surprised you the most, and why?"
+    - title: "Ethical Dilemmas in Research"
+      message: "Discuss an ethical dilemma you think researchers might face when conducting experiments with human participants."
+    - title: "Memory Tricks"
+      message: "What strategies or techniques have you personally used to improve memory, and how effective were they?"
+    - title: "Fictional Characters and Psychology"
+      message: "Pick a character from a book, TV show, or movie and analyze their behavior using psychological theories."
   instructor:
     name: Tammy Teacherson
     email: tammy@ualberta.ca
@@ -79,6 +89,29 @@ courses:
         - user: sarah@ualberta.ca
           text: Awww, I was looking forward to sleeping in class next week. 
   discussions:
+    - title: How do you manage stress during the semester?
+      message: |
+        Hi Everyone, university life can be exciting but also stressful at times. I’d like to start a discussion on strategies you use to cope with stress during the semester. Sharing what works for you might help someone else discover a new technique! 
+      user: instructor
+      discussion_type: threaded
+      replies:
+        - user: sarah@ualberta.ca
+          text: I usually manage stress by scheduling my week ahead of time and making checklists. It helps me stay on track.
+          replies:
+            - user: steven@ualberta.ca
+              text: That’s smart, Sarah. I’ve been meaning to try using checklists more consistently.
+        - user: terrance@ualberta.ca
+          text: I like to deal with stress by going for runs. Exercise clears my head.
+          replies:
+            - user: alex@ualberta.ca
+              text: Same here, Terrance. I hit the gym whenever midterms start piling up—it makes a big difference.
+        - user: abigail@ualberta.ca
+          text: Meditation and breathing exercises help me relax. I try to practice mindfulness at least a few minutes each day.
+          replies:
+            - user: monica@ualberta.ca
+              text: That sounds really healthy. I’ve tried meditation apps but never stuck with them—maybe I should give it another go.
+        - user: jared@ualberta.ca
+          text: I usually manage stress by hanging out with friends. Talking about things unrelated to school helps me recharge.
     - title: Memory and experiences
       message: As we are discussing memory in class this week, I'd like to start a self-reflective conversation about how you interact with your own memory. Share any stories you have related to remembering something, or misremembering something!
       user: instructor
@@ -174,6 +207,30 @@ courses:
         - title: Group project topic ideas
           body: |
             We should brainstorm possible topics for the group project. Drop suggestions here!
+    - name: Group K
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - alex@ualberta.ca
+        - monica@ualberta.ca
+        - abigail@ualberta.ca
+        - sammy@ualberta.ca
+      pages:
+        - title: Study Tips & Tricks
+          body: |
+            Share helpful study techniques, mnemonic devices, and time management strategies.
+    - name: Group S
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - terrance@ualberta.ca
+        - steven@ualberta.ca
+        - jared@ualberta.ca
+      announcements:
+        - title: Saturday Study Session
+          message: Hi team! Let’s meet at the library this Saturday afternoon to review for our upcoming quiz. Who’s in?
+          user: main_user
+          allow_rating: true 
   pages:
     - title: Psychology & Pseudeo Science
       user: instructor
@@ -238,7 +295,7 @@ courses:
     - title: "Cognitive Biases Reflection"
       group_category: default
       description: "Reflect on a cognitive bias you have personally experienced, describe the situation, and connect it to psychological theory. Minimum 500 words."
-      due_at: 2025-10-15 23:59:00
+      due_at: 2026-10-15 23:59:00
       points_possible: 50
       created_at: 2025-08-05 09:30:00
       updated_at: 2025-08-05 09:30:00
@@ -255,10 +312,34 @@ courses:
             grade: 42
             grader: tammy@ualberta.ca
             comment: Strong personal connection, next time cite at least one primary study.
+    - title: "Memory and Forgetting Analysis"
+      group_category: default
+      description: "Analyze a personal experience of forgetting or misremembering an event. Explain the situation and link it to memory theories in psychology. Minimum 500 words."
+      due_at: 2026-11-01 23:59:00
+      points_possible: 50
+      created_at: 2025-08-20 10:00:00
+      updated_at: 2025-08-20 10:00:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p> I once forgot an important deadline for submitting a project in my previous course. At the time, I believed I had plenty of time and did not set reminders. When the day arrived, I realized I had completely misremembered the due date. This experience can be explained by the concept of prospective memory, which refers to remembering to perform an intended action in the future. Research suggests that without external cues or intentional rehearsal, prospective memory often fails. Additionally, my memory error was influenced by interference from other tasks I was managing simultaneously, which aligns with the theory of interference in memory research. Reflecting on this experience highlights the importance of strategies like setting reminders and breaking tasks into smaller steps to improve memory performance. </p>
+          peer_review:
+            - author: sammy@ualberta.ca
+              comment: Great personal example, could include more discussion of interference theory.
+            - author: monica@ualberta.ca
+              comment: Well-written reflection, maybe add one real study to support your points.
+            - author: terrance@ualberta.ca
+              comment: Interesting connection to prospective memory, consider mentioning real-world applications.
+          feedback:
+            grade: 45
+            grader: tammy@ualberta.ca
+            comment: Strong explanation and personal insight, next time include at least one empirical reference.
     - title: "Experimental Design Proposal"
       group_category: default
       description: "Propose a basic experimental design for testing a psychological question of your choice. Include hypothesis, method, and expected results."
-      due_at: 2025-11-20 17:00:00
+      due_at: 2026-11-20 17:00:00
       points_possible: 75
       created_at: 2025-08-10 11:15:00
       updated_at: 2025-08-10 11:15:00
@@ -278,7 +359,7 @@ courses:
     - title: "Cognitive Psychology Research Summary"
       group_category: default
       description: "Summarize a peer-reviewed research article in cognitive psychology, focusing on memory or attention. Your summary should be 800–1000 words."
-      due_at: 2025-11-15 23:59:00
+      due_at: 2026-11-15 23:59:00
       points_possible: 50
       created_at: 2025-08-05 09:30:00
       updated_at: 2025-08-05 09:30:00
@@ -340,7 +421,7 @@ courses:
   quizzes:
     - title: A quick review of the biology
       description: A quiz to test your background knowledge of biology related to psychology.
-      due_at: 2025-09-12 18:00:00
+      due_at: 2026-09-12 18:00:00
       published_at: 2025-07-29 10:00:00
       workflow_state: available
       questions:
@@ -440,7 +521,7 @@ courses:
             text: "Working"
     - title: Foundations of Psychology
       description: A quiz to test core knowledge of psychology concepts
-      due_at: 2025-09-05 18:00:00
+      due_at: 2026-09-05 18:00:00
       published_at: 2025-07-30 10:00:00
       workflow_state: available
       allowed_attempts: 2
@@ -500,10 +581,11 @@ courses:
               id: 204 
     - title: Warming up to psychology
       description: A quiz to test the knowledge of some psychology stuff
-      due_at: 2025-09-01 18:00:00
+      due_at: 2026-09-01 18:00:00
       published_at: 2025-07-28 10:00:00
       workflow_state: available
       allowed_attempts: 3
+      one_question_at_a_time: true
       rubric: 
         title: Warming up to psychology Rubric
         description: A simple rubric used to assess a psychology quiz.
@@ -541,3 +623,70 @@ courses:
             - weight: 0
               text: The study of the influence of social interactions on behavior
               id: 400
+    - title: Introduction to Psychology Concepts
+      description: A quiz to test foundational knowledge in psychology.
+      due_at: 2026-09-15 18:00:00
+      published_at: 2025-08-20 10:00:00
+      workflow_state: available
+      allowed_attempts: 3
+      one_question_at_a_time: true
+      rubric: 
+        title: Introduction to Psychology Concepts Rubric
+        description: A simple rubric used to assess a basic psychology quiz.
+        public: true
+        points_possible: 45
+        free_form_criterion_comments: false
+      questions:
+        - name: Question 1
+          question_type: short_answer_question
+          question_text: "<p>Explain the difference between a psychologist and a psychiatrist.</p>"
+          points_possible: 10
+        - name: Question 2
+          question_type: true_false_question
+          points_possible: 5
+          question_text: "<p>Sigmund Freud is known for his contributions to behaviorism.</p>"
+          answers:
+            - weight: 100
+              text: "False"
+              id: 100
+            - weight: 0
+              text: "True"
+              id: 200
+        - name: Question 3
+          question_type: multiple_choice_question
+          points_possible: 10
+          question_text: "<p>Which part of the brain is primarily responsible for regulating emotions?</p>"
+          answers:
+            - weight: 0
+              text: Cerebellum
+              id: 100
+            - weight: 100
+              text: Amygdala
+              id: 200
+            - weight: 0
+              text: Hippocampus
+              id: 300
+            - weight: 0
+              text: Occipital lobe
+              id: 400
+        - name: Question 4
+          question_type: multiple_choice_question
+          points_possible: 10
+          question_text: "<p>What is the main focus of developmental psychology?</p>"
+          answers:
+            - weight: 100
+              text: Understanding changes in behavior and mental processes across the lifespan
+              id: 100
+            - weight: 0
+              text: Studying mental processes like memory and attention
+              id: 200
+            - weight: 0
+              text: Analyzing unconscious motives and desires
+              id: 300
+            - weight: 0
+              text: Investigating social influences on behavior
+              id: 400
+        - name: Question 5
+          question_type: short_answer_question
+          points_possible: 10
+          question_text: "<p>Describe one key difference between classical conditioning and operant conditioning.</p>"

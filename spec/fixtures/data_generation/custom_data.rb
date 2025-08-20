@@ -290,6 +290,11 @@ def generate_test_environment
         @quiz.generate_quiz_data
         @quiz.due_at = quiz["due_at"]
 
+        if quiz["one_question_at_a_time"]
+          @quiz.one_question_at_a_time = true
+          @quiz.save!
+        end
+
         if quiz["allowed_attempts"]
           @quiz.allowed_attempts = quiz["allowed_attempts"]
           @quiz.save!
@@ -305,6 +310,12 @@ def generate_test_environment
         quiz_opts = quiz.except("rubric", "questions")
 
         q = _course.course.quizzes.create!(quiz_opts) # Create the actual quiz
+
+        if quiz["one_question_at_a_time"]
+          puts "ONE QUESTION AT A TIME!"
+          q.one_question_at_a_time = true
+          q.save!
+        end
 
         if quiz["allowed_attempts"]
           q.allowed_attempts = quiz["allowed_attempts"]
@@ -1049,7 +1060,239 @@ Steps to complete:
 
   tasks << task
 
-  
+  task = AgentTask.new({
+    id: '229bb30d-7652-40a9-934d-3e14d54e7ab9',
+    parameterized_text: 'Task: In the course "[[Course]]," open the discussion titled "[[Discussion]]," and manually mark the reply from "[[User]]" as unread.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    discussion = course.discussions.select{|d| 
+
+    if false # set to true for debugging
+      puts "Discussion: #{d.title}"
+      puts "!AgentTask.discussions.include? d #{!AgentTask.discussions.include? d}"
+      puts "!d.discussion_entries.select{|e| course.classmates.include? e.user}.first.nil? #{!d.discussion_entries.select{|e| course.classmates.include? e.user}.first.nil?}"
+      puts "Entries: #{d.discussion_entries.length}"
+      
+      d.discussion_entries.each_with_index {|entry, index| 
+        puts "[#{index} - #{entry.user.name}] #{entry.message}"
+      }
+
+    end
+    
+    (!AgentTask.discussions.include? d) && (!d.discussion_entries.select{|e| course.classmates.include? e.user}.first.nil?) }.first
+
+    if discussion.nil?
+      puts "Cannot find discussion for task #{task.id}"
+      return
+    end
+
+    AgentTask.discussions << discussion
+
+    reply = discussion.discussion_entries.select{|e| course.classmates.include? e.user}.first
+    classmate = reply.user
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Discussion", discussion.title)
+    task.update_initalized_text("User", classmate.name)
+
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '2776ed0f-e34e-4ffc-8884-9720a48a7420',
+    parameterized_text: 'Task: In the course "[[Course]]," reply to the announcement titled "[[Announcement]]" by posting the message "Great announcement, @[[User]]! Looking forward to this week." and mention the user [[User]] in your reply.'
+  })
+
+  task.populate(test_course) {|course, task| 
+
+    announcement = course.announcements.select {|a| (!AgentTask.announcements.include? a) }.first
+
+    if announcement.nil?
+      puts "Cannot find announcement for task #{task.id}"
+      return 
+    end
+
+    AgentTask.announcements << announcement
+
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Announcement", announcement.title)
+    task.update_initalized_text("User", announcement.user.name)
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id:'279dcf3e-77f5-4a1b-8ced-ebdb8bb7e462',
+    parameterized_text: 'Task: Submit a peer review comment for the discussion "[[Discussion]]" in the course "[[Course]]" by reviewing the assigned student reply and entering the following comment in the comment sidebar: "Great analysis! I especially liked your use of recent data to support your points." Then, click the Save button to complete the peer review.'
+  })
+
+  task.populate(test_course){ |course,task|
+
+    discussion = course.discussions.select{|d| (!AgentTask.discussions.include? d) && (!d.assignment.nil?)}.first 
+
+    if discussion.nil?
+      puts "Cannot find discussion for task #{task.id}"
+      return
+    end
+
+    AgentTask.discussions << discussion
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Discussion", discussion.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '29d80dd0-2506-41bc-ad55-40db3359b84c',
+    parameterized_text: 'Task: Take the quiz titled "[[Quiz]]" in the course "[[Course]]," answering each question as it appears on the screen, and use the Next button to advance to the next question after answering. Do not leave any question blank.'
+  })
+
+  task.populate(test_course){|course,task|
+
+    quiz = course.quizzes.select{|q|
+    
+    if false # Set to true for debugging
+      puts "Quiz: #{q.title} - one_question_at_a_time? #{q.one_question_at_a_time}"
+    end
+    
+    (!AgentTask.quizzes.include? q) && q.one_question_at_a_time}.first
+
+    if quiz.nil?
+      puts "Cannot find quiz for task #{task.id}"
+      return
+    end
+
+    AgentTask.quizzes << quiz
+
+    task.update_initalized_text('Course', course.course.name)
+    task.update_initalized_text('Quiz', quiz.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '3b389112-ccb7-4272-853e-8dbe81a1c6c8',
+    parameterized_text: 'Task: Delete the page titled "[[Page]]" from the "[[Group]]" on your [[Course]] course in Canvas.
+
+Steps to complete:
+
+1. In Global Navigation, click the "Groups" link.
+2. Select "[[Group]]" from your list of groups.
+3. In the group navigation, click the "Pages" link.
+4. Click the "View All Pages" button.
+5. In the Pages Index, select the checkbox next to the page titled "[[Page]]".
+6. Click the "Delete" button.
+7. In the confirmation dialog, click the "Delete" button to confirm deletion of the "[[Page]]" page.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    group = course.groups.select{|g| 
+    
+    if false # set to true for debugging
+      puts "Group: #{g.name}"
+      puts "!AgentTask.groups.include? g #{!AgentTask.groups.include? g}"
+      puts "g.users.include? course.logged_in_user #{g.users.include? course.logged_in_user}"
+      puts "g.wiki_pages.length >= 1 #{g.wiki_pages.length >= 1}"
+    end
+
+    (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user) && (g.wiki_pages.length >= 1)}.first
+
+    if group.nil?
+      puts "Cannot find group for task #{task.id}"
+      return
+    end
+
+    AgentTask.groups << group
+
+    page = group.wiki_pages.first
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Group", group.name)
+    task.update_initalized_text("Page", page.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '45974a3d-36dc-409e-9fe4-8cbd0adc3517',
+    parameterized_text: 'Task: Delete the announcement titled "[[Announcement]]" from the "[[Group]]" group in the [[Course]] course on Canvas.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (!g.announcements.select{|a| a.user == course.logged_in_user}.first.nil?)}.first
+
+    if group.nil?
+      puts "Could not find group for task #{task.id}"
+      return
+    end
+
+    AgentTask.groups << group
+    
+    announcement = group.announcements.select{|a| a.user == course.logged_in_user}.first
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Group", group.name)
+    task.update_initalized_text("Announcement", announcement.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '4bbdbb35-c934-40ab-a042-034f04e2de77',
+    parameterized_text: 'Task: View the peer feedback you received on the "[[Assignment]]" assignment in the "[[Course]]" course using the Assignment Details page.'
+  })
+
+  task.populate(test_course) {|course, task| 
+
+    assignment = course.assignments.select{|a| 
+      (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
+       (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
+       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) # And the teacher of the course has left a comment on their submission
+    }.first
+
+    if assignment.nil?
+      puts "Cannot find assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '6242d2f1-f67e-4d56-a856-b9a5f536672f',
+    parameterized_text: 'Task: In the course "[[Course]]," create a new course discussion titled "[[Discussion]]." In the discussion content, enter the following text: "[[Discussion Message]]" Save the discussion.'
+  })
+
+  task.populate(test_course) {|course, task|
+    
+    discussion_data = course.unused_discussions.select{|d| !AgentTask.used_discussions.include? d}.first
+
+    AgentTask.used_discussions << discussion_data
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Discussion", discussion_data["title"])
+    task.update_initalized_text("Discussion Message", discussion_data["message"])
+  }
+
+  tasks << task
 
   puts "last task"
   puts task.to_hash

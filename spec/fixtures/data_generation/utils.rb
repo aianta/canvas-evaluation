@@ -17,6 +17,7 @@ class AgentTask
 
   @@groups = []
   @@assignments = []
+  @@announcements = []
   @@quizzes = []
   @@discussions = []
   @@pages = []
@@ -25,6 +26,10 @@ class AgentTask
   @@used_announcements = []
   @@used_discussions = []
   @@users = []
+
+  def self.announcements
+    @@announcements
+  end
 
   def self.used_discussions
     @@used_discussions
@@ -123,6 +128,7 @@ class TestCourse
   attr_reader :teachers
   attr_reader :discussions
   attr_reader :assignments
+  attr_reader :announcements
   attr_reader :quizzes
   attr_reader :groups
   attr_reader :pages
@@ -532,6 +538,7 @@ The student account will be assumed to be the logged in user for this course.
      topic.publish
 
      @assignments << assignment
+     @discussions << topic
 
      assignment
   end
