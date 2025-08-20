@@ -235,6 +235,66 @@ courses:
           peer_review:
             - author: instructor
               comment: Well done!
+    - title: "Cognitive Biases Reflection"
+      group_category: default
+      description: "Reflect on a cognitive bias you have personally experienced, describe the situation, and connect it to psychological theory. Minimum 500 words."
+      due_at: 2025-10-15 23:59:00
+      points_possible: 50
+      created_at: 2025-08-05 09:30:00
+      updated_at: 2025-08-05 09:30:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p> One cognitive bias I have personally experienced is the confirmation bias. While preparing for a debate on the effectiveness of mindfulness in reducing stress, I found myself selectively searching for studies that supported my pre-existing belief that mindfulness is highly effective. Although I encountered some evidence suggesting mixed results, I was more inclined to dismiss or minimize those findings, instead focusing on sources that reinforced my viewpoint. This is consistent with psychological literature that explains how confirmation bias helps maintain cognitive consistency, but can also distort our interpretation of evidence. Recognizing this bias has helped me slow down and evaluate information more critically, which is essential not only for academic work but also for making better decisions in daily life. </p>
+          peer_review:
+            - author: monica@ualberta.ca
+              comment: Good example, but could use more references to theory.
+          feedback:
+            grade: 42
+            grader: tammy@ualberta.ca
+            comment: Strong personal connection, next time cite at least one primary study.
+    - title: "Experimental Design Proposal"
+      group_category: default
+      description: "Propose a basic experimental design for testing a psychological question of your choice. Include hypothesis, method, and expected results."
+      due_at: 2025-11-20 17:00:00
+      points_possible: 75
+      created_at: 2025-08-10 11:15:00
+      updated_at: 2025-08-10 11:15:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p> For this assignment, I propose an experiment examining whether short daily sessions of guided meditation can improve working memory in undergraduate students. The hypothesis is that students who practice 10 minutes of guided meditation each day for two weeks will show significantly higher scores on a digit span task compared to a control group that does not meditate. Participants would be randomly assigned to either the meditation or control group. The method includes a pre-test and post-test of working memory, with sessions conducted in a quiet room at the university. I expect that the meditation group will demonstrate improved working memory performance, supporting prior research linking mindfulness with cognitive enhancement. </p>
+          peer_review:
+            - author: terrance@ualberta.ca
+              comment: Interesting idea, but clarify sample size.
+          feedback:
+            grade: 68
+            grader: tammy@ualberta.ca
+            comment: Solid design, but remember to include ethical considerations in proposals.
+    - title: "Cognitive Psychology Research Summary"
+      group_category: default
+      description: "Summarize a peer-reviewed research article in cognitive psychology, focusing on memory or attention. Your summary should be 800–1000 words."
+      due_at: 2025-11-15 23:59:00
+      points_possible: 50
+      created_at: 2025-08-05 09:30:00
+      updated_at: 2025-08-05 09:30:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p> In their 2018 study, Smith and colleagues investigated the effects of divided attention on memory recall. Participants were asked to memorize a list of words while simultaneously performing a secondary task. Results showed that recall performance decreased significantly under divided attention conditions, supporting the limited capacity model of working memory. The study highlights how multitasking impairs encoding processes, making information less likely to be stored in long-term memory. These findings are especially relevant in educational contexts where students often study while distracted by technology. The authors suggest strategies such as focused attention training to improve memory retention. </p>
+          peer_review:
+            - author: phillip@ualberta.ca
+              comment: Clear summary, but maybe add more detail about the methodology.
+          feedback:
+            grade: 42
+            grader: tammy@ualberta.ca
+            comment: Great effort—work on expanding the analysis of implications.
     - title: "Childhood Development Essay"
       group_category: default
       description: "Write a 1000 word essay about an aspect of childhood psychological development."
@@ -252,7 +312,7 @@ courses:
             - author: terrance@ualberta.ca
               comment: Not bad.
           feedback:
-            grade: 85
+            grade: 95
             grader: tammy@ualberta.ca
             comment: excellent job
 

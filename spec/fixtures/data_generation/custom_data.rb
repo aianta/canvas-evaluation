@@ -968,6 +968,89 @@ Steps:
 
   tasks << task
 
+  task = AgentTask.new({
+    id: '1c156f92-b926-4817-b78a-b8ad85de2484',
+    parameterized_text: 'Task: View the comments left by your instructor ([[Teacher]]) on your "[[Assignment]]" assignment in the "[[Course]]" course, and mark the comments as read. 
+
+Steps to complete:
+1. In Global Navigation, click the "Courses" link, then select "[[Course]]."
+2. In Course Navigation, click the "Grades" link.
+3. Locate the "[[Assignment]]" assignment in the grades list.
+4. Click the Comment icon next to the "[[Assignment]]" assignment to view your instructor\'s comments.
+5. Read all comments so that the unread indicator disappears.',
+  })
+
+  task.populate(test_course) {|course,task|
+
+    assignment = course.assignments.select{|a| 
+
+    if false # set to true for debugging
+      puts "Assignment: #{a.title}"
+      puts "!AgentTask.assignments.include? a #{!AgentTask.assignments.include? a}"
+      puts "!a.submissions.where(user_id: course.logged_in_user).first.body.nil? #{!a.submissions.where(user_id: course.logged_in_user).first.body.nil?}"
+      puts "Assignment submissions [#{a.submissions.length}]:"
+      a.submissions.each_with_index {|s, index| puts "#{index} [#{s.student.name}] [nil:#{s.body.nil?}]: #{s.body}" }
+
+      
+      submission = a.submissions.where(user_id: course.logged_in_user).first
+      if submission.nil?
+        return
+      end
+      puts "submission #{submission}"
+      puts "submission.body #{submission.body}"
+      submission.submission_comments.each {|c| puts "Comment: #{c.comment} author: #{c.author}"}
+      puts "!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| c.author == course.teacher}.first.nil? #{!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| c.author == course.teacher}.first.nil?}"
+    end
+
+    (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
+       (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
+       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| c.author == course.teacher}.first.nil?) # And the teacher of the course has left a comment on their submission
+      }.first
+
+    if assignment.nil?
+      puts "Could not find assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Teacher", course.teacher.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '1bfdc4bc-1ab2-4846-b840-4c65d9f9c83f',
+    parameterized_text: 'Task: In the Canvas course "[[Course]]," locate and view the peer feedback you received for the assignment titled "[[Assignment]]" by accessing the submission details page and clicking the "View Feedback" button.'
+  })
+
+  task.populate(test_course) {|course, task| 
+
+    assignment = course.assignments.select{|a| 
+      (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
+       (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
+       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) # And the teacher of the course has left a comment on their submission
+    }.first
+
+    if assignment.nil?
+      puts "Cannot find assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
+  }
+
+  tasks << task
+
+  
+
   puts "last task"
   puts task.to_hash
 
