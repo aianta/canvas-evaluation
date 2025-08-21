@@ -149,10 +149,29 @@ courses:
       is_public: true
       join_level: parent_context_request
       description: A test group
+      leader: sammy@ualberta.ca
       users:
         - sammy@ualberta.ca
         - jared@ualberta.ca
         - monica@ualberta.ca
+    - name: Group O 
+      is_public: true
+      join_level: parent_context_request
+      description: A test group
+      leader: sammy@ualberta.ca
+      users:
+        - sammy@ualberta.ca
+        - alex@ualberta.ca
+        - ryan@ualberta.ca
+    - name: Group Q 
+      is_public: true
+      join_level: parent_context_request
+      description: A test group
+      leader: sammy@ualberta.ca
+      users:
+        - sammy@ualberta.ca
+        - lisa@ualberta.ca
+        - abigail@ualberta.ca
     - name: Group H
       is_public: true
       description: A psych student group
@@ -302,7 +321,56 @@ courses:
         intra_group_peer_reviews: true
         anonymous_peer_reviews: false
         automatic_peer_reviews: true
-
+    - title: Theories of Personality
+      description: |
+        Hi Everyone, for this assignment, please share which theory of personality (such as Freud's psychoanalytic theory, trait theory, humanistic theory, or social-cognitive theory) you find most convincing or useful in understanding human behavior. Briefly explain why you chose it and provide an example to support your view.
+      due_at: 2026-03-10 18:00:00
+      points_possible: 2
+      created_at: 2025-08-21 10:00:00
+      updated_at: 2025-08-21 10:00:00
+      submission_types: ["discussion_topic"]
+      grading_type: "points"
+      replies:
+        - user: sarah@ualberta.ca
+          text: I find the humanistic theory most convincing because it focuses on self-actualization and personal growth. Maslow’s hierarchy of needs really resonates with how people prioritize goals in life.  
+        - user: sammy@ualberta.ca
+          text: I like trait theory the best. The Big Five personality model makes sense to me because it gives a clear framework for describing differences between people.  
+        - user: terrance@ualberta.ca
+          text: Freud’s psychoanalytic theory is fascinating even though it’s controversial. The idea that unconscious drives and childhood experiences shape adult behavior explains a lot of patterns I see in people.  
+        - user: phillip@ualberta.ca
+          text: I think the social-cognitive theory is the most practical. Bandura’s concept of self-efficacy shows how believing in yourself can influence motivation and achievement.  
+      peer_reviews: 
+        enabled: true
+        count: 2
+        due_at: 2026-03-15 18:00:00
+        intra_group_peer_reviews: true
+        anonymous_peer_reviews: false
+        automatic_peer_reviews: true
+    - title: Nature vs. Nurture Debate
+      description: |
+        Hi Everyone, for this discussion, please share your thoughts on whether you think human behavior is more strongly influenced by genetics (nature) or environment (nurture). Provide an example to support your argument and explain why you lean more toward one side, or if you think both play an equal role.
+      due_at: 2026-03-20 18:00:00
+      points_possible: 2
+      created_at: 2025-08-21 10:15:00
+      updated_at: 2025-08-21 10:15:00
+      submission_types: ["discussion_topic"]
+      grading_type: "points"
+      replies:
+        - user: sarah@ualberta.ca
+          text: I think nurture plays a stronger role. For example, children raised in supportive environments often thrive, even if they have genetic risks for certain disorders.  
+        - user: sammy@ualberta.ca
+          text: I lean more toward nature because traits like intelligence and temperament seem strongly linked to genetics, though environment still matters.  
+        - user: terrance@ualberta.ca
+          text: I believe it’s a balance. Genes may set certain limits, but the environment determines how much potential is reached. Language development is a good example.  
+        - user: phillip@ualberta.ca
+          text: Nurture has a bigger influence in my opinion. Education and culture shape values and behavior much more than biology alone.  
+      peer_reviews: 
+        enabled: true
+        count: 2
+        due_at: 2026-03-25 18:00:00
+        intra_group_peer_reviews: true
+        anonymous_peer_reviews: false
+        automatic_peer_reviews: true
     - title: Psychology Video on learning
       description: For this assignment you must go out onto the internet and find an interesting video about how humans learn. Submit the url to the video. 
       due_at: 2026-03-15 18:00:00
@@ -471,7 +539,46 @@ courses:
         intra_group_peer_reviews: true
         anonymous_peer_reviews: true
         automatic_peer_reviews: true
-
+    - title: "The Role of Memory in Learning"
+      group_category: default
+      description: "Write a 1200 word essay on how different types of memory (short-term, working, long-term) influence the learning process, and include at least two psychological theories or experiments to support your arguments."
+      due_at: 2026-02-15 18:00:00
+      points_possible: 100
+      created_at: 2025-08-21 10:00:00
+      updated_at: 2025-08-21 10:00:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p> Memory is a central process in learning, as it allows information to be encoded, stored, and retrieved when needed. Short-term memory provides a temporary holding space, while working memory actively manipulates information to support problem-solving and reasoning. Long-term memory, on the other hand, stores knowledge and skills for extended periods, making cumulative learning possible. Classic studies, such as Miller’s ‘Magic Number 7’ and Baddeley’s model of working memory, demonstrate how cognitive limitations shape learning efficiency. Reinforcement through practice, meaningful connections, and emotional engagement strengthens long-term retention, highlighting the importance of teaching strategies that align with cognitive psychology principles.</p>
+          peer_review:
+            - author: phillip@ualberta.ca
+              comment: Very detailed explanation, but you could expand on the role of emotional memory in learning.
+              rubric_assessment:
+                  - id: rat1
+                    points: 50.0
+                    criterion_id: crit1
+                    comments_enabled: true
+                    description: Pass
+                    comments: "Really good job here."
+                  - id: rat2
+                    points: 50.0
+                    criterion_id: crit2
+                    description: B
+                    comments: "Definitely a pass."
+                    comments_enabled: true
+          feedback:
+            grade: 92
+            grader: tammy@ualberta.ca
+            comment: Excellent essay with strong theoretical grounding.
+      peer_reviews: 
+        enabled: true
+        count: 2
+        due_at: 2026-02-10 18:00:00
+        intra_group_peer_reviews: true
+        anonymous_peer_reviews: true
+        automatic_peer_reviews: true
 
     - title: "Brain Anaomolies"
       group_category: default

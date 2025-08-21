@@ -70,6 +70,10 @@ end
 
 def generate_test_environment
 
+  Account.default.allow_self_enrollment!
+  Account.default.settings[:open_registration] = true
+  Account.default.save!
+
   puts "Loading test data from container path: /usr/src/app/spec/fixtures/data_generation/test_data.yaml"
   
   test_data = YAML.load_file "/usr/src/app/spec/fixtures/data_generation/test_data.yaml"
@@ -174,7 +178,7 @@ def generate_test_environment
       rubric_opts = {
         :context => _course.course,
         :title => "Rubric for #{assignment["title"]}",
-        :data => larger_rubric_data
+        :data => _course.make_rubric(assignment["points_possible"])
       }
       rubric = rubric_model(rubric_opts)
       rubric.save!
@@ -190,6 +194,8 @@ def generate_test_environment
       a.reload
       a.save!
 
+
+
       # Populate assignment submissions
       if assignment["submissions"] # If the assignment has submissions, create those too.
         assignment["submissions"].each { |submission|
@@ -200,6 +206,27 @@ def generate_test_environment
             submission["peer_review"].each { |review|
               review["author"] = _course.resolve_user_value(review["author"], _course)
               _submission.add_comment(comment: review["comment"], author: review["author"])
+              
+              if review["rubric_assessment"] # If rubric feedback was included.
+                
+
+                assessment = a.rubric_association.rubric_assessments.build(
+                  user: _course.resolve_user_value(submission["user"], _course),
+                  assessor: _course.resolve_user_value(review["author"], _course),
+                  artifact: _submission,
+                  rubric: a.rubric_association.rubric,
+                  assessment_type: 'peer_review'
+                  #assessment: review["rubric_assessment"].merge(assessment_type: 'peer_review')
+                )
+                assessment.data = review["rubric_assessment"]
+                assessment.score = review["rubric_assessment"].sum {|h| h["points"]}
+
+                puts "Assessment data: #{assessment.data}"
+
+                assessment.save!
+                
+              end
+            
             }
           end
 
@@ -444,7 +471,7 @@ def create_task_instances(test_course)
 
   task.populate(test_course) { |course,task|
 
-    assignment = course.assignments.select {|a| !AgentTask.assignments.include? a}.first
+    assignment = course.assignments.select {|a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))}.first
 
     if assignment.nil?
       puts "Cannot find assignment for task #{task.id}"
@@ -476,7 +503,7 @@ def create_task_instances(test_course)
       submission = a.submissions.find_by(user_id: course.logged_in_user.id)
       # where that submission has a comment provided by the course instructor. 
       comment_by_teacher = submission.submission_comments.select {|comment| comment.author == course.teacher}.first
-      comment_by_teacher 
+      comment_by_teacher && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))
   }.first
 
     if (assignment.nil?) || (AgentTask.assignments.include? assignment)
@@ -564,7 +591,7 @@ def create_task_instances(test_course)
   task.populate(test_course) { |course, task|
 
     # pick a group which hasn't been used for a task before and to which the logged in user belongs.
-    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user)}.first 
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.leader.nil?) &&(g.users.include? course.logged_in_user)}.first 
 
     if group.nil?
       puts "Could not find group for task #{task.id}"
@@ -686,7 +713,7 @@ def create_task_instances(test_course)
 
   task.populate(test_course){|course,task|
 
-    group = course.groups.select {|g| (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user) && (!g.discussion_topics.select {|dt| dt.user == course.logged_in_user}.first.nil?) }.first
+    group = course.groups.select {|g| (!AgentTask.groups.include? g) && (g.leader.nil?) && (g.users.include? course.logged_in_user) && (!g.discussion_topics.select {|dt| dt.user == course.logged_in_user}.first.nil?) }.first
 
     if group.nil?
       puts "Cannot find group for task #{task.id}"
@@ -723,7 +750,7 @@ Steps to complete:
 
   task.populate(test_course){ |course, task|
 
-    assignment = course.assignments.select {|a| !AgentTask.assignments.include? a}.first
+    assignment = course.assignments.select {|a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))}.first
 
     if assignment.nil?
       puts "Could not find assignment for task #{task.id}"
@@ -849,7 +876,7 @@ Steps to complete:
 
   task.populate(test_course) {|course, task| 
 
-    assignment = course.assignments.select { |a| !AgentTask.assignments.include? a}.first
+    assignment = course.assignments.select { |a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))}.first
 
     if assignment.nil?
       puts "Could not find assignment for task #{task.id}"
@@ -872,7 +899,7 @@ Steps to complete:
 
   task.populate(test_course) {|course, task|
 
-    assignment = course.assignments.select{|a| !AgentTask.assignments.include? a}.first
+    assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))}.first
 
     if assignment.nil?
       puts "Cannot find assignment for task #{task.id}"
@@ -895,7 +922,7 @@ Steps to complete:
 
   task.populate(test_course) {|course,task|
 
-    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user)}.first
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.leader.nil?) && (g.users.include? course.logged_in_user)}.first
 
     if group.nil?
       puts "Could not find group for task #{task.id}"
@@ -1016,6 +1043,7 @@ Steps to complete:
 
     (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
        (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
+       ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments on this task.
        (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| c.author == course.teacher}.first.nil?) # And the teacher of the course has left a comment on their submission
       }.first
 
@@ -1044,6 +1072,7 @@ Steps to complete:
     assignment = course.assignments.select{|a| 
       (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
        (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
+       ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments on this task.
        (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) # And the teacher of the course has left a comment on their submission
     }.first
 
@@ -1205,7 +1234,7 @@ Steps to complete:
       puts "g.wiki_pages.length >= 1 #{g.wiki_pages.length >= 1}"
     end
 
-    (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user) && (g.wiki_pages.length >= 1)}.first
+    (!AgentTask.groups.include? g) && (g.leader.nil?) && (g.users.include? course.logged_in_user) && (g.wiki_pages.length >= 1)}.first
 
     if group.nil?
       puts "Cannot find group for task #{task.id}"
@@ -1231,7 +1260,7 @@ Steps to complete:
 
   task.populate(test_course) {|course, task|
 
-    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (!g.announcements.select{|a| a.user == course.logged_in_user}.first.nil?)}.first
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.leader.nil?) && (!g.announcements.select{|a| a.user == course.logged_in_user}.first.nil?)}.first
 
     if group.nil?
       puts "Could not find group for task #{task.id}"
@@ -1260,6 +1289,7 @@ Steps to complete:
     assignment = course.assignments.select{|a| 
       (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
        (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
+       ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments for this task.
        (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) # And the teacher of the course has left a comment on their submission
     }.first
 
@@ -1302,7 +1332,7 @@ Steps to complete:
 
   task.populate(test_course) {|course, task|
 
-    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user)}.first
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.leader.nil?) && (g.users.include? course.logged_in_user)}.first
 
     if group.nil?
       puts "Cannot find group for task #{task.id}"
@@ -1340,6 +1370,7 @@ Steps:
     assignment = course.assignments.select{|a| 
       (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
        (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
+       ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments on this task.
        (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) # And the teacher of the course has left a comment on their submission
     }.first
 
@@ -1379,6 +1410,7 @@ Steps:
     end
 
     AgentTask.discussions << discussion
+    AgentTask.assignments << discussion.assignment
 
     task.update_initalized_text("Course", course.course.name)
     task.update_initalized_text("Discussion", discussion.title)
@@ -1397,7 +1429,7 @@ Steps:
 
     _module = course.modules.select{|m| 
     
-    if true # set to true for debugging
+    if false # set to true for debugging
       puts "Module: #{m.name}"
       puts "items:"
       m.content_tags.each_with_index{|item, index|
@@ -1440,7 +1472,9 @@ Steps:
 
   task.populate(test_course) {|course, task|
 
-    assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?)}.first
+    assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) &&
+    ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments on this task. 
+    (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?)}.first
 
     if assignment.nil?
       puts "Cannot find assignment for task #{task.id}"
@@ -1455,6 +1489,129 @@ Steps:
   }
 
   tasks << task
+
+  task = AgentTask.new({
+    id: 'e0cfbef6-1383-463e-ac40-db871e962295',
+    parameterized_text: 'Task: As the student group leader of "[[Group 1]]" in the "[[Course]]" course, change your group\'s name to "[[Group 2]]".'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    group = course.groups.select {|g| 
+
+      if false # Set to true for debugging
+        puts "Group: #{g.name}"
+        puts "!AgentTask.groups.include? g: #{!AgentTask.groups.include? g}"
+        puts "Group leader exists? #{!g.leader.nil?}"
+        if g.leader
+          puts "Group leader: #{g.leader.name}"
+          puts "g.leader == course.logged_in_user? #{g.leader == course.logged_in_user}"
+        end
+      end
+      
+      (!AgentTask.groups.include? g) && # Find a group that's not yet used by some other task.
+      (!g.leader.nil?) && # Which has a leader specified.
+      (g.leader == course.logged_in_user) # And whose leader is the logged in user. 
+    }.first
+
+    if group.nil?
+      puts "Cannot find group for task #{task.id}"
+      return 
+    end
+
+    AgentTask.groups << group # Mark this group as used
+
+    new_group_name = course.unused_group_names.select {|name| !AgentTask.used_group_names.include? name}.first # Find an unused group name
+    AgentTask.used_group_names << new_group_name # Mark this group name as used.
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Group 1", group.name)
+    task.update_initalized_text("Group 2", new_group_name)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'bc69c1dc-3ccc-4cef-80ec-ed2a5d931c5e',
+    parameterized_text: 'Task: As the student group leader of "[[Group]]" in the "[[Course]]" course, remove the member named "[[User]]" from the group. Submit your changes.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (!g.leader.nil?) && (g.leader == course.logged_in_user)}.first
+
+    if group.nil?
+      puts "Cannot find group for task #{task.id}"
+      return
+    end
+
+    AgentTask.groups << group
+
+    other_members = group.users.select{|u| u != course.logged_in_user}
+    user_to_remove = other_members.sample
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Group", group.name)
+    task.update_initalized_text("User", user_to_remove.name )
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '8d2b6c85-7bc4-4683-b468-bf85542aa2c7',
+    parameterized_text: 'Task: View the peer review rubric assessment and comments left by your classmates for the assignment "[[Assignment]]" in the course "[[Course]]." 
+
+To complete this task, navigate to the "[[Assignment]]" assignment, click the "Show Rubric" link, and review the ratings and comments provided by your peers. If there are multiple peer reviews, use the "Show Assessment By" drop-down menu to view each peer\'s rubric assessment.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    assignment = course.assignments.select{|a| 
+      (!AgentTask.assignments.include? a) && 
+      (!a.rubric_association.nil?) &&
+      (a.rubric_association.rubric_assessments.length > 0) &&
+      (!a.rubric_association.rubric_assessments.select{|assessment| assessment.user == course.logged_in_user}.first.nil?)
+    }.first
+
+    if assignment.nil?
+      puts "Cannot find assignment for task #{task.id}"
+      return 
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'c9819826-9891-4b9a-824b-f94f91a6598b',
+    parameterized_text: 'Task: Complete a peer review for the assignment "[[Assignment]]" in the course "[[Course]]" by assigning a grade using the provided rubric and leaving the following comment in the comment sidebar: "Great job but consider adding more sources to support your arguments." Submit your assessment to finish the peer review.'
+  })
+
+  task.populate(test_course) { |course, task|
+
+    discussion = course.discussions.select{|d| (!AgentTask.discussions.include? d) && (!d.assignment.nil?) && (d.discussion_entries.length >= 2) && (!d.discussion_entries.select{|e| e.user == course.logged_in_user}.first.nil?)}.first
+
+    if discussion.nil?
+      puts "Cannot find discussion assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.discussions << discussion 
+    AgentTask.assignments << discussion.assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", discussion.assignment.title)
+  }
+
+  tasks << task
+
 
   puts "last task"
   puts task.to_hash

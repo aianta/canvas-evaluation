@@ -266,9 +266,10 @@ The student account will be assumed to be the logged in user for this course.
 
     data["group_category"] = resolve_group_category_value(data["group_category"], self)
 
-    group = Factories.group(data.except("users", "discussions"))
+    group = Factories.group(data.except("users", "discussions", "announcements", "pages"))
     group.join_level = "parent_context_auto_join"
-    
+    group.name = data["name"]
+
     # Create any specified users for this group.
     if data["users"]
       data["users"].each {|user| 
@@ -278,7 +279,14 @@ The student account will be assumed to be the logged in user for this course.
       }
     end
 
-    group.name = data["name"]
+    # If a group has a specified leader, assign them now
+    if data["leader"]
+      leader = resolve_user_value(data["leader"], self)
+      group.update_attribute(:leader, leader)
+      puts "Set #{leader.name} as group leader for #{group.name}" 
+    end
+
+    
     group.save!
 
    
@@ -639,4 +647,31 @@ The student account will be assumed to be the logged in user for this course.
   end
 
 
+  def make_rubric(total_points)
+
+    if !total_points.even? # If the total number of points isn't an even number, make it one so that 
+      total_points = total_points + 1
+    end
+
+    [
+      { description: "Quality",
+        points: total_points/2,
+        id: "crit1",
+        ratings: [
+          { description: "A", points: total_points/2, id: "rat1", criterion_id: "crit1" },
+          { description: "B", points: total_points/4, id: "rat2", criterion_id: "crit1" },
+          { description: "F", points: 0, id: "rat3", criterion_id: "crit1" }
+        ] },
+
+      { description: "Effort",
+        points: total_points/2,
+        id: "crit2",
+        ratings: [
+          { description: "Pass", points: total_points/2, id: "rat1", criterion_id: "crit2" },
+          { description: "Fail", points: 0, id: "rat2", criterion_id: "crit2" }
+        ] },
+    ]
+  end
+
 end
+
