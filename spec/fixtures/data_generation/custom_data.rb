@@ -1612,6 +1612,36 @@ To complete this task, navigate to the "[[Assignment]]" assignment, click the "S
 
   tasks << task
 
+  task = AgentTask.new({
+    id: '42ad8db4-826a-414a-9ad6-b5c9abd93078',
+    parameterized_text: 'Task: In the course "[[Course]]," open the discussion titled "[[Discussion]]," locate the reply by student "[[User]]" and click the Like icon to like this reply.'
+  })
+
+  task.populate(test_course){|course, task|
+
+    discussion = course.discussions.select{|d| (!AgentTask.discussions.include? d) && (d.allow_rating == true) && (d.discussion_entries.length > 0)}.first
+
+    if discussion.nil?
+      puts "Cannot find discussion for task #{task.id}"
+      return 
+    end
+    AgentTask.discussions << discussion
+
+    user = discussion.discussion_entries.first.user
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Discussion", discussion.title)
+    task.update_initalized_text("User", user.name)
+
+  }
+
+  tasks << task
+
+  # task = AgentTask.new({
+  #   id: '',
+  #   parameterized_text: 'Task: Locate and open your assigned peer review for the "[[Assignment]]" assignment in the "[[Course]]" course using the To Do list on your Canvas Dashboard.'
+  # })
+
 
   puts "last task"
   puts task.to_hash

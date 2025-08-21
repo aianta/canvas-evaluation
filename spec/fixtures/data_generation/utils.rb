@@ -461,7 +461,10 @@ The student account will be assumed to be the logged in user for this course.
 
 
   @discussion = @course.discussion_topics.create!(data.except("replies"))
+  @discussion.allow_rating = true
+  @discussion.update_attribute(:allow_rating, true)
 
+  @discussion.save!
   @discussion.reload
 
   # If this discussion has replies, create them too. 
@@ -511,7 +514,8 @@ The student account will be assumed to be the logged in user for this course.
     assignment = @course.assignments.create!(data.except("peer_reviews", "replies"))
 
     topic = @course.discussion_topics.create!(assignment: assignment, title: data["title"], message:data["description"] )
-   
+    topic.allow_rating = true
+    topic.update_attribute(:allow_rating, true)
 
     puts "Created discussion topic? #{topic}"
 
@@ -549,7 +553,8 @@ The student account will be assumed to be the logged in user for this course.
       assignment.save!
 
     end
-
+    
+     topic.save!
      topic.publish
 
      @assignments << assignment
