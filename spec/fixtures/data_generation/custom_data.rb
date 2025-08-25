@@ -513,7 +513,7 @@ def create_task_instances(test_course)
 
   task.populate(test_course) { |course,task|
 
-    assignment = course.assignments.select {|a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))}.first
+    assignment = course.assignments.select {|a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && (!a.submission_types.include? "online_url")}.first
 
     if assignment.nil?
       puts "Cannot find assignment for task #{task.id}"
@@ -545,7 +545,7 @@ def create_task_instances(test_course)
       submission = a.submissions.find_by(user_id: course.logged_in_user.id)
       # where that submission has a comment provided by the course instructor. 
       comment_by_teacher = submission.submission_comments.select {|comment| comment.author == course.teacher}.first
-      comment_by_teacher && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))
+      comment_by_teacher && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && (!a.submission_types.include? "online_url")
   }.first
 
     if (assignment.nil?) || (AgentTask.assignments.include? assignment)
@@ -792,7 +792,7 @@ Steps to complete:
 
   task.populate(test_course){ |course, task|
 
-    assignment = course.assignments.select {|a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))}.first
+    assignment = course.assignments.select {|a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && (!a.submission_types.include? "online_url")}.first
 
     if assignment.nil?
       puts "Could not find assignment for task #{task.id}"
@@ -918,7 +918,7 @@ Steps to complete:
 
   task.populate(test_course) {|course, task| 
 
-    assignment = course.assignments.select { |a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))}.first
+    assignment = course.assignments.select { |a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && (!a.submission_types.include? "online_url")}.first
 
     if assignment.nil?
       puts "Could not find assignment for task #{task.id}"
@@ -941,7 +941,7 @@ Steps to complete:
 
   task.populate(test_course) {|course, task|
 
-    assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))}.first
+    assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && (!a.submission_types.include? "online_url")}.first
 
     if assignment.nil?
       puts "Cannot find assignment for task #{task.id}"
@@ -1086,7 +1086,8 @@ Steps to complete:
     (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
        (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
        ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments on this task.
-       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| c.author == course.teacher}.first.nil?) # And the teacher of the course has left a comment on their submission
+       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| c.author == course.teacher}.first.nil?) && (!a.submission_types.include? "online_url") # And the teacher of the course has left a comment on their submission
+  
       }.first
 
     if assignment.nil?
@@ -1115,8 +1116,9 @@ Steps to complete:
       (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
        (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
        ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments on this task.
-       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) # And the teacher of the course has left a comment on their submission
-    }.first
+       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) && (!a.submission_types.include? "online_url") # And the teacher of the course has left a comment on their submission
+    
+      }.first
 
     if assignment.nil?
       puts "Cannot find assignment for task #{task.id}"
@@ -1332,8 +1334,9 @@ Steps to complete:
       (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
        (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
        ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments for this task.
-       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) # And the teacher of the course has left a comment on their submission
-    }.first
+       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) && (!a.submission_types.include? "online_url") # And the teacher of the course has left a comment on their submission
+
+      }.first
 
     if assignment.nil?
       puts "Cannot find assignment for task #{task.id}"
@@ -1413,8 +1416,9 @@ Steps:
       (!AgentTask.assignments.include? a) && # Find an assignment that hasn't already been used.
        (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && # Where the logged in user has made a submission whose body isn't nil
        ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments on this task.
-       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) # And the teacher of the course has left a comment on their submission
-    }.first
+       (!a.submissions.where(user_id: course.logged_in_user).first.submission_comments.select{|c| course.classmates.include? c.author}.first.nil?) && (!a.submission_types.include? "online_url")# And the teacher of the course has left a comment on their submission
+
+      }.first
 
     if assignment.nil?
       puts "Cannot find assignment for task #{task.id}"
@@ -1516,7 +1520,9 @@ Steps:
 
     assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) &&
     ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments on this task. 
-    (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?)}.first
+    (!a.submissions.where(user_id: course.logged_in_user).first.body.nil?) && (!a.submission_types.include? "online_url")
+
+  }.first
 
     if assignment.nil?
       puts "Cannot find assignment for task #{task.id}"
@@ -1615,7 +1621,8 @@ To complete this task, navigate to the "[[Assignment]]" assignment, click the "S
       (!AgentTask.assignments.include? a) && 
       (!a.rubric_association.nil?) &&
       (a.rubric_association.rubric_assessments.length > 0) &&
-      (!a.rubric_association.rubric_assessments.select{|assessment| (assessment.user == course.logged_in_user) && (course.classmates.include? assessment.assessor) }.first.nil?)
+      (!a.rubric_association.rubric_assessments.select{|assessment| (assessment.user == course.logged_in_user) && (course.classmates.include? assessment.assessor) }.first.nil?) && (!a.submission_types.include? "online_url")
+
     }.first
 
     if assignment.nil?
@@ -1654,6 +1661,7 @@ To complete this task, navigate to the "[[Assignment]]" assignment, click the "S
 
       (!AgentTask.assignments.include? a) && 
       (!a.submission_types.include? "discussion_topic") &&
+      (!a.submission_types.include? "online_url") &&
       ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && # Don't use up assignments with rubric assessments on this task.  
       (AssessmentRequest.for_assignment(a.id).length > 0) &&
       (!AssessmentRequest.for_assignment(a.id).select{|request| request.assessor == course.logged_in_user}.first.nil?)
@@ -1726,7 +1734,7 @@ Steps:
     (!AgentTask.assignments.include? a) && 
       (!a.rubric_association.nil?) &&
       (a.rubric_association.rubric_assessments.length > 0) &&
-      (!a.rubric_association.rubric_assessments.select{|assessment| assessment.assessor == course.teacher}.first.nil?)
+      (!a.rubric_association.rubric_assessments.select{|assessment| assessment.assessor == course.teacher}.first.nil?) && (!a.submission_types.include? "online_url")
     }.first
 
     if assignment.nil? 
@@ -1919,7 +1927,7 @@ Steps:
   task.populate(test_course) {|course, task|
 
     assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && 
-      (!AssessmentRequest.for_assignment(a.id).select{|assessment| assessment.assessor == course.logged_in_user}.first.nil?)
+      (!AssessmentRequest.for_assignment(a.id).select{|assessment| assessment.assessor == course.logged_in_user}.first.nil?) && (!a.submission_types.include? "online_url")
     }.first
 
     if assignment.nil?
@@ -1944,7 +1952,7 @@ Steps:
   task.populate(test_course) {|course, task|
 
     assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && 
-      ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))
+      ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0) && (!a.submission_types.include? "online_url")) 
     }.first
 
     if assignment.nil?
@@ -1969,7 +1977,7 @@ Steps:
   task.populate(test_course) {|course, task| 
     group = course.groups.select{|g| 
     
-    if true # set to true for debugging
+    if false # set to true for debugging
       puts "For group #{g.name}"
       puts "!AgentTask.groups.include? g #{!AgentTask.groups.include? g}"
       puts "g.wiki_pages.length > 0: #{g.wiki_pages.length > 0}"
@@ -2001,7 +2009,7 @@ Steps:
   task.populate(test_course) {|course, task|
 
     assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && 
-      ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))
+      ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && (!a.submission_types.include? "online_url")
     }.first
 
     if assignment.nil?
@@ -2013,6 +2021,134 @@ Steps:
 
     task.update_initalized_text("Course", course.course.name)
     task.update_initalized_text("Assignment", assignment.title)
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'c7a8b1a8-cd2c-4581-9cc3-89d2a1a4f788',
+    parameterized_text: 'Task: View the rubric for the graded discussion titled "[[Discussion]]" in the course "[[Course]]" by navigating to the Discussions section, selecting the discussion, and opening the rubric.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    discussion = course.discussions.select{|d| (!AgentTask.discussions.include? d) && (!d.assignment.nil?)}.first
+
+    if discussion.nil?
+      puts "Cannot find discussion for task #{task.id}"
+      return
+    end
+
+    AgentTask.discussions << discussion
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Discussion", discussion.title)
+    
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'cfb8fa30-c680-4b13-9dd0-d49e4567ff15',
+    parameterized_text: 'Task: Submit the URL "https://www.exampleproject.com" as your assignment submission for the assignment titled "[[Assignment]]" in the course "[[Course]]" on Canvas.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && (a.submission_types.include? "online_url")}.first
+
+    if assignment.nil?
+      puts "Cannot find assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'd5654365-86b6-4df1-ada7-a27b37be2042',
+    parameterized_text: 'Task: Edit the "[[Page]]" page for your group ([[Group]]) in the "[[Course]]" course to add the following text at the end of the page: "All group members must submit their individual reports by next week." Check the box to notify users that the content has changed, then save your changes.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.wiki_pages.length > 0)}.first
+
+    if group.nil?
+      puts "Cannot find group for task #{task.id}"
+      return
+    end
+
+    AgentTask.groups << group
+
+    page = group.wiki_pages.first
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Group", group.name)
+    task.update_initalized_text("Page", page.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'd6ac9877-e256-4487-86cc-2bb0b085c804',
+    parameterized_text: 'Task: In the course "[[Course]]" use the search field in the Announcements Index Page to find the announcement titled "[[Announcement]]". Then, mark all announcements as read using the "Mark All as Read" button.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    announcement = course.announcements.select{|a| (!AgentTask.announcements.include? a)}.first
+
+    if announcement.nil?
+      puts "Cannot find announcement for task #{task.id}"
+      return
+    end
+
+    AgentTask.announcements << announcement
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Announcement", announcement.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'd8f661f0-6bcc-4778-8b5e-ed716f425cd8',
+    parameterized_text: 'Task: Submit a text entry for the [[Assignment]] assignment in the course "[[Course]]" by entering the text "The most interesting concept I learned this week was cognitive dissonance."
+
+Steps:
+
+1. In Canvas, navigate to the course "[[Course]]."
+2. Click on the "Assignments" link in the course navigation menu.
+3. Click on the assignment titled "[[Assignment]]."
+4. Click the "Start Assignment" button.
+5. Select the "Text Entry" tab.
+6. In the text box, enter: The most interesting concept I learned this week was cognitive dissonance.
+7. Click the "Submit Assignment" button.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && (a.submission_types.include? "online_text_entry") && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0))}.first
+
+    if assignment.nil?
+      puts "Cannot find assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
   }
 
   tasks << task
