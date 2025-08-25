@@ -97,10 +97,19 @@ courses:
           text: Alright! Finally some time to catch up on studying!
         - user: sarah@ualberta.ca
           text: Awww, I was looking forward to sleeping in class next week. 
+    - title: "Reminder: Midterm Exam Next Friday"
+      message: Just a reminder that our midterm exam will take place next Friday during regular class time. The exam will cover Chapters 1–6, so please make sure to review your notes and the assigned readings. A study guide has been posted on the course page to help you prepare. Good luck, and don't hesitate to reach out with any questions!
+      user: instructor
+      allow_rating: true
+      replies: 
+        - user: terrance@ualberta.ca
+          text: Thanks for the reminder! Will the exam be multiple choice or short answer?
+        - user: sammy@ualberta.ca
+          text: Appreciate the study guide upload, it'll be really helpful. 
   discussions:
     - title: How do you manage stress during the semester?
       message: |
-        Hi Everyone, university life can be exciting but also stressful at times. I’d like to start a discussion on strategies you use to cope with stress during the semester. Sharing what works for you might help someone else discover a new technique! 
+        Hi Everyone, university life can be exciting but also stressful at times. I'd like to start a discussion on strategies you use to cope with stress during the semester. Sharing what works for you might help someone else discover a new technique! 
       user: instructor
       discussion_type: threaded
       replies:
@@ -108,7 +117,7 @@ courses:
           text: I usually manage stress by scheduling my week ahead of time and making checklists. It helps me stay on track.
           replies:
             - user: steven@ualberta.ca
-              text: That’s smart, Sarah. I’ve been meaning to try using checklists more consistently.
+              text: That's smart, Sarah. I've been meaning to try using checklists more consistently.
         - user: terrance@ualberta.ca
           text: I like to deal with stress by going for runs. Exercise clears my head.
           replies:
@@ -118,7 +127,7 @@ courses:
           text: Meditation and breathing exercises help me relax. I try to practice mindfulness at least a few minutes each day.
           replies:
             - user: monica@ualberta.ca
-              text: That sounds really healthy. I’ve tried meditation apps but never stuck with them—maybe I should give it another go.
+              text: That sounds really healthy. I've tried meditation apps but never stuck with them—maybe I should give it another go.
         - user: jared@ualberta.ca
           text: I usually manage stress by hanging out with friends. Talking about things unrelated to school helps me recharge.
     - title: Memory and experiences
@@ -141,6 +150,36 @@ courses:
               text: No way is that more interesting than the neuroscience aspects.
         - user: sarah@ualberta.ca
           text: I am looking forward to better understanding the mechanisms behind procrastination. 
+    - title: How does culture shape psychological development?
+      message: |
+        Hi Everyone, for this week's discussion I'd like you to reflect on the role of culture in shaping human thoughts, emotions, and behaviors. Think about questions like: Do cultural values influence how people perceive mental health? How might upbringing in different cultural contexts change the way individuals develop socially and cognitively? Share your thoughts and feel free to engage with your peers' perspectives. 
+      user: instructor
+      discussion_type: threaded
+      replies:
+        - user: abigail@ualberta.ca
+          text: I think culture plays a big role in how people view mental health treatment. In some cultures, going to therapy is normal, while in others it's stigmatized.
+          replies:
+            - user: terrance@ualberta.ca
+              text: I agree! It's interesting how stigma can affect whether people even seek help in the first place. 
+        - user: phillip@ualberta.ca
+          text: I believe cultural background influences parenting styles, which in turn impacts cognitive development in children.
+        - user: sarah@ualberta.ca
+          text: What fascinates me is how collectivist versus individualist cultures change the way people think about identity and relationships.
+    - title: Which psychological theory do you find most useful in everyday life?
+      message: |
+        Hi Everyone, for this discussion I'd like you to share which psychological theory you find most applicable to real-world situations. This could be something that helps you understand your own behavior, make better decisions, or interpret the actions of others. Be sure to explain why you find it useful, and respond to at least one classmate's post! 
+      user: instructor
+      discussion_type: threaded
+      replies:
+        - user: terrance@ualberta.ca
+          text: I find cognitive dissonance theory really useful. It explains why people sometimes change their beliefs or justify decisions after making them.
+          replies:
+            - user: sarah@ualberta.ca
+              text: That's a good one! I notice it in myself when I make purchases I later regret but then try to rationalize them.
+        - user: phillip@ualberta.ca
+          text: I think operant conditioning is the most practical. It helps me understand how habits are formed and how to change them.
+        - user: sammy@ualberta.ca
+          text: For me, Maslow's hierarchy of needs is the most helpful. It reminds me that sometimes struggles are about unmet basic needs, not just motivation.
   groups:
     - name: Group J 
       is_public: true
@@ -228,7 +267,7 @@ courses:
       pages:
         - title: Key concepts from Chapter 3
           body: |
-            Let’s collect all the main theories, definitions, and examples from Chapter 3 here for easier revision.
+            Let's collect all the main theories, definitions, and examples from Chapter 3 here for easier revision.
           updates:
             - title: Added more notes on Chapter 3
               body: Included details on the stages of cognitive development.
@@ -247,6 +286,51 @@ courses:
         - title: Study Tips & Tricks
           body: |
             Share helpful study techniques, mnemonic devices, and time management strategies.
+    - name: Group N
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - terrance@ualberta.ca
+        - phillip@ualberta.ca
+        - abigail@ualberta.ca
+        - sammy@ualberta.ca
+      pages:
+        - title: Group project presentation
+          body: |
+            The main page for the group project presentation this semester.
+    - name: Group Z
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - terrance@ualberta.ca
+        - ryan@ualberta.ca
+        - lisa@ualberta.ca
+        - sammy@ualberta.ca
+      pages:
+        - title: Group project presentation
+          body: |
+            The main page for the group project presentation this semester.
+    - name: Group Y
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - terrance@ualberta.ca
+        - lisa@ualberta.ca
+        - sammy@ualberta.ca
+    - name: Group U
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - terrance@ualberta.ca
+        - ryan@ualberta.ca
+        - lisa@ualberta.ca
+        - sammy@ualberta.ca
+    - name: Group M
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - alex@ualberta.ca
+        - sammy@ualberta.ca
     - name: Group S
       is_public: true
       description: Study partners for psychology course
@@ -256,7 +340,7 @@ courses:
         - jared@ualberta.ca
       announcements:
         - title: Saturday Study Session
-          message: Hi team! Let’s meet at the library this Saturday afternoon to review for our upcoming quiz. Who’s in?
+          message: Hi team! Let's meet at the library this Saturday afternoon to review for our upcoming quiz. Who's in?
           user: main_user
           allow_rating: true 
     - name: Group P
@@ -332,13 +416,13 @@ courses:
       grading_type: "points"
       replies:
         - user: sarah@ualberta.ca
-          text: I find the humanistic theory most convincing because it focuses on self-actualization and personal growth. Maslow’s hierarchy of needs really resonates with how people prioritize goals in life.  
+          text: I find the humanistic theory most convincing because it focuses on self-actualization and personal growth. Maslow's hierarchy of needs really resonates with how people prioritize goals in life.  
         - user: sammy@ualberta.ca
           text: I like trait theory the best. The Big Five personality model makes sense to me because it gives a clear framework for describing differences between people.  
         - user: terrance@ualberta.ca
-          text: Freud’s psychoanalytic theory is fascinating even though it’s controversial. The idea that unconscious drives and childhood experiences shape adult behavior explains a lot of patterns I see in people.  
+          text: Freud's psychoanalytic theory is fascinating even though it's controversial. The idea that unconscious drives and childhood experiences shape adult behavior explains a lot of patterns I see in people.  
         - user: phillip@ualberta.ca
-          text: I think the social-cognitive theory is the most practical. Bandura’s concept of self-efficacy shows how believing in yourself can influence motivation and achievement.  
+          text: I think the social-cognitive theory is the most practical. Bandura's concept of self-efficacy shows how believing in yourself can influence motivation and achievement.  
       peer_reviews: 
         enabled: true
         count: 2
@@ -346,6 +430,31 @@ courses:
         intra_group_peer_reviews: true
         anonymous_peer_reviews: false
         automatic_peer_reviews: true
+    - title: The Role of Emotions in Decision Making
+      description: |
+        Hi Everyone, for this assignment, please discuss how emotions influence decision making. You may want to reference theories such as the Somatic Marker Hypothesis (Damasio), the James-Lange theory, or modern research on emotional regulation. Provide an example from either everyday life or a psychological study to support your answer.
+      due_at: 2026-03-24 18:00:00
+      points_possible: 2
+      created_at: 2025-08-25 10:00:00
+      updated_at: 2025-08-25 10:00:00
+      submission_types: ["discussion_topic"]
+      grading_type: "points"
+      replies:
+        - user: sarah@ualberta.ca
+          text: I think emotions play a huge role in decision making. Damasio's Somatic Marker Hypothesis makes sense because gut feelings often guide us when logical reasoning takes too long.  
+        - user: sammy@ualberta.ca
+          text: I agree—emotions are important! For example, fear can stop people from taking risks even when the odds are in their favor. This shows how strong emotional regulation is needed for good decision making.  
+        - user: terrance@ualberta.ca
+          text: The James-Lange theory is interesting to me. It suggests that physical arousal comes first, and then we interpret it as emotion. I wonder how that interpretation affects snap decisions.  
+        - user: phillip@ualberta.ca
+          text: I'd say emotions influence most of our daily choices. Bandura didn't focus directly on emotions, but self-efficacy ties in—if you feel confident, you're more likely to decide to take on a challenge. 
+      peer_reviews:
+        enabled: true
+        count: 2
+        due_at: 2026-03-15 18:00:00
+        intra_group_peer_reviews: true
+        anonymous_peer_reviews: false
+        automatic_peer_reviews: true      
     - title: Nature vs. Nurture Debate
       description: |
         Hi Everyone, for this discussion, please share your thoughts on whether you think human behavior is more strongly influenced by genetics (nature) or environment (nurture). Provide an example to support your argument and explain why you lean more toward one side, or if you think both play an equal role.
@@ -361,7 +470,7 @@ courses:
         - user: sammy@ualberta.ca
           text: I lean more toward nature because traits like intelligence and temperament seem strongly linked to genetics, though environment still matters.  
         - user: terrance@ualberta.ca
-          text: I believe it’s a balance. Genes may set certain limits, but the environment determines how much potential is reached. Language development is a good example.  
+          text: I believe it's a balance. Genes may set certain limits, but the environment determines how much potential is reached. Language development is a good example.  
         - user: phillip@ualberta.ca
           text: Nurture has a bigger influence in my opinion. Education and culture shape values and behavior much more than biology alone.  
       peer_reviews: 
@@ -487,6 +596,39 @@ courses:
             grade: 68
             grader: tammy@ualberta.ca
             comment: Solid design, but remember to include ethical considerations in proposals.
+    - title: "Modern Psychology Essay"
+      group_category: default
+      description: "Express your interest in modern psychological research in the form of a 1000 word essay."
+      due_at: 2026-11-20 17:00:00
+      points_possible: 75
+      created_at: 2025-08-10 11:15:00
+      updated_at: 2025-08-10 11:15:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p> For this assignment, I propose an experiment examining whether short daily sessions of guided meditation can improve working memory in undergraduate students. The hypothesis is that students who practice 10 minutes of guided meditation each day for two weeks will show significantly higher scores on a digit span task compared to a control group that does not meditate. Participants would be randomly assigned to either the meditation or control group. The method includes a pre-test and post-test of working memory, with sessions conducted in a quiet room at the university. I expect that the meditation group will demonstrate improved working memory performance, supporting prior research linking mindfulness with cognitive enhancement. </p>
+        - user: phillip@ualberta.ca
+          submission_type: online_text_entry
+          body: "I actually think I prefer learning about psychology in the 1800s."
+        - user: abigail@ualberta.ca
+          submission_type: online_text_entry
+          body: "I've always been interested in modern behavioral studies, especially in young adults."
+        - user: terrance@ualberta.ca
+          submission_type: online_text_entry
+          body: "I love modern studies on how peer pressure works through friend groups."
+        - user: alex@ualberta.ca
+          submission_type: online_text_entry
+          body: "I'm really interested in modern psychology research into the effects of social media on society."
+      peer_reviews:
+        enabled: true
+        count: 2
+        due_at: 2026-03-25 18:00:00
+        intra_group_peer_reviews: true
+        anonymous_peer_reviews: false
+        automatic_peer_reviews: true
+
     - title: "Cognitive Psychology Research Summary"
       group_category: default
       description: "Summarize a peer-reviewed research article in cognitive psychology, focusing on memory or attention. Your summary should be 800–1000 words."
@@ -539,6 +681,35 @@ courses:
         intra_group_peer_reviews: true
         anonymous_peer_reviews: true
         automatic_peer_reviews: true
+    - title: "The Influence of Social Interaction on Cognitive Development"
+      group_category: default
+      description: "Write a 1000 word essay analyzing how social interaction contributes to cognitive development. Reference at least two major psychological theories (e.g., Vygotsky's sociocultural theory, Piaget's stages of development) and explain how they compare in their understanding of the role of social factors in learning."
+      due_at: 2026-03-10 18:00:00
+      points_possible: 100
+      created_at: 2025-08-25 10:00:00
+      updated_at: 2025-08-25 10:00:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p>Social interaction is a powerful driver of cognitive development, shaping how individuals acquire knowledge, problem-solving strategies, and cultural norms. Vygotsky's sociocultural theory emphasizes the Zone of Proximal Development (ZPD), where learners progress through guidance and collaboration with more knowledgeable peers or adults. This framework suggests that learning is inherently social, and cognitive growth is facilitated by communication, dialogue, and shared activity. In contrast, Piaget's stages of development place more emphasis on individual discovery through interaction with the environment. While Piaget acknowledged the importance of peers, he viewed development as a sequence of universal stages rather than a process deeply embedded in social context. Both perspectives highlight the importance of active engagement but differ in how much weight they assign to social influence. Modern research tends to integrate these theories, recognizing that social scaffolding accelerates skill acquisition while individual exploration reinforces deeper understanding. Together, they show that cognitive development is both socially mediated and individually constructed.</p>
+          feedback:
+            grader: tammy@ualberta.ca
+            rubric_assessment:
+                  - id: rat1
+                    points: 40.0
+                    criterion_id: crit1
+                    comments_enabled: true
+                    description: Pass
+                    comments: "Not your best work, but it was fine."
+                  - id: rat2
+                    points: 50.0
+                    criterion_id: crit2
+                    description: B
+                    comments: "Passing grade for sure. Good Job!"
+                    comments_enabled: true
+    
     - title: "The Role of Memory in Learning"
       group_category: default
       description: "Write a 1200 word essay on how different types of memory (short-term, working, long-term) influence the learning process, and include at least two psychological theories or experiments to support your arguments."
@@ -551,7 +722,7 @@ courses:
         - user: main_user
           submission_type: online_text_entry
           body: |
-            <p> Memory is a central process in learning, as it allows information to be encoded, stored, and retrieved when needed. Short-term memory provides a temporary holding space, while working memory actively manipulates information to support problem-solving and reasoning. Long-term memory, on the other hand, stores knowledge and skills for extended periods, making cumulative learning possible. Classic studies, such as Miller’s ‘Magic Number 7’ and Baddeley’s model of working memory, demonstrate how cognitive limitations shape learning efficiency. Reinforcement through practice, meaningful connections, and emotional engagement strengthens long-term retention, highlighting the importance of teaching strategies that align with cognitive psychology principles.</p>
+            <p> Memory is a central process in learning, as it allows information to be encoded, stored, and retrieved when needed. Short-term memory provides a temporary holding space, while working memory actively manipulates information to support problem-solving and reasoning. Long-term memory, on the other hand, stores knowledge and skills for extended periods, making cumulative learning possible. Classic studies, such as Miller's ‘Magic Number 7' and Baddeley's model of working memory, demonstrate how cognitive limitations shape learning efficiency. Reinforcement through practice, meaningful connections, and emotional engagement strengthens long-term retention, highlighting the importance of teaching strategies that align with cognitive psychology principles.</p>
           peer_review:
             - author: phillip@ualberta.ca
               comment: Very detailed explanation, but you could expand on the role of emotional memory in learning.
@@ -637,7 +808,7 @@ courses:
       - name: Question 2
         question_type: "short_answer_question"
         points_possible: 1
-        question_text: "<p>In Freud’s theory of personality, the __________ operates on the pleasure principle and seeks immediate gratification.</p>"
+        question_text: "<p>In Freud's theory of personality, the __________ operates on the pleasure principle and seeks immediate gratification.</p>"
         answers:
           - weight: 100
             text: "Id"
@@ -664,21 +835,21 @@ courses:
       - name: Question 2
         question_type: "short_answer_question"
         points_possible: 1
-        question_text: "<p>According to Maslow’s hierarchy of needs, the highest level is __________ needs.</p>"
+        question_text: "<p>According to Maslow's hierarchy of needs, the highest level is __________ needs.</p>"
         answers:
           - weight: 100
             text: "Self-actualization"
       - name: Question 3
         question_type: "short_answer_question"
         points_possible: 1
-        question_text: "<p>The tendency to attribute others’ behavior to internal factors while underestimating situational influences is called the fundamental __________ error.</p>"
+        question_text: "<p>The tendency to attribute others' behavior to internal factors while underestimating situational influences is called the fundamental __________ error.</p>"
         answers:
           - weight: 100
             text: "Attribution"
       - name: Question 4
         question_type: "short_answer_question"
         points_possible: 1
-        question_text: "<p>Pavlov’s experiments with dogs demonstrated the principle of classical __________.</p>"
+        question_text: "<p>Pavlov's experiments with dogs demonstrated the principle of classical __________.</p>"
         answers:
           - weight: 100
             text: "Conditioning"
@@ -735,7 +906,7 @@ courses:
         - name: Question 4
           question_type: multiple_choice_question
           points_possible: 4
-          question_text: In Freud’s theory of personality, which part operates on the “reality principle”?
+          question_text: In Freud's theory of personality, which part operates on the “reality principle”?
           answers:
             - weight: 0
               text: Id
