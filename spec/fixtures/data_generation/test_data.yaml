@@ -72,10 +72,17 @@ courses:
       content: 
         - title: Psychology & Pseudeo Science
           completion_requirements: "must_mark_done"
+        - title: Childhood Development Essay
     - name: Module 2
       workflow_state: active
       content:
         - title: Researchers in the field of Psychology
+    - name: Module 3
+      workflow_state: active
+      content: 
+        - title: Psychology & Pseudeo Science
+          completion_requirements: "must_mark_done"
+        - title: Cognitive Psychology Research Summary
           
   announcements:
     - title: Materials for Lab 8
@@ -88,6 +95,21 @@ courses:
           replies:
             - user: instructor
               text: Yes it does.
+    - title: Assignment Deadline Reminder
+      message: Just a reminder that the “Cognitive Biases in Daily Life” reflection paper is due this Sunday at 11:59 PM. Please make sure to submit your work on time through the course portal. Late submissions will be accepted for up to 48 hours with a grade penalty.
+      user: instructor
+      allow_rating: true
+      replies: 
+        - user: abigail@ualberta.ca
+          text: How much is the grade penalty for late submissions?
+          replies:
+            - user: instructor
+              text: The penalty is 5% per day late, up to the 48-hour limit. 
+        - user: steven@ualberta.ca
+          text: Can we still get feedback if we submit late?
+          replies:
+            - user: instructor
+              text: Yes, all submissions will receive feedback regardless of whether they are on time or late.
     - title: There will be no class next week!
       message: Don't bother coming in next week as there will be no class.
       user: instructor
@@ -309,6 +331,17 @@ courses:
         - title: Group project presentation
           body: |
             The main page for the group project presentation this semester.
+    - name: Group N1
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - terrance@ualberta.ca
+        - alex@ualberta.ca
+        - sammy@ualberta.ca
+      pages:
+        - title: Group project presentation
+          body: |
+            The main page for the group project presentation this semester.
     - name: Group Z
       is_public: true
       description: Study partners for psychology course
@@ -336,6 +369,13 @@ courses:
         - ryan@ualberta.ca
         - lisa@ualberta.ca
         - sammy@ualberta.ca
+    - name: Group U2
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - jared@ualberta.ca
+        - monica@ualberta.ca
+        - ryan@ualberta.ca
     - name: Group M
       is_public: true
       description: Study partners for psychology course
@@ -348,6 +388,19 @@ courses:
       users: 
         - terrance@ualberta.ca
         - steven@ualberta.ca
+        - jared@ualberta.ca
+        - sammy@ualbert.ca
+      announcements:
+        - title: Saturday Study Session
+          message: Hi team! Let's meet at the library this Saturday afternoon to review for our upcoming quiz. Who's in?
+          user: main_user
+          allow_rating: true
+    - name: Group G2
+      is_public: true
+      description: Study partners for psychology course
+      users: 
+        - sammy@ualberta.ca
+        - phillip@ualberta.ca
         - jared@ualberta.ca
       announcements:
         - title: Saturday Study Session
@@ -504,7 +557,7 @@ courses:
           url: https://www.youtube.com/watch?v=kKvK2foOTJM
     - title: Cognitive Development Analysis
       group_category: default
-      description: Write a 1200 word essay analyzing key theories of cognitive development (such as Piaget’s stages of development, Vygotsky’s sociocultural theory, or information-processing models). Compare at least two perspectives and provide examples of how these theories apply to real-life learning or educational settings.
+      description: Write a 1200 word essay analyzing key theories of cognitive development (such as Piaget's stages of development, Vygotsky's sociocultural theory, or information-processing models). Compare at least two perspectives and provide examples of how these theories apply to real-life learning or educational settings.
       due_at: 2026-03-05 18:00:00
       points_possible: 100
       created_at: 2025-08-25 10:00:00
@@ -550,6 +603,23 @@ courses:
             grade: 55
             grader: instructor
             comment: Excellent integration of personal experience and theory; very well written.
+    - title: "Cognitive Biases in Daily Life"
+      group_category: default
+      description: "Identify a time when you experienced or witnessed a cognitive bias in real life (e.g., confirmation bias, hindsight bias, availability heuristic). Explain the situation, the type of bias, and how awareness of the bias might have changed the outcome. Minimum 600 words."
+      due_at: 2026-12-15 23:59:00
+      points_possible: 70
+      created_at: 2025-08-25 10:00:00
+      updated_at: 2025-08-25 10:00:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p>One clear example of cognitive bias in my daily life occurred during a family discussion about buying a new car. I strongly believed that electric vehicles were the superior choice, and when looking at reviews online, I only paid attention to the ones that supported my preexisting view. This is an example of confirmation bias, where I sought out information that aligned with my opinion while ignoring contradictory evidence, such as concerns about charging infrastructure or long-term battery costs. By being aware of this bias, I realize I could have made a more balanced and informed judgment by actively seeking opposing viewpoints. Understanding how these biases work is important for making rational decisions in both personal and professional contexts. </p>
+          feedback:
+            grade: 62
+            grader: instructor
+            comment: Great example of confirmation bias applied to a real-life decision. Next time, try to expand further on how psychological research supports your interpretation, and add more depth on the long-term implications of recognizing such biases.
     - title: "Cognitive Biases Reflection"
       group_category: default
       description: "Reflect on a cognitive bias you have personally experienced, describe the situation, and connect it to psychological theory. Minimum 500 words."
@@ -570,6 +640,23 @@ courses:
             grade: 42
             grader: tammy@ualberta.ca
             comment: Strong personal connection, next time cite at least one primary study.
+    - title: "Stress and Coping Strategies"
+      group_category: default
+      description: "Reflect on a stressful situation you have encountered, describe your emotional and behavioral responses, and analyze the coping strategies you used. Connect your reflection to psychological theories of stress and coping. Minimum 600 words."
+      due_at: 2027-01-20 23:59:00
+      points_possible: 80
+      created_at: 2025-08-27 12:00:00
+      updated_at: 2025-08-27 12:00:00
+      submission_types: ["online_text_entry"]
+      submissions:
+        - user: main_user
+          submission_type: online_text_entry
+          body: |
+            <p>During the final exam period last semester, I felt overwhelmed by the number of tests and deadlines. My initial emotional response was anxiety, paired with physical tension and trouble sleeping. I coped by creating a strict study schedule and practicing short mindfulness exercises before studying. According to Lazarus and Folkman's model of stress and coping, I was using both problem-focused coping (through planning and time management) and emotion-focused coping (through mindfulness to regulate stress levels). Reflecting on this, I recognize that while my strategies were helpful, I could have improved by seeking more social support instead of isolating myself to study. Understanding these theories allows me to refine how I approach stressful events in the future. </p>
+          feedback:
+            grade: 74
+            grader: instructor
+            comment: Excellent application of Lazarus and Folkman's model. You did a great job identifying both coping strategies and their effectiveness. For improvement, include more detail on the long-term outcomes of your methods and how you might integrate additional coping resources.
     - title: "Memory and Forgetting Analysis"
       group_category: default
       description: "Analyze a personal experience of forgetting or misremembering an event. Explain the situation and link it to memory theories in psychology. Minimum 500 words."
@@ -1049,3 +1136,67 @@ courses:
           question_type: short_answer_question
           points_possible: 10
           question_text: "<p>Describe one key difference between classical conditioning and operant conditioning.</p>"
+    - title: Psychological Theories and Approaches
+      description: A quiz to test knowledge of major psychological theories and perspectives.
+      due_at: 2026-10-10 18:00:00
+      published_at: 2025-08-27 12:30:00
+      workflow_state: available
+      allowed_attempts: 3
+      one_question_at_a_time: true
+      rubric: 
+        title: Psychological Theories and Approaches Rubric
+        description: A rubric for evaluating student understanding of key psychological theories.
+        public: true
+        points_possible: 50
+        free_form_criterion_comments: false
+      questions:
+        - name: Question 1
+          question_type: multiple_choice_question
+          points_possible: 10
+          question_text: "<p>Which psychological approach emphasizes the role of unconscious drives and childhood experiences?</p>"
+          answers:
+            - weight: 100
+              text: Psychodynamic
+              id: 100
+            - weight: 0
+              text: Humanistic
+              id: 200
+            - weight: 0
+              text: Behavioral
+              id: 300
+            - weight: 0
+              text: Cognitive
+              id: 400
+        - name: Question 2
+          question_type: true_false_question
+          points_possible: 5
+          question_text: "<p>The humanistic perspective in psychology focuses on self-actualization and personal growth.</p>"
+          answers:
+            - weight: 100
+              text: "True"
+              id: 100
+            - weight: 0
+              text: "False"
+              id: 200
+        - name: Question 3
+          question_type: multiple_choice_question
+          points_possible: 10
+          question_text: "<p>Which researcher is most closely associated with classical conditioning?</p>"
+          answers:
+            - weight: 100
+              text: Ivan Pavlov
+              id: 100
+            - weight: 0
+              text: B.F. Skinner
+              id: 200
+            - weight: 0
+              text: Albert Bandura
+              id: 300
+            - weight: 0
+              text: Carl Rogers
+              id: 400
+        - name: Question 4
+          question_type: short_answer_question
+          points_possible: 15
+          question_text: "<p>Explain the difference between the cognitive and behavioral approaches to psychology.</p>"
+        

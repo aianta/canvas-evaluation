@@ -2153,6 +2153,240 @@ Steps:
 
   tasks << task
 
+  task = AgentTask.new({
+    id: 'db729474-de9b-410b-9476-7e1b49775d3a',
+    parameterized_text: 'Task: Check if your instructor has graded your "[[Assignment]]" assignment in the "[[Course]]" course and note the score you received.
+
+Steps:
+
+1. In Canvas, open the "[[Course]]" course.
+2. Click the "Grades" link in the Course Navigation menu.
+3. Look for the "[[Assignment]]" assignment in the list.
+4. If there is a dot next to "[[Assignment]]," note that it has been recently graded.
+5. Record the score displayed in the score column for the "[[Assignment]]" assignment.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    assignment = course.assignments.select{|a| (!AgentTask.assignments.include? a) && ((a.rubric_association.nil?) || (a.rubric_association.rubric_assessments.length == 0)) && 
+      (!a.submissions.select{|s| (s.user == course.logged_in_user) && (s.graded?)}.first.nil?)
+    }.first
+
+    if assignment.nil?
+      puts "Cannot find assignment for task #{task.id}"
+      return
+    end
+
+    AgentTask.assignments << assignment
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'e070c0de-41d2-42aa-8a7c-c93f98fdc4c4',
+    parameterized_text: 'Task: Edit the announcement titled "[[Announcement]]" in the group [[Group]] in the [[Course]] course by changing the content to "Our first group meeting will be held on Friday at 3 PM in the atrium." Then, click the Save button to save your changes.'
+  })
+
+  task.populate(test_course) {|course,task|
+
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user) && (!g.announcements.select{|a| a.user == course.logged_in_user}.first.nil?)}.first
+
+    if group.nil?
+      puts "Cannot find group for task #{task.id}"
+      return
+    end
+
+    AgentTask.groups << group
+
+    announcement = group.announcements.select{|a| a.user == course.logged_in_user}.first
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Group", group.name)
+    task.update_initalized_text("Announcement", announcement.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'e178ca11-ad42-4c2e-811c-cb3c25177dc8',
+    parameterized_text: 'Task:  
+Embed a YouTube video into the "[[Page]]" page in the "[[Group]]" group, using the following embedding snippet:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m5a4phGJsRY?si=sCq1ix4e4OtMdHUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+then save the changes.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.wiki_pages.length > 0) && (g.users.include? course.logged_in_user)}.first
+
+    if group.nil?
+      puts "Cannot find group for task #{task.id}"
+      return
+    end
+
+    AgentTask.groups << group
+
+    page = group.wiki_pages.first
+
+    task.update_initalized_text("Group", group.name)
+    task.update_initalized_text("Page", page.title)
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'e476f98d-e1e1-4fb7-b8d4-2b0bc832ff69',
+    parameterized_text: 'Task: Leave the group "[[Group]]" in the course "[[Course]]" using the People page in Canvas.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (g.users.include? course.logged_in_user)}.first
+
+    if group.nil?
+      puts "Cannot find group for task #{task.id}"
+      return
+    end
+
+    AgentTask.groups << group
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Group", group.name)
+
+  }
+  
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'e5f9684d-4b57-45c7-81e3-0d065f75545b',
+    parameterized_text: 'Task: In your "[[Course]]" course, change your discussion settings so that you must manually mark discussion replies as read.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    task.update_initalized_text("Course", course.course.name)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'f5e1c597-c2ad-45f6-aa7c-7b7dee0d3675',
+    parameterized_text: 'Task: In the course "[[Course]]," view all available groups, and join the self sign-up group named "[[Group]]."'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    group = course.groups.select{|g| (!AgentTask.groups.include? g) && (!g.users.include? course.logged_in_user)}.first
+
+    if group.nil?
+      puts "Cannot find group for task #{task.id}"
+      return
+    end
+
+    AgentTask.groups << group
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Group", group.name)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'f9e0dc04-ac1e-4189-8c58-91a66d561e06',
+    parameterized_text: 'Task: Take the "[[Quiz]]" in the "[[Course]]" course, answer all questions, and submit the quiz.
+
+Instructions:
+
+1. In the "[[Course]]" course, click the "Quizzes" link in the course navigation.
+2. Click on the quiz titled "[[Quiz]]."
+3. If prompted, enter the access code "BIO2024" and click the Submit button.
+4. Click the Begin button to start the quiz.
+5. Answer all questions in the quiz.
+6. If you want to review a question later, click the Pin icon next to that question.
+7. When you have answered all questions, click the Submit button.
+8. In the confirmation dialog, click the Submit button again to finalize your submission.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    quiz = course.quizzes.select{|q| (!AgentTask.quizzes.include? q)}.first
+
+    if quiz.nil?
+      puts "Cannot find quiz for task #{task.id}"
+      return
+    end
+
+    AgentTask.quizzes << quiz
+
+    task.update_initalized_text('Course', course.course.name)
+    task.update_initalized_text('Quiz', quiz.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'fa70e65c-16fb-4d03-9041-bcf07cf6ae02',
+    parameterized_text: 'Task: In the course "[[Course]]," find the announcement titled "[[Announcement]]" in your Course Activity Stream and remove this notification from your activity stream.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    announcement = course.announcements.select{|a| (!AgentTask.announcements.include? a)}.first
+
+    if announcement.nil?
+      puts "Cannot find announcement for task #{task.id}"
+      return
+    end
+
+    AgentTask.announcements << announcement
+
+    task.update_initalized_text('Course', course.course.name)
+    task.update_initalized_text('Announcement', announcement.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: '0b71d13d-f7dd-4a09-b575-6d6677b6e70c',
+    parameterized_text: 'Task: In the course "[[Course]]" view all modules, expand the module titled [[Module]]" and identify the due date and point value for the assignment named "[[Assignment]]."'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    _module = course.modules.select {|m| (!AgentTask.modules.include? m) && (!m.content_tags.select{|i| i.content_type == 'Assignment'}.first.nil?)}.first
+
+    if _module.nil?
+      puts "Cannot find module for task #{task.id}"
+      return
+    end
+
+    AgentTask.modules << _module
+
+    assignment_id = _module.content_tags.select{|t| t.content_type == 'Assignment'}.first.content_id
+    assignment = course.assignments.select{|a| a.id == assignment_id}.first
+
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Assignment", assignment.title)
+    task.update_initalized_text("Module", _module.name)
+
+  }
+
+  tasks << task
+
+
+
   puts "last task"
   puts task.to_hash
 
