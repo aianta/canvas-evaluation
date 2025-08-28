@@ -1199,4 +1199,113 @@ courses:
           question_type: short_answer_question
           points_possible: 15
           question_text: "<p>Explain the difference between the cognitive and behavioral approaches to psychology.</p>"
-        
+    - title: Biological Bases of Behavior
+      description: A quiz to test knowledge of how biology influences psychological processes and behavior.
+      due_at: 2026-11-05 18:00:00
+      published_at: 2025-08-27 13:00:00
+      workflow_state: available
+      allowed_attempts: 3
+      one_question_at_a_time: true
+      rubric: 
+        title: Biological Bases of Behavior Rubric
+        description: A rubric for evaluating student understanding of biological psychology concepts.
+        public: true
+        points_possible: 50
+        free_form_criterion_comments: false
+      questions:
+        - name: Question 1
+          id: 28
+          question_type: multiple_choice_question
+          points_possible: 10
+          question_text: "<p>Which lobe of the brain is primarily responsible for decision-making and planning?</p>"
+          answers:
+            - weight: 100
+              text: Frontal lobe
+              id: 100
+            - weight: 0
+              text: Temporal lobe
+              id: 200
+            - weight: 0
+              text: Parietal lobe
+              id: 300
+            - weight: 0
+              text: Occipital lobe
+              id: 400
+      submissions:
+        - user: main_user
+          attempts:
+            - workflow_state: "complete"
+              answers:
+              - correct: false
+                points: 0.0
+                question_id: 28
+                answer_id: 300
+                text: "300"
+              feedback:
+                grader: instructor
+                comment: You can do better than this.
+    - title: Sensation and Perception
+      description: A quiz to test knowledge of how humans sense and interpret the world around them.
+      due_at: 2026-11-20 18:00:00
+      published_at: 2025-08-28 13:00:00
+      workflow_state: available
+      allowed_attempts: 3
+      one_question_at_a_time: true
+      rubric: 
+        title: Sensation and Perception Rubric
+        description: A rubric for evaluating student understanding of sensory processes and perceptual mechanisms.
+        public: true
+        points_possible: 50
+        free_form_criterion_comments: false
+      questions:
+        - name: Question 1
+          id: 29
+          question_type: multiple_choice_question
+          points_possible: 10
+          question_text: "<p>Which part of the eye is responsible for focusing light onto the retina?</p>"
+          answers:
+            - weight: 100
+              text: Lens
+              id: 101
+            - weight: 0
+              text: Cornea
+              id: 201
+            - weight: 0
+              text: Iris
+              id: 301
+            - weight: 0
+              text: Pupil
+              id: 401
+        - name: Question 2
+          id: 30
+          question_type: multiple_choice_question
+          points_possible: 10
+          question_text: "<p>Which theory of color vision suggests that the eye has three types of receptors sensitive to different wavelengths?</p>"
+          answers:
+            - weight: 100
+              text: Trichromatic theory
+              id: 102
+            - weight: 0
+              text: Opponent-process theory
+              id: 202
+            - weight: 0
+              text: Gate-control theory
+              id: 302
+            - weight: 0
+              text: Place theory
+              id: 402
+      submissions:
+        - user: main_user
+          attempts:
+            - workflow_state: untaken
+              answers:
+              - correct: false
+                points: 0.0
+                question_id: 29
+                answer_id: 301
+                text: "301"
+              partial:
+                attempt: 1
+                question_29: "301"
+                question_29_marked: false
+                last_question_id: 29

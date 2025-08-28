@@ -8,7 +8,7 @@
   - Group 1
   - Group 2
   :instances:
-  - :id: 756571c9-a624-4298-aba9-0612a1168264
+  - :id: 1f5b9bd0-6de2-436d-bb48-1173f6416291
     :instance_text: 'Task: In the course ''Psychology 101'' switch from your current
       group ''Group X'' to the group ''Group J'' within the ''Student Groups'' group
       set.'
@@ -24,7 +24,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 951e540e-8b13-49cd-8c00-90b8f583a1a5
+  - :id: 3694fffc-19ae-4c79-b00f-ba4ca40270f0
     :instance_text: 'Task: In the course ''Psychology 101'' use the Syllabus page
       to find the due date for the assignment titled ''Researchers in the field of
       Psychology'' and list the due date as displayed in the Course Summary section.'
@@ -39,7 +39,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 281f0b81-337b-4b33-b78e-498882fe2ff4
+  - :id: 28cafdd6-9961-4372-8f66-e2b0256135e1
     :instance_text: 'Task: View the feedback left by your instructor for the assignment
       ''Abnormal Behavior Essay'' in the course ''Psychology 101'', and add a comment
       saying ''Thank you for the feedback!'' using the Feedback sidebar.'
@@ -54,7 +54,7 @@
   - Course
   - Quiz
   :instances:
-  - :id: 1a70f2a7-f720-4694-8aaf-54e069d15ccb
+  - :id: 8d6632a6-8750-491e-b966-1bd518b0ffa3
     :instance_text: 'Task: View the rubric for the quiz titled "Foundations of Psychology"
       in the course "Psychology 101" by navigating to the Grades page, clicking on
       "Foundations of Psychology," and then clicking the "Show Rubric" link on the
@@ -72,7 +72,7 @@
   - User 1
   - User 2
   :instances:
-  - :id: 5b26aff9-8c1b-4ea9-941e-86858386299e
+  - :id: 4845b385-9035-45e7-bbec-08bb184a573e
     :instance_text: 'Task: Create a new student group named "NeuroNauts" in the course
       "Psychology 101", set the group membership to "Membership by invitation only",
       and invite students named "Terrance Studentson" and "Phillip Studentson" to
@@ -93,7 +93,7 @@
   - Announcement
   - Announcement Message
   :instances:
-  - :id: 4f5aa18e-f979-4bba-84d0-bd46a68e157d
+  - :id: bac64257-ec75-44d3-828a-71dc5bd30f22
     :instance_text: 'Task: In your group "Group H" for the course Psychology 101,
       create a new announcement with the title "First study group meeting?" and the
       following content: "Hi guys, so when would you be free to do our first group
@@ -111,7 +111,7 @@
   - Course
   - Discussion
   :instances:
-  - :id: efdc4e25-b812-416d-be05-4a5e09c6d8d5
+  - :id: e3b2a556-7287-41b7-9122-0d321c05c1c5
     :instance_text: 'Task: Subscribe to the "How do you manage stress during the semester?"
       discussion in the "Psychology 101" course so that you receive notifications
       when new comments are posted.'
@@ -125,7 +125,7 @@
   - Course
   - Quiz
   :instances:
-  - :id: 737d1fcd-f0ee-444b-943a-c783c953ef2c
+  - :id: fa31d634-66f6-40c8-a07a-44116c89ab35
     :instance_text: 'Task: Take the "A quick review of the biology" in the "Psychology
       101" course, answer all questions, flag question 3 for review, and submit the
       quiz when finished.'
@@ -142,7 +142,7 @@
   - Question Index
   - Answer
   :instances:
-  - :id: 738a5fed-4abc-49a3-928c-5a7b5bb0d305
+  - :id: 7af6ec75-d2b5-46cd-86f0-8c55befe9017
     :instance_text: 'Task: In the course "Psychology 101," open the quiz titled "Inside
       the Mind" and answer Question 1, which is a short answer question, by typing
       "Autonomic" into the provided text box.'
@@ -159,7 +159,7 @@
   - Group
   - Discussion
   :instances:
-  - :id: 32d6bc4d-29f3-4a75-bf78-2eb66b86c749
+  - :id: 630b4a79-15de-408f-bd51-c9e20642bb6e
     :instance_text: 'Task:  In your group (Group A) for the course "Psychology 101"
       close your own discussion titled "I''ll be away next week." for comments.'
     :mapping:
@@ -179,7 +179,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: be5d38c3-e82f-422f-819b-de57ffcf2f1d
+  - :id: 7831fb6f-0993-402f-ac2b-e2aa7e67d738
     :instance_text: |-
       Task: View the details of the "Influential Psychological Experiments" assignment in the "Psychology 101" course, including its due date, points possible, and any instructor instructions.
 
@@ -200,7 +200,7 @@
   - Course
   - User
   :instances:
-  - :id: 67950350-323e-423c-86d1-af04f1e33ea7
+  - :id: 344b9fc9-fbea-4d68-a153-d1a2e08a2ad2
     :instance_text: 'Task: In the course "Psychology 101," use the People page to
       search for the user named "Sarah Studentson," view their profile details, and
       send them a message with the text: "Hi, I have a question about the lab assignment.
@@ -215,7 +215,7 @@
   - Course
   - Page
   :instances:
-  - :id: 48534935-2b03-47f3-8f7d-528652476623
+  - :id: d6dd5f6c-95cc-46f2-af46-a56c7190c6ca
     :instance_text: 'Task: In the course "Psychology 101" view the page titled "Psychology
       & Pseudeo Science" by navigating to the Pages Index and selecting the page from
       the list.'
@@ -231,7 +231,7 @@
   - Course
   - Quiz
   :instances:
-  - :id: 8b494a37-f0a2-4451-9723-9c9d54e67ac6
+  - :id: 4701e184-3b66-4d96-89d3-848d33b14b35
     :instance_text: 'Task: In the course "Psychology 101," use the Quizzes page to
       find the quiz titled "Exploring the Psyche," and view its availability dates,
       due date, point value, and number of questions. Write down the availability
@@ -247,7 +247,7 @@
   - Group
   - Page
   :instances:
-  - :id: ec67994e-1ca5-4996-9785-8a4885a4efc1
+  - :id: aa6f0c28-3eee-4d64-af52-dd9656812382
     :instance_text: 'Task: In the "Group B" group, view the revision history of the
       page titled "Key concepts from Chapter 3" and identify the most recent edit
       and when it was made.'
@@ -262,7 +262,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 45215603-3ae1-451e-b5cf-62753aa5f108
+  - :id: 82e81550-8337-4e76-9ff3-60c5579dba5b
     :instance_text: 'Task: In the course "Psychology 101," use the Assignments page
       to search for the assignment titled "Theories of Personality." View the assignment
       details, including the due date, availability dates, point value, and any rubric
@@ -277,7 +277,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: a5ef99d5-d2de-4fb7-bcc5-41d1178384b9
+  - :id: 0eb8097c-ab84-4c86-8883-12ccec85b700
     :instance_text: 'Task: In the course "Psychology 101," use the Course Home Page
       to remove the "The Role of Emotions in Decision Making" assignment from your
       To Do list in the sidebar.'
@@ -293,7 +293,7 @@
   - Discussion
   - Discussion Message
   :instances:
-  - :id: 596c8883-df82-4ac9-8801-069d46db42f6
+  - :id: 44c6ec94-37f1-4822-8f35-ab0cf27a9bf0
     :instance_text: 'Task: In your "Group H" group, create a new discussion titled
       "Favorite Lab Experiment," write "Share your favorite lab experiment from this
       semester and explain why you enjoyed it." allow group members to like the discussion,
@@ -312,7 +312,7 @@
   - Course
   - Discussion
   :instances:
-  - :id: 1ea06761-5b9d-4c19-b32d-c2caf6488aa3
+  - :id: d325f99a-4fad-4873-a9d8-5b76a1c982c0
     :instance_text: 'Task: Reply to the main discussion in the "Memory and experiences"
       discussion in the "Psychology 101" course with the following text: "I believe
       that local communities can play a significant role in addressing climate change
@@ -326,7 +326,7 @@
   :parameters:
   - Course
   :instances:
-  - :id: 26e2b7b0-8e76-4445-958b-cbcfb607bda3
+  - :id: c67ba738-abc1-4703-b81b-31f56e65423e
     :instance_text: 'Task: View the current groups you are enrolled in for the course
       "Psychology 101" by using the Global Navigation Menu in Canvas.'
     :mapping:
@@ -345,7 +345,7 @@
   - Course
   - Quiz
   :instances:
-  - :id: 19ea875c-7200-4638-a715-62e638c6e42c
+  - :id: a64a1ef2-d168-4d0c-8f4b-1468c83cac65
     :instance_text: |-
       Task: Check if you can retake the "Warming up to psychology" in the "Psychology 101" course and note how many attempts you have remaining.
 
@@ -371,7 +371,7 @@
   - Teacher
   - Assignment
   :instances:
-  - :id: 63968cf9-6528-453b-800e-f20a6f6aaf3c
+  - :id: 13c86db0-c10a-4235-bb0d-f7b5d41b8d28
     :instance_text: "Task: View the comments left by your instructor (Tammy Teacherson)
       on your \"Memory and Recall Reflection\" assignment in the \"Psychology 101\"
       course, and mark the comments as read. \n\nSteps to complete:\n1. In Global
@@ -392,7 +392,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 6f162950-1ed3-4ae6-b15f-9f2055a04637
+  - :id: e4fde70f-0afb-43fe-b298-190df789f0ad
     :instance_text: 'Task: In the Canvas course "Psychology 101," locate and view
       the peer feedback you received for the assignment titled "Cognitive Biases Reflection"
       by accessing the submission details page and clicking the "View Feedback" button.'
@@ -407,7 +407,7 @@
   - Discussion
   - User
   :instances:
-  - :id: 7691e55e-920f-4be3-8194-0ce4c7c72fab
+  - :id: e37fb29e-8816-41cf-802b-22e9caf32977
     :instance_text: 'Task: In the course "Psychology 101," open the discussion titled
       "What aspect of psychology do you find most interesting?," and manually mark
       the reply from "Terrance Studentson" as unread.'
@@ -424,7 +424,7 @@
   - Announcement
   - User
   :instances:
-  - :id: 9cfd0c46-3ead-4d27-b0f6-789125dbfe57
+  - :id: a2cbda6d-1e73-4d39-9250-86b652e94f59
     :instance_text: 'Task: In the course "Psychology 101," reply to the announcement
       titled "Materials for Lab 8" by posting the message "Great announcement, @Tammy
       Teacherson! Looking forward to this week." and mention the user Tammy Teacherson
@@ -443,7 +443,7 @@
   - Course
   - Discussion
   :instances:
-  - :id: 38139527-68fc-44a8-8f6f-bcc2ed924614
+  - :id: e560b215-2995-4c01-af27-9650290e00c1
     :instance_text: 'Task: Submit a peer review comment for the discussion "Researchers
       in the field of Psychology" in the course "Psychology 101" by reviewing the
       assigned student reply and entering the following comment in the comment sidebar:
@@ -460,7 +460,7 @@
   - Course
   - Quiz
   :instances:
-  - :id: 8e6a31f2-5d77-4e20-9fdf-5657537033b7
+  - :id: 4070d422-7959-44ba-ba34-8c6e3e4ae6d1
     :instance_text: 'Task: Take the quiz titled "Introduction to Psychology Concepts"
       in the course "Psychology 101," answering each question as it appears on the
       screen, and use the Next button to advance to the next question after answering.
@@ -486,7 +486,7 @@
   - Group
   - Page
   :instances:
-  - :id: 35c3c8fd-ad6a-46f9-af76-453a9a52e990
+  - :id: e4e6885e-aae1-4ab2-b057-beb854cf7497
     :instance_text: |-
       Task: Delete the page titled "Study Tips & Tricks" from the "Group K" on your Psychology 101 course in Canvas.
 
@@ -511,7 +511,7 @@
   - Group
   - Announcement
   :instances:
-  - :id: 12579bc9-4f5b-4a6b-aeeb-5ef5fee078d0
+  - :id: 06b74f9b-8072-4dda-9c7f-2a8bf5131a9c
     :instance_text: 'Task: Delete the announcement titled "Saturday Study Session"
       from the "Group S" group in the Psychology 101 course on Canvas.'
     :mapping:
@@ -525,7 +525,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: ff6919d8-ede5-4ccd-ade6-8776faeaed98
+  - :id: e765202c-e94d-4c15-8288-479a917c9fc9
     :instance_text: 'Task: View the peer feedback you received on the "Memory and
       Forgetting Analysis" assignment in the "Psychology 101" course using the Assignment
       Details page.'
@@ -541,7 +541,7 @@
   - Discussion
   - Discussion Message
   :instances:
-  - :id: 509fce25-85c7-4baf-acf1-7c0de4548cf0
+  - :id: 4bfc42d0-e386-44fc-a61c-bc5742894e4f
     :instance_text: 'Task: In the course "Psychology 101," create a new course discussion
       titled "Psychology in Everyday Life." In the discussion content, enter the following
       text: "Describe a way you have noticed psychology principles influencing your
@@ -561,7 +561,7 @@
   - Page
   - Page Message
   :instances:
-  - :id: 17b99dae-e1b3-4929-85b5-e6db35dcefba
+  - :id: 9ef29bf9-a4b1-4434-a8b1-a253b09eda69
     :instance_text: 'Task: In the "Group Y," create a new group page titled "Brainstorming
       for Group Project." In the page content, enter the following text: "Hey guys,
       I figured I''d create a page where we could all brainstorm ideas for the group
@@ -589,7 +589,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: a6acfe80-6838-4b68-bf92-20f5114cfc7d
+  - :id: 9da167b3-4f84-449c-8592-412bf2309a10
     :instance_text: |-
       Task: Add a text comment with an emoji to your submission for the assignment "Experimental Design Proposal" in the course "Psychology 101," saying "Great feedback received! ".
 
@@ -620,7 +620,7 @@
   - Course
   - Discussion
   :instances:
-  - :id: d65fa328-ef76-403d-bab1-c30771429502
+  - :id: e661af24-b1bc-4fc5-bc19-4fa027d6b472
     :instance_text: |-
       Task: Check if you have a peer review discussion to complete for the course "Psychology 101" and identify the name of the student whose post you need to review.
 
@@ -641,7 +641,7 @@
   - Course
   - Page
   :instances:
-  - :id: 8fc8733f-4eaf-44c2-ba72-9e1dd0497a6b
+  - :id: 89259d8f-2c6b-4caf-9864-c6edf4442cab
     :instance_text: 'Task: In the course "Psychology 101," go to the Modules section
       and mark the content page titled "Psychology & Pseudeo Science" as done.'
     :mapping:
@@ -660,7 +660,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 87bb9cfb-9bc0-41c3-91fe-b98469f08e98
+  - :id: 5c48d973-990d-4526-8dff-3d494c0be58d
     :instance_text: |-
       Task: Verify that you have successfully submitted your "Cognitive Biases in Daily Life" assignment in the "Psychology 101" course by viewing the submission confirmation details.
 
@@ -680,7 +680,7 @@
   - Group 1
   - Group 2
   :instances:
-  - :id: 361068cf-75b9-4be6-9b1b-e7c9f64f0a2d
+  - :id: 9737f204-5300-4c18-9c84-766cbff4231d
     :instance_text: 'Task: As the student group leader of "Group O" in the "Psychology
       101" course, change your group''s name to "The Insight Syndicate".'
     :mapping:
@@ -695,7 +695,7 @@
   - Group
   - User
   :instances:
-  - :id: 6c88eb7a-2f34-4ce5-8e7b-8333dc450a5c
+  - :id: 3124963b-ab2f-4b0f-95f7-f26c318dacdf
     :instance_text: 'Task: As the student group leader of "Group Q" in the "Psychology
       101" course, remove the member named "Abigail Studentson" from the group. Submit
       your changes.'
@@ -714,7 +714,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 16a5cc81-c018-4fc5-9e1b-919c7f7a9d91
+  - :id: 47d1af5e-737c-44a2-8206-11594d6f6a12
     :instance_text: "Task: View the peer review rubric assessment and comments left
       by your classmates for the assignment \"The Role of Memory in Learning\" in
       the course \"Psychology 101.\" \n\nTo complete this task, navigate to the \"The
@@ -735,7 +735,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 45d468b4-25d9-4710-ad2e-c62a2c4bc50c
+  - :id: bff2d6f6-5907-4a34-a34a-feba712ceef3
     :instance_text: 'Task: Complete a peer review for the assignment "Modern Psychology
       Essay" in the course "Psychology 101" by assigning a grade using the provided
       rubric and leaving the following comment in the comment sidebar: "Great job
@@ -753,7 +753,7 @@
   - Discussion
   - User
   :instances:
-  - :id: 7e917d07-1bfb-469f-a135-f8c2619c338c
+  - :id: 15c77178-6516-493d-a5b0-75015165ee32
     :instance_text: 'Task: In the course "Psychology 101," open the discussion titled
       "How does culture shape psychological development?," locate the reply by student
       "Abigail Studentson" and click the Like icon to like this reply.'
@@ -775,7 +775,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: cf83b88e-116d-46db-8c01-113c3cbbd1d0
+  - :id: bb85b3ff-406e-4717-8740-1d06100a641d
     :instance_text: |-
       Task: View the rubric results and instructor comments for your submission to the assignment "The Influence of Social Interaction on Cognitive Development" in the course "Psychology 101."
 
@@ -796,7 +796,7 @@
   - Course
   - Announcement
   :instances:
-  - :id: a8442d27-6a5c-47cf-a835-a86f46d106b5
+  - :id: 3f2d20c0-a186-43e5-887b-99c1af4d8d3c
     :instance_text: 'Task: Reply to the announcement titled "Assignment Deadline Reminder"
       in the "Psychology 101" course with the message: "Thank you for the information!
       Looking forward to this semester."'
@@ -810,7 +810,7 @@
   - Course
   - Discussion
   :instances:
-  - :id: ededb66b-4bb8-487e-96fa-19e00fb202c5
+  - :id: '0583dca5-595e-43ca-809e-535cd7a38f4b'
     :instance_text: 'Task: In the course "Psychology 101," open the discussion titled
       "Which psychological theory do you find most useful in everyday life?" and filter
       the discussion to show only unread replies.'
@@ -825,7 +825,7 @@
   - Course
   - Discussion
   :instances:
-  - :id: 2183add2-d7b4-45e7-90f9-ee8d0a842c07
+  - :id: e6f96896-d533-4a99-b715-afe228000c70
     :instance_text: 'Task: In the course "Psychology 101," report a reply in the discussion
       titled "Theories of Personality" as inappropriate. Select "inappropriate" as
       the reason for reporting and submit your report.'
@@ -840,7 +840,7 @@
   - Course
   - Discussion
   :instances:
-  - :id: 9acfde5f-8a5b-40ee-b70c-9f4d96b5048a
+  - :id: 615d9b2b-908e-4905-a14f-35ab6f20159c
     :instance_text: 'Task: In your {{Course}} course, edit your reply in the "The
       Role of Emotions in Decision Making" discussion by changing the text to "I believe
       renewable energy is essential for our future," and save your changes.'
@@ -863,7 +863,7 @@
   - Course
   - Announcement
   :instances:
-  - :id: 265b0dab-4b35-4663-9ea5-08716de5c5b3
+  - :id: d714b6dc-fa0e-4529-9d5c-9bab155780eb
     :instance_text: |-
       Task: In the "There will be no class next week!" announcement for the "Psychology 101" course leave a reply by quoting the previous reply and including the text "Thank you for the clarification!" in your response.
 
@@ -886,21 +886,13 @@
   :parameters:
   - Group
   :instances:
-  - :id: 47e40fcb-d667-48df-9575-002a78182293
+  - :id: 8ceef9c6-3cc4-4c6a-9700-5749169b0313
     :instance_text: 'Task:  Add the external RSS feed "https://news.ycombinator.com/rss"
       to the "Group U" group announcements in Canvas, set it to display only posts
       with the phrase "AI" in the title, and choose the "Full article" option for
       content display.'
     :mapping:
       Group: Group U
-  - :id: 32c79967-4783-4fb0-9f8e-2de93e1e0035
-    :instance_text: 'Task: In the course "Psychology 101" view all modules, expand
-      the module titled Module 3" and identify the due date and point value for the
-      assignment named "Cognitive Psychology Research Summary."'
-    :mapping:
-      Course: Psychology 101
-      Assignment: Cognitive Psychology Research Summary
-      Module: Module 3
 - :id: 96290cff-cfa7-4712-8f63-0a853cdbf0c7
   :paremeterized_text: 'Task: Locate and open your assigned peer review for the "[[Assignment]]"
     assignment in the "[[Course]]" course using the To Do list on your Canvas Dashboard.'
@@ -908,7 +900,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: ad298ea2-a773-4439-a875-0f836ef24387
+  - :id: 24910e72-dce0-4fe7-b82c-2ceb7feb27b6
     :instance_text: 'Task: Locate and open your assigned peer review for the "Nature
       vs. Nurture Debate" assignment in the "Psychology 101" course using the To Do
       list on your Canvas Dashboard.'
@@ -923,7 +915,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 263a8757-efc8-40d4-82a8-44e86e1d8d8a
+  - :id: f666dfd8-e599-4e01-87fd-f9bf9db72547
     :instance_text: 'Task: In the course "Psychology 101," use the What-If Grades
       feature to enter a hypothetical score of 85 for the assignment "Cognitive Development
       Analysis," and view how this affects your total grade.'
@@ -939,7 +931,7 @@
   - Group
   - Page
   :instances:
-  - :id: fbfe1dd0-a3a1-4336-b25d-3659626f8c3d
+  - :id: b932324b-4ecc-4b12-ae34-85a4d1114994
     :instance_text: 'Task: In the "Group N" group, edit the page titled "Group project
       presentation" by changing its title to "Final Group project presentation" and
       adding the following text to the top of the page: "This is the finalized version
@@ -955,7 +947,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: e6c6c90d-aed9-4533-9d1b-e085790ddb89
+  - :id: 45aea090-1a2d-43a7-b219-3d296df02831
     :instance_text: 'Task: View the rubric for the assignment titled "Stress and Coping
       Strategies" in the course "Psychology 101" by navigating to the Assignments
       page, clicking on "Stress and Coping Strategies," and locating the rubric displayed
@@ -971,7 +963,7 @@
   - Course
   - Discussion
   :instances:
-  - :id: f2e14c6c-dd3e-4752-a6e2-2841cc427ac7
+  - :id: ccaa1ea0-ff7d-4eb2-8b8d-54ed63b7c76d
     :instance_text: 'Task: View the rubric for the graded discussion titled "Nature
       vs. Nurture Debate" in the course "Psychology 101" by navigating to the Discussions
       section, selecting the discussion, and opening the rubric.'
@@ -986,7 +978,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: 7d834377-7bc6-437f-ad9d-394ff5ef4c35
+  - :id: 1722c1c0-5fb8-4e9f-a66a-9663bb2fd42a
     :instance_text: 'Task: Submit the URL "https://www.exampleproject.com" as your
       assignment submission for the assignment titled "Psychology Video on learning"
       in the course "Psychology 101" on Canvas.'
@@ -1003,7 +995,7 @@
   - Group
   - Page
   :instances:
-  - :id: b5ea7669-cba3-4d4c-b589-4604b19cec61
+  - :id: b3cbe5e2-65fd-46c7-b7ca-b6f883229052
     :instance_text: 'Task: Edit the "Group project presentation" page for your group
       (Group N1) in the "Psychology 101" course to add the following text at the end
       of the page: "All group members must submit their individual reports by next
@@ -1021,7 +1013,7 @@
   - Course
   - Announcement
   :instances:
-  - :id: ab95e184-194a-43f7-976d-5b12e59fbefb
+  - :id: 057001fe-3234-40ad-a3ce-14714674aa58
     :instance_text: 'Task: In the course "Psychology 101" use the search field in
       the Announcements Index Page to find the announcement titled "Reminder: Midterm
       Exam Next Friday". Then, mark all announcements as read using the "Mark All
@@ -1046,7 +1038,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: b04e4653-00cb-49b0-a64f-294447e0f191
+  - :id: ac4f8902-1253-4a8e-baca-fec26e932494
     :instance_text: |-
       Task: Submit a text entry for the Cognitive Psychology Research Summary assignment in the course "Psychology 101" by entering the text "The most interesting concept I learned this week was cognitive dissonance."
 
@@ -1077,7 +1069,7 @@
   - Course
   - Assignment
   :instances:
-  - :id: c3ecc432-549d-40d0-88b6-fec5702f182c
+  - :id: be955e7e-f47f-4f08-bafd-6bf927f81a47
     :instance_text: |-
       Task: Check if your instructor has graded your "Childhood Development Essay" assignment in the "Psychology 101" course and note the score you received.
 
@@ -1101,7 +1093,7 @@
   - Group
   - Announcement
   :instances:
-  - :id: be916864-d509-4a6c-8908-a19f85335ff4
+  - :id: 11d5c61a-aeea-4fb3-afd3-a4e1052afd9b
     :instance_text: 'Task: Edit the announcement titled "Saturday Study Session" in
       the group Group G2 in the Psychology 101 course by changing the content to "Our
       first group meeting will be held on Friday at 3 PM in the atrium." Then, click
@@ -1121,7 +1113,7 @@
   - Group
   - Page
   :instances:
-  - :id: d247a1c3-39de-4bb1-9acc-e31938acf5a2
+  - :id: 31313bf3-b794-4681-ad23-6dbd85553096
     :instance_text: "Task:  \nEmbed a YouTube video into the \"Group project presentation\"
       page in the \"Group Z\" group, using the following embedding snippet:\n\n<iframe
       width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/m5a4phGJsRY?si=sCq1ix4e4OtMdHUg\"
@@ -1139,7 +1131,7 @@
   - Course
   - Group
   :instances:
-  - :id: a780904c-900d-4bfc-8074-4a286a504c7d
+  - :id: added42e-0d3f-4924-8139-3946230c9397
     :instance_text: 'Task: Leave the group "Group M" in the course "Psychology 101"
       using the People page in Canvas.'
     :mapping:
@@ -1151,7 +1143,7 @@
   :parameters:
   - Course
   :instances:
-  - :id: 2cae3356-20cf-4f34-aa09-7461b84d9c0d
+  - :id: 4c556c29-f630-4afc-9e43-5f6b3fb3e756
     :instance_text: 'Task: In your "Psychology 101" course, change your discussion
       settings so that you must manually mark discussion replies as read.'
     :mapping:
@@ -1163,7 +1155,7 @@
   - Course
   - Group
   :instances:
-  - :id: a93893bf-f4ba-4a8c-997d-1dd67d98dd4a
+  - :id: 2886540c-fdfe-49c0-8442-9f544e4cde4e
     :instance_text: 'Task: In the course "Psychology 101," view all available groups,
       and join the self sign-up group named "Group U2."'
     :mapping:
@@ -1187,7 +1179,7 @@
   - Course
   - Quiz
   :instances:
-  - :id: bc9adbfa-611d-4785-b5b5-3d3aba607a44
+  - :id: f29c089f-098e-450d-bf61-08caa303bf88
     :instance_text: |-
       Task: Take the "Psychological Theories and Approaches" in the "Psychology 101" course, answer all questions, and submit the quiz.
 
@@ -1212,10 +1204,61 @@
   - Course
   - Announcement
   :instances:
-  - :id: f2f458e0-7a63-4757-b451-79c2aeb40878
+  - :id: fba1b4ac-7633-407d-b81e-7ea155f1f02c
     :instance_text: 'Task: In the course "Psychology 101," find the announcement titled
       "Guest Lecture This Wednesday" in your Course Activity Stream and remove this
       notification from your activity stream.'
     :mapping:
       Course: Psychology 101
       Announcement: Guest Lecture This Wednesday
+- :id: 0b71d13d-f7dd-4a09-b575-6d6677b6e70c
+  :paremeterized_text: 'Task: In the course "[[Course]]" view all modules, expand
+    the module titled [[Module]]" and identify the due date and point value for the
+    assignment named "[[Assignment]]."'
+  :parameters:
+  - Course
+  - Assignment
+  - Module
+  :instances:
+  - :id: 746b57d6-5c4d-4c0d-ba72-90db410454a9
+    :instance_text: 'Task: In the course "Psychology 101" view all modules, expand
+      the module titled Module 3" and identify the due date and point value for the
+      assignment named "Cognitive Psychology Research Summary."'
+    :mapping:
+      Course: Psychology 101
+      Assignment: Cognitive Psychology Research Summary
+      Module: Module 3
+- :id: d098f836-5e11-4e64-ac4c-55dd100ec323
+  :paremeterized_text: 'Task: View your instructor''s comments on the "[[Quiz]]" quiz
+    in the "[[Course]]" course and add a comment saying "Thank you for the feedback!"
+    to your quiz submission.'
+  :parameters:
+  - Course
+  - Quiz
+  :instances:
+  - :id: 5ac64f9c-1ea5-4e49-b53d-05b3fdd1fd70
+    :instance_text: 'Task: View your instructor''s comments on the "Biological Bases
+      of Behavior" quiz in the "Psychology 101" course and add a comment saying "Thank
+      you for the feedback!" to your quiz submission.'
+    :mapping:
+      Course: Psychology 101
+      Quiz: Biological Bases of Behavior
+- :id: fa9d33b1-09e0-43af-996a-74f9acbee197
+  :paremeterized_text: "Task: Resume the \"[[Quiz]]\" in the \"[[Course]]\" course
+    that you previously started but did not finish. \n\nSteps:\n1. In the \"[[Course]]\"
+    course, click the Quizzes link in the course navigation.\n2. Find and click on
+    the \"[[Quiz]].\"\n3. Click the \"Resume Quiz\" button to continue the quiz from
+    where you left off."
+  :parameters:
+  - Course
+  - Quiz
+  :instances:
+  - :id: f224fd3b-3e8d-4b8e-9284-e7849c98fb67
+    :instance_text: "Task: Resume the \"Sensation and Perception\" in the \"Psychology
+      101\" course that you previously started but did not finish. \n\nSteps:\n1.
+      In the \"Psychology 101\" course, click the Quizzes link in the course navigation.\n2.
+      Find and click on the \"Sensation and Perception.\"\n3. Click the \"Resume Quiz\"
+      button to continue the quiz from where you left off."
+    :mapping:
+      Course: Psychology 101
+      Quiz: Sensation and Perception

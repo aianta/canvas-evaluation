@@ -1,5 +1,6 @@
 require_relative "../../factories/rubric_factory"
 require_relative "../../factories/rubric_association_factory"
+require_relative "../../factories/quiz_factory"
 
 require_relative "./common"
 require_relative "./utils"
@@ -124,6 +125,215 @@ def generate_test_environment
       })
 
     }
+
+        # Fetch quiz test data and create quizzes
+    quiz_data = course_data["quizzes"]
+    quiz_data.each { |quiz|
+      
+      puts "Creating quiz #{quiz["title"]} in #{_course.course.name}"
+
+      if quiz["rubric"]
+        @quiz = assignment_quiz([], {
+          :course=> _course.course,
+          :title => quiz["title"],
+          :description => quiz["description"],
+          :due_at => quiz["due_at"],
+          :submission_types => ['online_quiz'],
+          :workflow_state => quiz["workflow_state"]
+        })
+
+        
+
+        
+        # Create the rubric
+        puts "Creating rubric #{quiz["rubric"]["title"]} for #{_course.course.name}"
+
+        rubric_opts = quiz["rubric"].merge({
+          :user=>_course.teacher,
+          :context=>_course.course
+        })
+        
+        rubric = rubric_model(rubric_opts)
+        rubric.save!
+        rubric.reload
+
+        @assignment.build_rubric_association(
+          rubric: rubric,
+          purpose: "grading",
+          use_for_grading: true,
+          context: _course.course
+        )
+        @assignment.rubric_association.save!
+        @assignment.reload
+        @assignment.save!
+
+                
+        # Populate quiz questions
+        questions = []
+        quiz["questions"].each { |question|
+          question[:regrade_option] = false
+        }
+
+        quiz["questions"].each { |question_data|
+          question = @quiz.quiz_questions.create!(question_data: question_data)
+          questions << question
+        }
+        @quiz.generate_quiz_data
+        @quiz.due_at = quiz["due_at"]
+
+        if quiz["one_question_at_a_time"]
+          @quiz.one_question_at_a_time = true
+          @quiz.save!
+        end
+
+        if quiz["allowed_attempts"]
+          @quiz.allowed_attempts = quiz["allowed_attempts"]
+          @quiz.save!
+        end
+
+        @quiz.save!
+        @quiz.publish!
+
+        _course.quizzes << @quiz
+
+        if quiz["submissions"]
+
+        quiz["submissions"].each{|submission|
+          
+          student = _course.resolve_user_value(submission["user"], _course)
+
+          submission["attempts"].each_with_index{ |attempt, index|
+
+            puts "Before quiz submission generation"
+            qsub = @quiz.generate_submission(student)
+            puts "After quiz submission generation"
+            qsub.started_at = 1.minute.ago
+            qsub.attempt = index + 1
+
+            attempt["answers"] = attempt["answers"].map.with_index{|answer, index| 
+              answer.transform_keys(&:to_sym)
+              answer[:question_id] = @quiz.quiz_questions[index].id
+              answer
+            }
+
+            puts "Answers: #{attempt["answers"]}"
+
+            attempt["answers"] = attempt["answers"].map{|answer| answer.symbolize_keys}
+
+            puts "Answers: #{attempt["answers"]}"
+
+            # Get the real question id from the actual quiz itself instead of relying on the static test data
+            if attempt["partial"]
+              # Get the question answer from the static data
+              question_answer_key = attempt["partial"].keys.select{|k| (k.include? 'question_') && (!k.include? 'marked')}.first
+              puts "Question Answer Key: #{question_answer_key}"
+              question_answer = attempt["partial"][question_answer_key]
+              puts "Question Answer: #{question_answer}"
+
+              # Remove the static keys
+              attempt["partial"].delete(question_answer_key)
+              attempt["partial"].delete(question_answer_key + "_marked")
+
+              # Find the real question id
+              question_id = @quiz.quiz_questions[0].id
+
+              # Re-insert the appropriate keys into the partial hash. 
+              attempt["partial"]["question_" + question_id.to_s] = question_answer
+              attempt["partial"]["question_" + question_id.to_s + "_marked"] = false
+
+              # Symbolize, it won't work otherwise.
+              attempt["partial"] = attempt["partial"].symbolize_keys
+              
+              puts "Partial data: #{attempt["partial"]}"
+            end
+            # qsub.record_answer(attempt["answers"][0])
+            qsub.submission_data = attempt["workflow_state"] == 'untaken'? attempt["partial"] : attempt["answers"]
+            # qsub.submission_data = [{ points: 0, text: "7051", question_id: 128, correct: false, answer_id: 7051 }]
+            # qsub.submission_data = [{"quiz_question_id"=>"28", "answer"=>"100"}]
+            # qsub.submission_data = [{:points => 0, :question_id => 28, :answer_id => 200, :correct => false, :text=>"200"}]
+            qsub.score = nil
+            qsub.finished_at = attempt["workflow_state"] == 'untaken'? nil:Time.now.utc
+            qsub.workflow_state = attempt["workflow_state"]
+
+            # qsub.submission = @quiz.assignment.find_or_create_submission(student.id)
+            # qsub.submission.quiz_submission = qsub
+            qsub.submission.submission_type = "online_quiz"
+            qsub.submission.submitted_at = qsub.finished_at
+
+            
+
+            if attempt["feedback"]
+
+              grader = _course.resolve_user_value(attempt["feedback"]["grader"], _course)
+
+              if attempt["feedback"]["comment"]
+                qsub.submission.add_comment(comment: attempt["feedback"]["comment"], author: grader)
+              end
+
+            end
+
+            qsub.save!
+
+            # attempt["answers"].each{|answer|
+          
+            #   Quizzes::QuizSubmissionEvent.create do |event|
+            #     event.quiz_submission_id = qsub.id
+            #     event.event_type = "question_answered"
+            #     event.event_data = [{"quiz_question_id"=>"28", "answer"=>"100"}]
+            #     event.client_timestamp = Time.now.utc
+            #     event.attempt = qsub.attempt
+            #   end
+
+            # }
+
+          }
+
+
+
+        }
+
+      end
+
+      else
+
+        quiz_opts = quiz.except("rubric", "questions")
+
+        q = _course.course.quizzes.create!(quiz_opts) # Create the actual quiz
+
+        if quiz["one_question_at_a_time"]
+          puts "ONE QUESTION AT A TIME!"
+          q.one_question_at_a_time = true
+          q.save!
+        end
+
+        if quiz["allowed_attempts"]
+          q.allowed_attempts = quiz["allowed_attempts"]
+          q.save!
+        end
+        
+        # Populate quiz questions
+        questions = []
+        
+        quiz["questions"].each { |question|
+          question[:regrade_option] = false
+        }
+
+        quiz["questions"].each { |question_data|
+          question = q.quiz_questions.create!(question_data: question_data)
+          questions << question
+        }
+        
+        q.generate_quiz_data
+
+        q.save!
+        q.publish!
+
+        _course.quizzes << q
+      end
+      
+
+
+      }
 
     # Fetch group category test data and create these in anticipation of creating groups
     if course_data["group_categories"]
@@ -305,114 +515,7 @@ def generate_test_environment
 
 
 
-    # Fetch quiz test data and create quizzes
-    quiz_data = course_data["quizzes"]
-    quiz_data.each { |quiz|
-      
-      puts "Creating quiz #{quiz["title"]} in #{_course.course.name}"
 
-      if quiz["rubric"]
-        @quiz = assignment_quiz([], {
-          :course=> _course.course,
-          :title => quiz["title"],
-          :description => quiz["description"],
-          :due_at => quiz["due_at"],
-          :submission_types => ['online_quiz'],
-          :workflow_state => quiz["workflow_state"]
-        })
-
-        
-
-        
-        # Create the rubric
-        puts "Creating rubric #{quiz["rubric"]["title"]} for #{_course.course.name}"
-
-        rubric_opts = quiz["rubric"].merge({
-          :user=>_course.teacher,
-          :context=>_course.course
-        })
-        
-        rubric = rubric_model(rubric_opts)
-        rubric.save!
-        rubric.reload
-
-        @assignment.build_rubric_association(
-          rubric: rubric,
-          purpose: "grading",
-          use_for_grading: true,
-          context: _course.course
-        )
-        @assignment.rubric_association.save!
-        @assignment.reload
-        @assignment.save!
-
-                
-        # Populate quiz questions
-        questions = []
-        quiz["questions"].each { |question|
-          question[:regrade_option] = false
-        }
-
-        quiz["questions"].each { |question_data|
-          question = @quiz.quiz_questions.create!(question_data: question_data)
-          questions << question
-        }
-        @quiz.generate_quiz_data
-        @quiz.due_at = quiz["due_at"]
-
-        if quiz["one_question_at_a_time"]
-          @quiz.one_question_at_a_time = true
-          @quiz.save!
-        end
-
-        if quiz["allowed_attempts"]
-          @quiz.allowed_attempts = quiz["allowed_attempts"]
-          @quiz.save!
-        end
-
-        @quiz.save!
-        @quiz.publish!
-
-        _course.quizzes << @quiz
-
-      else
-
-        quiz_opts = quiz.except("rubric", "questions")
-
-        q = _course.course.quizzes.create!(quiz_opts) # Create the actual quiz
-
-        if quiz["one_question_at_a_time"]
-          puts "ONE QUESTION AT A TIME!"
-          q.one_question_at_a_time = true
-          q.save!
-        end
-
-        if quiz["allowed_attempts"]
-          q.allowed_attempts = quiz["allowed_attempts"]
-          q.save!
-        end
-        
-        # Populate quiz questions
-        questions = []
-        
-        quiz["questions"].each { |question|
-          question[:regrade_option] = false
-        }
-
-        quiz["questions"].each { |question_data|
-          question = q.quiz_questions.create!(question_data: question_data)
-          questions << question
-        }
-        
-        q.generate_quiz_data
-
-        q.save!
-        q.publish!
-
-        _course.quizzes << q
-      end    
-
-      }
 
       # Fetch module test data and create the appropriate modules
       course_data["modules"].each{ |mod|
@@ -2385,6 +2488,63 @@ Instructions:
 
   tasks << task
 
+  task = AgentTask.new({
+    id: 'd098f836-5e11-4e64-ac4c-55dd100ec323',
+    parameterized_text: 'Task: View your instructor\'s comments on the "[[Quiz]]" quiz in the "[[Course]]" course and add a comment saying "Thank you for the feedback!" to your quiz submission.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    quiz = course.quizzes.select{|q| 
+    
+    if false # set to true for debugging
+      puts "Quiz: #{q.title} - #{q.quiz_submissions.length} quiz submissions"
+
+    end
+
+    (!AgentTask.quizzes.include? q) && (!q.quiz_submissions.select{|qs| (qs.user == course.logged_in_user) && (qs.submission.submission_comments.length > 0)}.first.nil?)}.first
+
+    if quiz.nil?
+      puts "Cannot find quiz for task #{task.id}"
+      return 
+    end
+  
+    AgentTask.quizzes << quiz
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Quiz", quiz.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'fa9d33b1-09e0-43af-996a-74f9acbee197',
+    parameterized_text: 'Task: Resume the "[[Quiz]]" in the "[[Course]]" course that you previously started but did not finish. 
+
+Steps:
+1. In the "[[Course]]" course, click the Quizzes link in the course navigation.
+2. Find and click on the "[[Quiz]]."
+3. Click the "Resume Quiz" button to continue the quiz from where you left off.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    quiz = course.quizzes.select{|q| (!AgentTask.quizzes.include? q) && (!q.quiz_submissions.select{|qs| (qs.user == course.logged_in_user) && (qs.workflow_state == 'untaken')}.first.nil?)}.first
+
+    if quiz.nil?
+      puts "Cannot find quiz for task #{task.id}"
+      return
+    end
+
+    AgentTask.quizzes << quiz
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Quiz", quiz.title)
+
+  }
+
+  tasks << task
 
 
   puts "last task"
