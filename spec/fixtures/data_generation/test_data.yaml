@@ -533,6 +533,9 @@ courses:
           text: I think nurture plays a stronger role. For example, children raised in supportive environments often thrive, even if they have genetic risks for certain disorders.  
         - user: sammy@ualberta.ca
           text: I lean more toward nature because traits like intelligence and temperament seem strongly linked to genetics, though environment still matters.  
+          feedback:
+            author: sarah@ualberta.ca
+            comment: I feel like you could have elaborated more here honestly.
         - user: terrance@ualberta.ca
           text: I believe it's a balance. Genes may set certain limits, but the environment determines how much potential is reached. Language development is a good example.  
         - user: phillip@ualberta.ca
@@ -541,6 +544,36 @@ courses:
         enabled: true
         count: 2
         due_at: 2026-03-25 18:00:00
+        intra_group_peer_reviews: true
+        anonymous_peer_reviews: false
+        automatic_peer_reviews: true
+    - title: The Role of Technology in Modern Psychology
+      description: |
+        Hi Everyone, for this discussion, please share your thoughts on how technology has impacted the field of psychology. 
+        You might consider areas like therapy apps, online counseling, brain imaging, social media's effect on behavior, or artificial intelligence. 
+        Do you think technology has been more beneficial or harmful to psychology overall? Provide an example to support your viewpoint.
+      due_at: 2026-04-10 18:00:00
+      points_possible: 2
+      created_at: 2025-08-28 14:45:00
+      updated_at: 2025-08-28 14:45:00
+      submission_types: ["discussion_topic"]
+      grading_type: "points"
+      replies:
+        - user: phillip@ualberta.ca
+          text: I think technology has helped make therapy more accessible. Apps like BetterHelp or Talkspace allow people who can't attend in-person sessions to still get help.  
+        - user: sammy@ualberta.ca
+          text: I feel like social media has had a negative impact on mental health, especially with increased anxiety and body image issues. Technology isn't always positive.  
+          feedback:
+            author: ryan@ualberta.ca
+            comment: That's a really good point. I agree it's a double-edged sword.
+        - user: abigail@ualberta.ca
+          text: Brain imaging technology like fMRI has been amazing for understanding how mental processes work. It's opened up a lot of new research opportunities.  
+        - user: lisa@ualberta.ca
+          text: I think AI will play a huge role in the future of psychology, like personalized mental health support or identifying early warning signs of disorders.  
+      peer_reviews: 
+        enabled: true
+        count: 2
+        due_at: 2026-04-15 18:00:00
         intra_group_peer_reviews: true
         anonymous_peer_reviews: false
         automatic_peer_reviews: true
@@ -1199,6 +1232,60 @@ courses:
           question_type: short_answer_question
           points_possible: 15
           question_text: "<p>Explain the difference between the cognitive and behavioral approaches to psychology.</p>"
+    - title: Psychology Class Survey
+      description: A casual survey quiz for students to share their thoughts, experiences, and interests related to psychology.
+      due_at: 2026-12-05 18:00:00
+      published_at: 2025-08-28 14:00:00
+      workflow_state: available
+      allowed_attempts: 1
+      one_question_at_a_time: true
+      quiz_type: 'survey'
+      questions:
+        - name: Question 1
+          question_type: short_answer_question
+          points_possible: 5
+          question_text: "<p>What made you interested in taking this psychology course?</p>"
+        - name: Question 2
+          question_type: multiple_choice_question
+          points_possible: 5
+          question_text: "<p>Which area of psychology are you most excited to learn about?</p>"
+          answers:
+            - weight: 0
+              text: Cognitive psychology
+              id: 100
+            - weight: 0
+              text: Social psychology
+              id: 200
+            - weight: 0
+              text: Developmental psychology
+              id: 300
+            - weight: 0
+              text: Abnormal psychology
+              id: 400
+            - weight: 0
+              text: Biological psychology
+              id: 500
+        - name: Question 3
+          question_type: essay_question
+          points_possible: 5
+          question_text: "<p>Describe one way you think psychology connects to your everyday life.</p>"
+        - name: Question 4
+          question_type: multiple_choice_question
+          points_possible: 5
+          question_text: "<p>How do you prefer to engage with class material?</p>"
+          answers:
+            - weight: 0
+              text: Listening to lectures
+              id: 101
+            - weight: 0
+              text: Group discussions
+              id: 201
+            - weight: 0
+              text: Hands-on activities
+              id: 301
+            - weight: 0
+              text: Reading and writing assignments
+              id: 401
     - title: Biological Bases of Behavior
       description: A quiz to test knowledge of how biology influences psychological processes and behavior.
       due_at: 2026-11-05 18:00:00
@@ -1244,6 +1331,57 @@ courses:
               feedback:
                 grader: instructor
                 comment: You can do better than this.
+    - title: Memory and Cognition
+      description: A quiz to test knowledge of key concepts in memory and cognitive psychology.
+      due_at: 2026-11-15 18:00:00
+      published_at: 2025-08-28 14:30:00
+      workflow_state: available
+      allowed_attempts: 3
+      one_question_at_a_time: true
+      rubric: 
+        title: Memory and Cognition Rubric
+        description: A rubric for evaluating student understanding of memory and cognition concepts.
+        public: true
+        points_possible: 50
+        free_form_criterion_comments: false
+      questions:
+        - name: Question 1
+          id: 31
+          question_type: multiple_choice_question
+          points_possible: 10
+          question_text: "<p>Which type of memory has the shortest duration, typically lasting only a few seconds?</p>"
+          answers:
+            - weight: 100
+              text: Sensory memory
+              id: 100
+            - weight: 0
+              text: Short-term memory
+              id: 200
+            - weight: 0
+              text: Long-term memory
+              id: 300
+            - weight: 0
+              text: Working memory
+              id: 400
+      submissions:
+        - user: main_user
+          attempts:
+            - workflow_state: "complete"
+              answers:
+              - correct: false
+                points: 0.0
+                question_id: 28
+                answer_id: 300
+                text: "300"
+                attempt: 1
+            - workflow_state: "complete"
+              answers:
+                - correct: false
+                  points: 0.0
+                  question_id: 26
+                  answer_id: 400
+                  text: "400"
+                  attempt: 2
     - title: Sensation and Perception
       description: A quiz to test knowledge of how humans sense and interpret the world around them.
       due_at: 2026-11-20 18:00:00

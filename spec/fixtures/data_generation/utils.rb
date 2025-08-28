@@ -527,6 +527,11 @@ The student account will be assumed to be the logged in user for this course.
       create_discussion_reply(topic, reply )
 
       submission = assignment.submit_homework(reply["user"], submission_type:"discussion_topic")
+
+      if reply["feedback"]
+        feedback_author = resolve_user_value(reply["feedback"]["author"], self)
+        submission.add_comment(comment: reply["feedback"]["comment"], author: feedback_author)
+      end
       
       if data["peer_reviews"] 
         if !email.include? "sammy"

@@ -53,6 +53,9 @@ def generate_custom_course
 
   puts @course
 
+  @course.conditional_release = true
+  @course.save!
+
   @student = @user
 
   @topic = @course.discussion_topics.create!(title: "A class discussion", message: "I'd like us to have a discussion.", user: @teacher, discussion_type: "threaded")
@@ -209,6 +212,7 @@ def generate_test_environment
             puts "After quiz submission generation"
             qsub.started_at = 1.minute.ago
             qsub.attempt = index + 1
+            qsub.update_attribute(:attempt, index + 1)
 
             attempt["answers"] = attempt["answers"].map.with_index{|answer, index| 
               answer.transform_keys(&:to_sym)
@@ -251,7 +255,7 @@ def generate_test_environment
             # qsub.submission_data = [{ points: 0, text: "7051", question_id: 128, correct: false, answer_id: 7051 }]
             # qsub.submission_data = [{"quiz_question_id"=>"28", "answer"=>"100"}]
             # qsub.submission_data = [{:points => 0, :question_id => 28, :answer_id => 200, :correct => false, :text=>"200"}]
-            qsub.score = nil
+            qsub.score = attempt["workflow_state"] == 'uuntaken'? nil : 0
             qsub.finished_at = attempt["workflow_state"] == 'untaken'? nil:Time.now.utc
             qsub.workflow_state = attempt["workflow_state"]
 
@@ -310,6 +314,7 @@ def generate_test_environment
           q.allowed_attempts = quiz["allowed_attempts"]
           q.save!
         end
+
         
         # Populate quiz questions
         questions = []
@@ -675,7 +680,7 @@ def create_task_instances(test_course)
   task.populate(test_course) {|course, task| 
 
     # Look for an unused quiz with a rubric
-    quiz = course.quizzes.select{ |q| (!AgentTask.quizzes.include? q ) && (!q.assignment.rubric_association.nil?)}.first 
+    quiz = course.quizzes.select{ |q| (!AgentTask.quizzes.include? q ) && (!q.assignment.nil?) && (!q.assignment.rubric_association.nil?)}.first 
 
     if quiz.nil?
       puts "Cannot find quiz for task #{task.id}"
@@ -2546,6 +2551,93 @@ Steps:
 
   tasks << task
 
+  task = AgentTask.new({
+    id: 'f36e03d8-3c1a-4223-ad61-8aca0b4546fb',
+    parameterized_text: 'Task: Submit the "[[Survey]]" in the "[[Course]]" course by answering all questions and submitting your responses.
+
+Steps:
+
+1. In the "[[Course]]" course, click the "Quizzes" link in the course navigation.
+2. Click on the survey titled "[[Survey]]".
+3. Click the "Take the Survey" button.
+4. Answer all the questions in the survey.
+5. Click the "Submit Quiz" button to submit your survey responses.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    quiz = course.quizzes.select{|q| (!AgentTask.quizzes.include? q) && (q.quiz_type == 'survey')}.first
+
+    if quiz.nil?
+      puts "Cannot find survey for task #{task.id}"
+      return
+    end
+
+    AgentTask.quizzes << quiz
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Survey", quiz.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'fedf3006-7245-4d24-bade-d60bd0e8f6ba',
+    parameterized_text: 'Task: View the results of your second attempt on the "[[Quiz]]" in the "[[Course]]" course, and note the time it took to complete that attempt as displayed in the Last Attempt Details section.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    quiz = course.quizzes.select {|q| 
+    
+    q.reload
+
+    
+    (!q.quiz_submissions.select{|qs| 
+      if false # set to true for debugging
+        puts "qs #{qs}"
+        puts "qs attempts: #{qs.attempt}"
+        puts "#{qs.inspect}"
+      end
+    (qs.user == course.logged_in_user) && (qs.attempt == 2)}.first.nil?)}.first
+
+    if quiz.nil?
+      puts "Cannot find quiz for task #{task.id}"
+      return
+    end
+
+    AgentTask.quizzes << quiz
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Quiz", quiz.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'b26bef34-a1ce-45c7-9b8a-13651d76d367',
+    parameterized_text:'Task: View your peers\' feedback for the "[[Discussion]]" peer-reviewed discussion by accessing the Feedback tray from the Course Grades page in your "[[Course]]" course.'
+  })
+
+  task.populate(test_course){|course, task|
+
+    discussion = course.discussions.select{|d| (!AgentTask.discussions.include? d) && (!d.assignment.nil?) && (!d.assignment.submissions.select{|s| (s.user == course.logged_in_user) && (s.submission_comments.length > 0)}.first.nil?)}.first
+
+    if discussion.nil?
+      puts "Cannot find discussion for task #{task.id}"
+      return
+    end
+
+    AgentTask.discussions << discussion
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Discussion", discussion.title)
+
+  }
+
+  tasks << task
 
   puts "last task"
   puts task.to_hash
