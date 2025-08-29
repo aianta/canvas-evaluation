@@ -1,6 +1,7 @@
 require_relative "../../factories/rubric_factory"
 require_relative "../../factories/rubric_association_factory"
 require_relative "../../factories/quiz_factory"
+require_relative "../../factories/outcome_factory"
 
 require_relative "./common"
 require_relative "./utils"
@@ -74,10 +75,7 @@ end
 
 def generate_test_environment
 
-  Account.default.allow_self_enrollment!
-  Account.default.settings[:open_registration] = true
-  Account.default.enable_feature!(:discussions_reporting)
-  Account.default.save!
+
 
   puts "Loading test data from container path: /usr/src/app/spec/fixtures/data_generation/test_data.yaml"
   
@@ -114,8 +112,14 @@ def generate_test_environment
 
     # Enable discussion reply reporting for students. Needed for a task.
     _course.course.root_account.enable_feature! :discussions_reporting
+    Account.site_admin.enable_feature!(:menu_option_for_outcome_details_page)
+    _course.course.root_account.save!
+    Account.site_admin.save!
+    
 
     puts "Is discussion reporting enabled for #{_course.course.name}? #{_course.course.root_account.feature_enabled? :discussions_reporting}"
+    puts "Testing"
+    puts "Logged in user is #{_course.logged_in_user.name}"
 
     # Fetch student test data and create enrolled students
     course_data["students"].each { |student|
@@ -127,9 +131,10 @@ def generate_test_environment
         :student_password => student["password"]
       })
 
+
     }
 
-        # Fetch quiz test data and create quizzes
+    # Fetch quiz test data and create quizzes
     quiz_data = course_data["quizzes"]
     quiz_data.each { |quiz|
       
@@ -216,7 +221,11 @@ def generate_test_environment
 
             attempt["answers"] = attempt["answers"].map.with_index{|answer, index| 
               answer.transform_keys(&:to_sym)
+              # NOTE: only use quizzes with multiple choice questions for this nonsense. 
+              # make sure the ids for questions and aswers are valid by pulling them from the quiz rather than the test data
               answer[:question_id] = @quiz.quiz_questions[index].id
+              answer[:answer_id] = @quiz.quiz_questions[index].question_data["answers"].sample["id"] # pick a random answer
+              answer[:text] = answer[:answer_id].to_s
               answer
             }
 
@@ -240,6 +249,10 @@ def generate_test_environment
 
               # Find the real question id
               question_id = @quiz.quiz_questions[0].id
+
+              # Find the real answer id
+              answer_id = @quiz.quiz_questions[0].question_data["answers"].sample["id"]
+              question_answer = answer_id.to_s
 
               # Re-insert the appropriate keys into the partial hash. 
               attempt["partial"]["question_" + question_id.to_s] = question_answer
@@ -519,15 +532,56 @@ def generate_test_environment
     }
 
 
+    _course.course.conditional_release = true
+    _course.course.save!
 
 
+    # Fetch module test data and create the appropriate modules
+    course_data["modules"].each{ |mod|
 
-      # Fetch module test data and create the appropriate modules
-      course_data["modules"].each{ |mod|
+      _course.create_module(mod)
 
-        _course.create_module(mod)
+    }
 
-      }
+    # Fetch and create course outcomes 
+    outcome_data = course_data["outcomes"]
+
+    outcome_data.each{|outcome_name|
+      @outcome = _course.course.created_learning_outcomes.build(
+        title: outcome_name,
+        description: 'A learning outcome'
+      )
+
+      outcome_with_rubric({
+          :course => _course.course,
+          :outcome => @outcome
+          })
+      # _course.course.root_outcome_group.add_outcome(@outcome)
+      # _course.course.root_outcome_group.save!
+      _course.course.reload
+
+      puts "Created #{@outcome.title} outcome for #{_course.course.name}" 
+
+      _course.assignments.each{|assignment|
+    
+          allignment = @outcome.align(assignment, _course.course)
+          puts "Aligned #{assignment.title} to #{@outcome.title} outcome in #{_course.course.name}"
+          
+          if !assignment.rubric_association.nil?
+            
+            # Find rubric assessment for this student
+            assessment = assignment.rubric_association.rubric_assessments.select {|assessment| assessment.user == _course.logged_in_user}.first
+            
+            if !assessment.nil?
+
+              create_learning_outcome_result(_course.logged_in_user, 5, assignment, allignment, assignment.rubric_association, assessment, Time.zone.now  )
+              puts "Created Learning Outcome result for #{_course.logged_in_user.name} for #{assignment.title} in #{_course.course.name}"
+            end
+
+          end
+
+        }
+    }
 
 
 
@@ -537,6 +591,32 @@ def generate_test_environment
   courses[0]
 
 end
+
+def create_learning_outcome_result(user, score, assignment, alignment, rubric_association, rubric_assessment, submitted_at)
+    title = "#{user.name}, #{assignment.name}"
+    possible = @outcome.points_possible
+    mastery = (score || 0) >= @outcome.mastery_points
+
+    LearningOutcomeResult.create!(
+      learning_outcome: @outcome,
+      user:,
+      context: @course,
+      alignment:,
+      associated_asset: assignment,
+      association_type: "RubricAssociation",
+      association_id: rubric_association.id,
+      artifact_type: 'RubricAssessment',
+      artifact_id: rubric_assessment.id,
+      title:,
+      score:,
+      possible:,
+      mastery:,
+      created_at: submitted_at,
+      updated_at: submitted_at,
+      submitted_at:,
+      assessed_at: submitted_at
+    )
+  end
 
 # Combine a list of task objects together into an aggregate, where all task instances are organized under their respective tasks.
 def aggregate_task_objects(tasks)
@@ -2634,6 +2714,85 @@ Steps:
 
     task.update_initalized_text("Course", course.course.name)
     task.update_initalized_text("Discussion", discussion.title)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'd8f5a7b0-64e5-4c07-aff4-44d0e26f2eb2',
+    parameterized_text: 'Task: In the course "[[Course]]," view your Learning Mastery grades for the outcome group "[[Course]]" expand the group to see all outcomes, and report the number of mastered outcomes.'
+  })
+
+  task.populate(test_course) {|course, task|
+
+    task.update_initalized_text("Course", course.course.name)
+
+  }
+
+  tasks << task
+
+  task = AgentTask.new({
+    id: 'ff0f349b-4812-41ae-8b85-ae6c2899db2c',
+    parameterized_text: 'Task: In the "[[Course]]" course, navigate to the "[[Module]]" module, click the "Choose Assignment Group" link, and select the assignment titled "[[Assignment]]" by clicking the Select button.'
+  })
+
+  task.populate(test_course){|course, task|
+
+    m = course.course.context_modules.create!({name: 'Special Module A', workflow_state: 'active'})
+    
+    assignment_with_grade = course.assignments.select{|a| !a.submissions.select{|s| (s.user == course.logged_in_user) && (s.graded?)}.first.nil?}.first
+
+    if assignment_with_grade.nil?
+      puts "Cannot find assignment with logged in user grade for task #{task.id}"
+      return
+    end
+
+    assignment_option_1 = course.assignments.select{|a| a != assignment_with_grade }.first
+
+    if assignment_option_1.nil?
+      puts "Cannot find assignment option 1 for task #{task.id}"
+      return
+    end
+
+    assignment_option_2 = course.assignments.select{|a| (a != assignment_with_grade) && (a != assignment_option_1)}.first
+
+    if assignment_option_2.nil?
+      puts "Cannot find assignment option 2 for task #{task.id}"
+      return 
+    end
+
+    m.add_item(id: assignment_with_grade.id, type: "assignment")
+    # m.add_item(id: assignment_option_1.id, type: "assignment")
+    # m.add_item(id: assignment_option_2.id, type: "assignment")
+
+    ranges = [
+      ConditionalRelease::ScoringRange.new(
+        lower_bound:0.0,
+        upper_bound:1.0,
+        assignment_sets: [
+          ConditionalRelease::AssignmentSet.new(
+            assignment_set_associations: [
+              ConditionalRelease::AssignmentSetAssociation.new(assignment_id: assignment_option_1.id)
+            ]
+          ),
+          ConditionalRelease::AssignmentSet.new(
+            assignment_set_associations: [
+              ConditionalRelease::AssignmentSetAssociation.new(assignment_id: assignment_option_2.id)
+            ]
+          )
+        ]
+      )
+    ]
+
+    rule = course.course.conditional_release_rules.create!(trigger_assignment: assignment_with_grade, scoring_ranges: ranges)
+
+    m.reload
+    course.course.reload
+
+    task.update_initalized_text("Course", course.course.name)
+    task.update_initalized_text("Module", m.name)
+    task.update_initalized_text("Assignment", [assignment_option_1, assignment_option_2].sample.title)
 
   }
 

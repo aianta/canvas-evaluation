@@ -77,13 +77,15 @@ courses:
       workflow_state: active
       content:
         - title: Researchers in the field of Psychology
+        - title: The Role of Memory in Learning # this needs to be an assignment for which the logged in user has already been graded.
     - name: Module 3
       workflow_state: active
       content: 
         - title: Psychology & Pseudeo Science
           completion_requirements: "must_mark_done"
         - title: Cognitive Psychology Research Summary
-          
+  outcomes:
+    - "Knowledge of Psychology"
   announcements:
     - title: Materials for Lab 8
       message: Please remember to have procured all the PPE listed in the Lab 8 instructions before the day of the lab. Thank you!

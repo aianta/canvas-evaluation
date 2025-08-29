@@ -121,7 +121,7 @@ end
 class TestCourse 
 
 
-
+  attr_reader :root_account
   attr_reader :course
   attr_reader :logged_in_user
   attr_reader :unused_group_names
